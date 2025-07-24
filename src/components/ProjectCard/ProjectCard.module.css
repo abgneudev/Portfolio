@@ -1,0 +1,22 @@
+.projectCard {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.projectCard:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.index {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}

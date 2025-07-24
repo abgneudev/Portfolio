@@ -1,0 +1,185 @@
+/* ProjectList.module.css */
+
+.projectSection {
+  padding: 120px 0;
+  background: #FFFFFF;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.sectionHeader {
+  margin-bottom: 80px;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  color: #0A0A0A;
+  max-width: 800px;
+}
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 80px 40px;
+}
+
+.projectCard {
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projectCard:hover {
+  transform: translateY(-8px);
+}
+
+.projectImage {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  background: #F5F5F5;
+}
+
+.projectImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projectCard:hover .projectImage img {
+  transform: scale(1.05);
+}
+
+.projectOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.projectCard:hover .projectOverlay {
+  opacity: 1;
+}
+
+.viewProject {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transform: translateY(8px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projectCard:hover .viewProject {
+  transform: translateY(0);
+}
+
+.projectInfo {
+  padding: 0 8px;
+}
+
+.projectMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.projectIndex {
+  font-size: 14px;
+  color: #999;
+  font-family: 'SF Mono', Monaco, monospace;
+}
+
+.projectYear {
+  font-size: 14px;
+  color: #999;
+}
+
+.projectTitle {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: #0A0A0A;
+  margin-bottom: 8px;
+}
+
+.projectCategory {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.projectMetrics {
+  display: flex;
+  gap: 32px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metricValue {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.metricLabel {
+  font-size: 14px;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .projectSection {
+    padding: 80px 0;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .sectionHeader {
+    margin-bottom: 48px;
+  }
+
+  .projectGrid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .projectTitle {
+    font-size: 28px;
+  }
+}

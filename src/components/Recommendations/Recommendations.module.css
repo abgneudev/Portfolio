@@ -1,0 +1,5 @@
+.recommendations {
+  padding: var(--space-6) 0;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
