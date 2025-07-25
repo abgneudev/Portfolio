@@ -10,9 +10,13 @@ interface ProjectPageProps {
 const ProjectPage: React.FC<ProjectPageProps> = ({ project, onBack }) => {
   return (
     <div className={styles.projectPage}>
-      <button onClick={onBack}>Back to projects</button>
-      <h1>{project.title}</h1>
-      <p>{project.description}</p>
+      <div className="grid">
+        <div style={{ gridColumn: '2 / span 10', width: '100%' }}>
+          <button onClick={onBack}>Back to projects</button>
+          <h1>{project.title}</h1>
+          <p>{project.description}</p>
+        </div>
+      </div>
     </div>
   );
 };

@@ -20,35 +20,37 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
-      <div className={styles.container}>
-        <button 
-          className={styles.logo}
-          onClick={() => onNavigate('home')}
-          aria-label="Go to homepage"
-        >
-          A
-        </button>
-
-        <nav className={styles.nav}>
-          <button
-            className={`${styles.navLink} ${currentPage === 'home' ? styles.active : ''}`}
+      <div className={styles.grid}>
+        <div className={styles.navContainer}>
+          <button 
+            className={styles.logo}
             onClick={() => onNavigate('home')}
+            aria-label="Go to homepage"
           >
-            Work
+            A
           </button>
-          <button
-            className={`${styles.navLink} ${currentPage === 'about' ? styles.active : ''}`}
-            onClick={() => onNavigate('about')}
-          >
-            About
-          </button>
-          <a
-            href="mailto:hello@example.com"
-            className={styles.ctaLink}
-          >
-            Get in touch
-          </a>
-        </nav>
+
+          <nav className={styles.nav}>
+            <button
+              className={`${styles.navLink} ${currentPage === 'home' ? styles.active : ''}`}
+              onClick={() => onNavigate('home')}
+            >
+              Work
+            </button>
+            <button
+              className={`${styles.navLink} ${currentPage === 'about' ? styles.active : ''}`}
+              onClick={() => onNavigate('about')}
+            >
+              About
+            </button>
+            <a
+              href="mailto:hello@example.com"
+              className={styles.ctaLink}
+            >
+              Get in touch
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
   );

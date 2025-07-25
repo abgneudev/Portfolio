@@ -1,23 +1,96 @@
-/* HomePage.module.css - Zen Style with Better Visual Hierarchy */
+/* HomePage.module.css - Consistent Grid Layout & Spacing */
 
+/* CSS Variables for consistency */
+:root {
+  --font-primary: 'Source Sans Pro', Arial, sans-serif;
+  --grid-columns: 12;
+  --grid-gap: 32px;
+  --container-max-width: 1760px;
+  --container-padding: 80px;
+  --section-spacing: 80px;
+  
+  /* Colors */
+  --color-primary: #1F2937;
+  --color-secondary: #4B5563;
+  --color-text: #6B7280;
+  --color-light: #9CA3AF;
+  --color-bg: #FAFAFA;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
+  
+  /* Breakpoints */
+  --breakpoint-large: 1400px;
+  --breakpoint-medium: 900px;
+  --breakpoint-small: 768px;
+  
+  /* Typography scale */
+  --font-h1: clamp(32px, 4vw, 48px);
+  --font-h2: clamp(28px, 3vw, 36px);
+  --font-h3: clamp(20px, 2.5vw, 24px);
+  --font-body-large: clamp(18px, 2vw, 20px);
+  --font-body: 16px;
+  --font-small: 14px;
+  --font-caption: 12px;
+  --font-label: 11px;
+}
+
+/* Global styles */
 .homePage {
+  font-family: var(--font-primary);
+  width: 100%;
+  color: var(--color-primary);
+}
+
+/* Grid system */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
   width: 100%;
 }
 
-/* Hero Section */
-.hero {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background: #FAFAFA;
-  position: relative;
-  padding-left: 8vw; /* Add left padding for offset */
+/* Grid column utilities */
+.colCentered {
+  grid-column: 1 / span 6;
 }
 
-/* Add subtle texture/pattern for depth */
-.hero::before {
+.colFull {
+  grid-column: 1 / -1;
+}
+
+/* Section system */
+.section {
+  padding: 0;
+  width: 100%;
+  position: relative;
+}
+
+.sectionHero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  background: var(--color-bg);
+  padding: 0;
+}
+
+.sectionDark {
+  background: var(--color-black);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.sectionAlt {
+  background: var(--color-bg);
+}
+
+/* Hero Section specific styles */
+.sectionHero::before {
   content: '';
   position: absolute;
   top: 0;
@@ -30,33 +103,21 @@
   pointer-events: none;
 }
 
-.heroContainer {
-  width: 100%;
-  max-width: 640px; /* Limit content width */
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  z-index: 1;
-}
-
 .heroTitle {
-  font-size: clamp(24px, 3vw, 32px); /* Reduced from 36px max */
+  font-size: var(--font-h2);
   font-weight: 300;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  margin: 0 0 32px 0; /* Increased spacing */
-  color: #1F2937;
-  text-align: left;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin: 0 0 28px 0;
+  color: var(--color-primary);
 }
 
 .typingText {
-  color: #4B5563; /* Slightly lighter for hierarchy */
-  font-weight: 400; /* Slightly bolder for emphasis */
+  color: var(--color-secondary);
+  font-weight: 400;
   min-height: 1.2em;
   display: inline-block;
-  background: linear-gradient(90deg, #1F2937, #4B5563);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -66,8 +127,9 @@
   display: inline-block;
   animation: blink 1s infinite;
   font-weight: 200;
-  color: #9CA3AF;
+  color: var(--color-light);
   opacity: 0.5;
+  -webkit-text-fill-color: var(--color-light);
 }
 
 @keyframes blink {
@@ -76,18 +138,17 @@
 }
 
 .heroSubtitle {
-  font-size: clamp(15px, 2.5vw, 18px); /* Much smaller, zen-like */
-  font-weight: 400;
-  line-height: 1.8; /* More breathing room */
-  letter-spacing: 0.01em;
-  color: #6B7280; /* Lighter for hierarchy */
-  margin: 0 0 64px 0; /* More space before button */
-  max-width: 800px; /* Limit width for readability */
-  text-align: left;
+  font-size: var(--font-body-large);
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 0;
+  color: var(--color-text);
+  margin: 0 0 48px 0;
+  max-width: 800px;
 }
 
 .highlight {
-  color: #1F2937;
+  color: var(--color-primary);
   font-weight: 500;
   position: relative;
   display: inline-block;
@@ -102,25 +163,25 @@
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: #1F2937;
+  background: var(--color-primary);
   opacity: 0.3;
   transition: all 0.3s ease;
 }
 
 .highlight:hover {
-  color: #000;
+  color: var(--color-black);
 }
 
 .highlight:hover::after {
   opacity: 0.6;
-  transform: scaleY(2);
+  height: 2px;
 }
 
 .heroButton {
-  background: #1F2937;
+  background: var(--color-primary);
   border: none;
-  color: #FFFFFF;
-  font-size: 11px;
+  color: var(--color-white);
+  font-size: var(--font-label);
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -155,26 +216,7 @@
   height: 300px;
 }
 
-/* Container */
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 48px;
-  width: 100%;
-}
-
-/* Hero Container Override */
-.hero .container {
-  max-width: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Section Base Styles */
-section {
-  padding: 100px 0; /* Consistent vertical rhythm */
-}
-
+/* Section headers */
 .sectionHeader {
   margin-bottom: 64px;
   text-align: center;
@@ -186,7 +228,7 @@ section {
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #9CA3AF;
+  color: var(--color-light);
   margin-bottom: 20px;
   position: relative;
   padding: 0 24px;
@@ -199,7 +241,7 @@ section {
   top: 50%;
   width: 40px;
   height: 1px;
-  background: #E5E7EB;
+  background: var(--color-border);
 }
 
 .label::before {
@@ -211,42 +253,36 @@ section {
 }
 
 .sectionTitle {
-  font-size: clamp(28px, 3vw, 36px); /* Smaller, more refined */
+  font-size: var(--font-h2);
   font-weight: 300;
   letter-spacing: -0.01em;
-  color: #1F2937;
+  color: var(--color-primary);
   margin: 0;
 }
 
 /* Services Section */
-.servicesSection {
-  padding: 100px 0;
-  background: #FFFFFF;
-  position: relative;
-}
-
 .servicesSection::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 5vw;
+  right: 5vw;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #E5E7EB, transparent);
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
 }
 
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 32px;
 }
 
 .serviceCard {
-  background: #FAFAFA;
+  background: var(--color-white);
   padding: 48px 40px;
-  border-radius: 0; /* Sharp edges for zen aesthetic */
+  border-radius: 0;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid #F3F4F6;
+  border: 1px solid var(--color-border-light);
   position: relative;
   overflow: hidden;
 }
@@ -258,7 +294,7 @@ section {
   left: 0;
   width: 100%;
   height: 3px;
-  background: #1F2937;
+  background: var(--color-primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
@@ -266,9 +302,8 @@ section {
 
 .serviceCard:hover {
   transform: translateY(-2px);
-  background: #FFFFFF;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-  border-color: #E5E7EB;
+  border-color: var(--color-border);
 }
 
 .serviceCard:hover::before {
@@ -279,12 +314,12 @@ section {
   width: 40px;
   height: 40px;
   margin-bottom: 28px;
-  color: #6B7280;
+  color: var(--color-text);
   transition: color 0.3s ease;
 }
 
 .serviceCard:hover .serviceIcon {
-  color: #1F2937;
+  color: var(--color-primary);
 }
 
 .serviceIcon svg {
@@ -294,92 +329,109 @@ section {
 }
 
 .serviceCard h3 {
-  font-size: 20px;
+  font-size: var(--font-h3);
   font-weight: 500;
   margin-bottom: 16px;
-  color: #1F2937;
+  color: var(--color-primary);
   letter-spacing: -0.01em;
 }
 
 .serviceCard p {
-  font-size: 14px;
+  font-size: var(--font-small);
   line-height: 1.7;
-  color: #6B7280;
+  color: var(--color-text);
   margin: 0;
 }
 
-/* Responsive */
+/* Responsive breakpoints */
+@media (max-width: 1400px) {
+  .grid {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    padding: 0 16px;
+    gap: 16px;
+  }
+  
+  .colCentered {
+    grid-column: 1 / -1;
+  }
+  
+  .section {
+    padding: 60px 0;
+  }
+  
+  .sectionDark {
+    margin: 60px 0;
+    border-radius: 16px;
+  }
+}
+
 @media (max-width: 768px) {
-  .hero {
-    padding: 60px 24px;
-    min-height: 90vh;
-    align-items: center;
+  :root {
+    --section-spacing: 60px;
   }
-
-  .hero .container {
-    padding: 0;
+  
+  .sectionHero {
+    min-height: 85vh;
   }
-
+  
   .heroTitle {
-    font-size: clamp(22px, 5vw, 28px);
-    margin-bottom: 24px;
+    font-size: clamp(24px, 6vw, 30px);
+    margin-bottom: 20px;
   }
-
+  
   .heroSubtitle {
-    font-size: clamp(14px, 4vw, 16px);
-    margin-bottom: 48px;
-    line-height: 1.7;
+    font-size: clamp(15px, 4vw, 18px);
+    margin-bottom: 36px;
+    line-height: 1.6;
   }
-
+  
   .heroButton {
     font-size: 10px;
     padding: 16px 32px;
   }
-
-  .container {
-    padding: 0 24px;
+  
+  .sectionDark {
+    margin: 40px 0;
+    border-radius: 12px;
   }
-
-  section {
-    padding: 64px 0;
-  }
-
+  
   .sectionHeader {
     margin-bottom: 48px;
   }
-
+  
   .label {
     padding: 0 16px;
   }
-
+  
   .label::before,
   .label::after {
     width: 20px;
   }
-
+  
   .label::before {
     left: -20px;
   }
-
+  
   .label::after {
     right: -20px;
   }
-
-  .servicesSection {
-    padding: 64px 0;
-  }
-
+  
   .servicesGrid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-
+  
   .serviceCard {
     padding: 36px 28px;
   }
 }
 
-/* Additional Zen touches */
+/* Animation enhancements */
 @media (prefers-reduced-motion: no-preference) {
   * {
     scroll-behavior: smooth;

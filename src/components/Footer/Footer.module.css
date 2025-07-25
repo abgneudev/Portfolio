@@ -22,10 +22,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footerMain {
-  max-width: 600px;
-}
-
+/* Remove local .container, use global .grid */
 .footerTitle {
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 200;
@@ -40,9 +37,12 @@
   transition: opacity 0.3s ease;
   display: inline-block;
   position: relative;
-}
-
-.footerEmail::after {
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+  }
   content: '';
   position: absolute;
   bottom: -4px;

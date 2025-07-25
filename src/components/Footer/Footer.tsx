@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.container}>
+      <div className="grid">
         <div className={styles.footerContent}>
           <div className={styles.footerMain}>
             <h3 className={styles.footerTitle}>Let's work together</h3>

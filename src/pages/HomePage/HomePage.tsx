@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-// import Hero from '../../components/Hero/Hero';
 import ExpandableCards from '../../components/ExpandableCards/ExpandableCards';
 import ProjectList from '../../components/ProjectList/ProjectList';
 import type { Project } from '../../types';
 import styles from './HomePage.module.css';
-
 
 interface HomePageProps {
   onProjectClick: (projectId: string) => void;
@@ -45,6 +43,7 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
       setDelta(isDeleting ? 50 : 100); // Typing speed
     }
   };
+
   // Enhanced project data with better placeholders
   const enhancedProjects: Project[] = [
     {
@@ -121,80 +120,78 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
   return (
     <div className={styles.homePage}>
       {/* Hero Section */}
-
-      <section className={styles.hero} aria-label="Introductory summary">
-        <div className={styles.container}>
-          <div className={styles.heroContainer}>
+      <section className={`${styles.section} ${styles.sectionHero}`} aria-label="Introductory summary">
+        <div className={styles.grid}>
+          <div className={styles.colCentered}>
             <h1 className={styles.heroTitle}>
               Hello, I'm Abhinav — <span className={styles.typingText}>{text}<span className={styles.cursor}>|</span></span>
             </h1>
             <p className={styles.heroSubtitle}>
-              I design accessible digital experiences that scale. <br /> 
+              I design accessible digital experiences that scale. <br />
               Currently at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> where I'm building design systems, writing production-ready code, and designing calming experiences for mental wellness through meditation and sound.
             </p>
-            <button className={styles.heroButton} onClick={() => onProjectClick('fintech-redesign')}>VIEW MY WORK</button>
+            <button className={styles.heroButton} onClick={() => onProjectClick('fintech-redesign')}>
+              VIEW MY WORK
+            </button>
           </div>
         </div>
       </section>
 
-      <section aria-label="Expertise">
-        <div className={styles.container}>
-          <ExpandableCards />
-        </div>
+      {/* Skills/Expertise Section */}
+      <section aria-label="Expertise" className={`${styles.section} ${styles.sectionDark}`}>
+        <ExpandableCards />
       </section>
 
-      <section aria-label="Projects">
-        <div className={styles.container}>
-          <ProjectList 
-            projects={enhancedProjects} 
-            onProjectClick={onProjectClick}
-          />
-        </div>
+      {/* Projects Section */}
+      <section aria-label="Projects" className={styles.section}>
+        <ProjectList 
+          projects={enhancedProjects} 
+          onProjectClick={onProjectClick}
+        />
       </section>
-      
+
       {/* Services Section */}
-      <section className={styles.servicesSection}>
-        <div className={styles.container}>
-          <header className={styles.sectionHeader}>
-            <span className={styles.label}>Services</span>
-            <h2 className={styles.sectionTitle}>How I can help</h2>
-          </header>
-          
-          <div className={styles.servicesGrid}>
-            <article className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>
-                <svg viewBox="0 0 48 48" fill="none">
-                  <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M24 14V34M14 24H34" stroke="currentColor" strokeWidth="1.5"/>
-                </svg>
-              </div>
-              <h3>Product Strategy</h3>
-              <p>Defining product vision and roadmaps that align user needs with business objectives</p>
-            </article>
-
-            <article className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>
-                <svg viewBox="0 0 48 48" fill="none">
-                  <rect x="8" y="8" width="32" height="32" rx="16" stroke="currentColor" strokeWidth="1.5"/>
-                  <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="1.5"/>
-                </svg>
-              </div>
-              <h3>User Experience</h3>
-              <p>Creating intuitive interfaces through research, prototyping, and iterative design</p>
-            </article>
-
-            <article className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>
-                <svg viewBox="0 0 48 48" fill="none">
-                  <rect x="12" y="12" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-                  <rect x="26" y="12" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-                  <rect x="12" y="26" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-                  <rect x="26" y="26" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-                </svg>
-              </div>
-              <h3>Design Systems</h3>
-              <p>Building scalable component libraries that ensure consistency across products</p>
-            </article>
+      <section className={`${styles.section} ${styles.sectionAlt}`}>
+        <div className={styles.grid}>
+          <div className={styles.colCentered}>
+            <header className={styles.sectionHeader}>
+              <span className={styles.label}>Services</span>
+              <h2 className={styles.sectionTitle}>How I can help</h2>
+            </header>
+            <div className={styles.servicesGrid}>
+              <article className={styles.serviceCard}>
+                <div className={styles.serviceIcon}>
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="1.5"/>
+                    <path d="M24 14V34M14 24H34" stroke="currentColor" strokeWidth="1.5"/>
+                  </svg>
+                </div>
+                <h3>Product Strategy</h3>
+                <p>Defining product vision and roadmaps that align user needs with business objectives</p>
+              </article>
+              <article className={styles.serviceCard}>
+                <div className={styles.serviceIcon}>
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <rect x="8" y="8" width="32" height="32" rx="16" stroke="currentColor" strokeWidth="1.5"/>
+                    <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="1.5"/>
+                  </svg>
+                </div>
+                <h3>User Experience</h3>
+                <p>Creating intuitive interfaces through research, prototyping, and iterative design</p>
+              </article>
+              <article className={styles.serviceCard}>
+                <div className={styles.serviceIcon}>
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <rect x="12" y="12" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
+                    <rect x="26" y="12" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
+                    <rect x="12" y="26" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
+                    <rect x="26" y="26" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
+                  </svg>
+                </div>
+                <h3>Design Systems</h3>
+                <p>Building scalable component libraries that ensure consistency across products</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>

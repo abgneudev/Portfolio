@@ -269,28 +269,30 @@ const ExpandableCards: React.FC = () => {
   const activeCardData = activeTab ? cardsData.find(card => card.id === activeTab) : null;
 
   return (
-    <section className={styles.container}>
+    <div className={styles.container}>
       {/* Header */}
-      <div className={styles.headerSection}>
-        <h2 className={styles.sectionTitle}>Explore my expertise</h2>
-        {!expandedCard && (
-          <div className={styles.sliderControls}>
-            <button 
-              className={styles.sliderArrow}
-              onClick={() => scrollSlider('left')}
-              aria-label="Scroll left"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button 
-              className={styles.sliderArrow}
-              onClick={() => scrollSlider('right')}
-              aria-label="Scroll right"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        )}
+      <div className={styles.grid}>
+        <div className={styles.headerSection}>
+          <h2 className={styles.sectionTitle}>Explore my expertise</h2>
+          {!expandedCard && (
+            <div className={styles.sliderControls}>
+              <button 
+                className={styles.sliderArrow}
+                onClick={() => scrollSlider('left')}
+                aria-label="Scroll left"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button 
+                className={styles.sliderArrow}
+                onClick={() => scrollSlider('right')}
+                aria-label="Scroll right"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Cards Slider or Tabs */}
@@ -324,17 +326,19 @@ const ExpandableCards: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className={styles.tabNavigation}>
-          <div className={styles.tabList}>
-            {cardsData.map((card) => (
-              <button
-                key={card.id}
-                className={`${styles.tabButton} ${activeTab === card.id ? styles.active : ''}`}
-                onClick={() => handleTabClick(card.id)}
-              >
-                {card.title.toUpperCase()}
-              </button>
-            ))}
+        <div className={styles.grid}>
+          <div className={styles.tabNavigation}>
+            <div className={styles.tabList}>
+              {cardsData.map((card) => (
+                <button
+                  key={card.id}
+                  className={`${styles.tabButton} ${activeTab === card.id ? styles.active : ''}`}
+                  onClick={() => handleTabClick(card.id)}
+                >
+                  {card.title.toUpperCase()}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -342,100 +346,81 @@ const ExpandableCards: React.FC = () => {
       {/* Expanded Section */}
       {expandedCard && activeCardData && (
         <div ref={expandedRef} className={styles.expandedSection}>
-          <div className={styles.expandedGrid}>
-            {/* Gallery */}
-            <div className={styles.gallerySection}>
-              <div className={styles.mainImage}>
-                <img 
-                  src={activeCardData.gallery[currentImageIndex[activeTab || ''] || 0]} 
-                  alt={activeCardData.title}
-                />
-                
-                {activeCardData.gallery.length > 1 && (
-                  <>
-                    <button
-                      className={`${styles.galleryNav} ${styles.prevButton}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (activeTab) handleImageNav(activeTab, 'prev');
-                      }}
-                      aria-label="Previous image"
-                    >
-                      <ChevronLeft size={20} />
-                    </button>
-                    <button
-                      className={`${styles.galleryNav} ${styles.nextButton}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (activeTab) handleImageNav(activeTab, 'next');
-                      }}
-                      aria-label="Next image"
-                    >
-                      <ChevronRight size={20} />
-                    </button>
-                  </>
-                )}
-              </div>
-
-              {/* Thumbnails */}
-              {activeCardData.gallery.length > 1 && (
-                <div className={styles.thumbnails}>
-                  {activeCardData.gallery.map((image, index) => (
-                    <button
-                      key={index}
-                      className={`${styles.thumbnail} ${
-                        index === (currentImageIndex[activeTab || ''] || 0) ? styles.active : ''
-                      }`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (activeTab) {
-                          setCurrentImageIndex(prev => ({
-                            ...prev,
-                            [activeTab]: index
-                          }));
-                        }
-                      }}
-                      aria-label={`View image ${index + 1}`}
-                    >
-                      <img src={image} alt={`${activeCardData.title} ${index + 1}`} />
-                    </button>
-                  ))}
+          <div className={styles.grid}>
+            <div className={styles.expandedGrid}>
+              {/* Gallery */}
+              <div className={styles.gallerySection}>
+                <div className={styles.mainImage}>
+                  <img 
+                    src={activeCardData.gallery[currentImageIndex[activeTab || ''] || 0]} 
+                    alt={activeCardData.title}
+                  />
+                  
+                  {/* Image counter */}
+                  <div className={styles.imageCounter}>
+                    {String(currentImageIndex[activeTab || ''] + 1 || 1).padStart(2, '0')}/{String(activeCardData.gallery.length).padStart(2, '0')}
+                  </div>
+                  
+                  {activeCardData.gallery.length > 1 && (
+                    <>
+                      <button
+                        className={`${styles.galleryNav} ${styles.prevButton}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (activeTab) handleImageNav(activeTab, 'prev');
+                        }}
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+                      <button
+                        className={`${styles.galleryNav} ${styles.nextButton}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (activeTab) handleImageNav(activeTab, 'next');
+                        }}
+                        aria-label="Next image"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    </>
+                  )}
                 </div>
-              )}
-            </div>
-
-            {/* Details */}
-            <div className={styles.detailsSection}>
-              <div className={styles.detailsHeader}>
-                <p className={styles.detailCategory}>{activeCardData.category}</p>
-                <h2 className={styles.detailTitle}>{activeCardData.title}</h2>
-                <p className={styles.detailDescription}>{activeCardData.description}</p>
               </div>
 
-              <div className={styles.features}>
-                <h3 className={styles.featuresTitle}>Key Features</h3>
-                <ul className={styles.featuresList}>
-                  {activeCardData.features.map((feature, index) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
-              </div>
+              {/* Details */}
+              <div className={styles.detailsSection}>
+                <div className={styles.detailsHeader}>
+                  <p className={styles.detailCategory}>{activeCardData.category}</p>
+                  <h2 className={styles.detailTitle}>{activeCardData.title}</h2>
+                  <p className={styles.detailDescription}>{activeCardData.description}</p>
+                </div>
 
-              <div className={styles.specs}>
-                <h3 className={styles.specsTitle}>Specifications</h3>
-                <dl className={styles.specsList}>
-                  {activeCardData.specs.map((spec, index) => (
-                    <div key={index} className={styles.specItem}>
-                      <dt>{spec.label}</dt>
-                      <dd>{spec.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
+                <div className={styles.features}>
+                  <h3 className={styles.featuresTitle}>Key Features</h3>
+                  <ul className={styles.featuresList}>
+                    {activeCardData.features.map((feature, index) => (
+                      <li key={index}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
 
-              <button className={styles.shopButton}>
-                Explore This Category
-              </button>
+                <div className={styles.specs}>
+                  <h3 className={styles.specsTitle}>Specifications</h3>
+                  <dl className={styles.specsList}>
+                    {activeCardData.specs.map((spec, index) => (
+                      <div key={index} className={styles.specItem}>
+                        <dt>{spec.label}</dt>
+                        <dd>{spec.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+
+                <button className={styles.shopButton}>
+                  Explore This Category
+                </button>
+              </div>
             </div>
           </div>
 
@@ -452,7 +437,7 @@ const ExpandableCards: React.FC = () => {
           </button>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 
