@@ -1,4 +1,4 @@
-/* ExpandableCards.module.css - Fixed Version */
+/* ExpandableCards.module.css - Canvas Reveal Effect Version */
 
 /* CSS Variables matching HomePage */
 :root {
@@ -152,7 +152,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: 16px;
+  gap: 24px;
   margin: 0;
   padding-left: max(var(--container-padding), calc((100% - var(--container-max-width)) / 2 + var(--container-padding)));
   padding-right: 100px;
@@ -177,7 +177,7 @@
   display: none;
 }
 
-/* Fixed card styles */
+/* Updated card styles with canvas effect */
 .card {
   position: relative;
   cursor: pointer;
@@ -185,12 +185,14 @@
   background: var(--color-dark-bg);
   margin: 0;
   padding: 0;
-  flex: 0 0 340px;
-  width: 340px;
-  min-width: 340px;
-  max-width: 340px;
+  flex: 0 0 400px;
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
   height: auto;
   display: block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
 .card:hover {
@@ -201,12 +203,47 @@
   transform: scale(1.02);
 }
 
-/* Fixed image container using padding-bottom technique */
+/* Corner Icons */
+.cornerIcon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  color: var(--color-white);
+  z-index: 10;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.card:hover .cornerIcon {
+  opacity: 0.7;
+}
+
+.topLeft {
+  top: 16px;
+  left: 16px;
+}
+
+.topRight {
+  top: 16px;
+  right: 16px;
+}
+
+.bottomLeft {
+  bottom: 16px;
+  left: 16px;
+}
+
+.bottomRight {
+  bottom: 16px;
+  right: 16px;
+}
+
+/* Canvas container */
 .cardImage {
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 133.33%; /* 4:3 aspect ratio */
+  padding-bottom: 125%; /* 5:4 aspect ratio for taller cards */
   overflow: hidden;
   background: var(--color-dark-surface);
   margin: 0;
@@ -229,14 +266,33 @@
   transform: scale(1.05);
 }
 
+/* Canvas element */
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+}
+
+.card:hover .canvas {
+  opacity: 0.4;
+}
+
+/* Overlay for card content */
 .cardOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
-  opacity: 0.8;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
   pointer-events: none;
+  z-index: 3;
 }
 
+/* Card content positioning */
 .cardContent {
   position: absolute;
   bottom: 0;
@@ -244,9 +300,10 @@
   right: 0;
   padding: 32px 24px;
   text-align: left;
-  z-index: 1;
+  z-index: 4;
 }
 
+/* Card title - always visible */
 .cardTitle {
   font-size: 32px;
   font-weight: 300;
@@ -254,6 +311,16 @@
   margin: 0;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .cardTitle {
+  transform: translateY(-4px);
+}
+
+/* Radial gradient mask for some cards */
+.card:nth-child(2) .cardOverlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
 }
 
 /* Expanded Section */
@@ -359,51 +426,6 @@
 
 .nextButton {
   right: 20px;
-}
-
-.thumbnails {
-  display: flex;
-  gap: 16px;
-}
-
-.thumbnail {
-  flex: 1;
-  position: relative;
-  height: 0;
-  padding-bottom: 100%; /* 1:1 aspect ratio */
-  border: 2px solid transparent;
-  border-radius: 0;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--color-dark-surface);
-}
-
-.thumbnail img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.3s ease;
-}
-
-.thumbnail:not(.active) img {
-  opacity: 0.5;
-}
-
-.thumbnail:hover:not(.active) img {
-  opacity: 0.7;
-}
-
-.thumbnail.active {
-  border-color: var(--color-white);
-}
-
-.thumbnail.active img {
-  opacity: 1;
 }
 
 /* Details Section */
@@ -580,7 +602,7 @@
   transform: scale(1.05);
 }
 
-/* Responsive breakpoints - matching HomePage */
+/* Responsive breakpoints */
 @media (max-width: 1400px) {
   .grid {
     padding: 0 40px;
@@ -620,13 +642,14 @@
   .cardsSlider {
     padding-left: 16px;
     padding-right: 60px;
+    gap: 16px;
   }
   
   .card {
-    flex: 0 0 300px;
-    width: 300px;
-    min-width: 300px;
-    max-width: 300px;
+    flex: 0 0 320px;
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
   }
 }
 
@@ -674,6 +697,15 @@
     width: 280px;
     min-width: 280px;
     max-width: 280px;
+  }
+  
+  .cornerIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .cardTitle {
+    font-size: 28px;
   }
 }
 

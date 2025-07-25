@@ -16,6 +16,7 @@ interface CardContent {
   description: string;
   features: string[];
   specs: CardSpec[];
+  color: string;
 }
 
 interface DragState {
@@ -46,7 +47,8 @@ const cardsData: CardContent[] = [
       { label: 'Components', value: '45+ patterns' },
       { label: 'Tokens', value: 'Multi-platform support' },
       { label: 'Framework', value: 'React + TypeScript' }
-    ]
+    ],
+    color: '#064e3b' // emerald-900
   },
   {
     id: 'accessibility',
@@ -68,7 +70,8 @@ const cardsData: CardContent[] = [
       { label: 'Compliance', value: 'WCAG 2.1 AA' },
       { label: 'Testing Tools', value: 'axe DevTools' },
       { label: 'Audit Score', value: '100/100' }
-    ]
+    ],
+    color: '#000000' // black
   },
   {
     id: 'research',
@@ -90,7 +93,8 @@ const cardsData: CardContent[] = [
       { label: 'Methods', value: 'Qual + Quant' },
       { label: 'Sample Size', value: '5-8 per round' },
       { label: 'Cadence', value: 'Bi-weekly testing' }
-    ]
+    ],
+    color: '#075985' // sky-600
   },
   {
     id: 'ia',
@@ -112,7 +116,8 @@ const cardsData: CardContent[] = [
       { label: 'Nav Depth', value: '3 levels maximum' },
       { label: 'Categories', value: 'User-tested groupings' },
       { label: 'Patterns', value: '12 IA templates' }
-    ]
+    ],
+    color: '#581c87' // purple-900
   },
   {
     id: 'prototyping',
@@ -134,14 +139,104 @@ const cardsData: CardContent[] = [
       { label: 'Fidelity', value: 'Production-ready' },
       { label: 'Tools', value: 'Figma + React' },
       { label: 'Turnaround', value: '48-72 hours' }
-    ]
+    ],
+    color: '#7c2d12' // orange-900
   }
 ];
+
+// Canvas component for the reveal effect
+const CanvasRevealEffect: React.FC<{
+  isHovered: boolean;
+  color: string;
+  animationSpeed?: number;
+  dotSize?: number;
+}> = ({ isHovered, color, animationSpeed = 3, dotSize = 3 }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const timeRef = useRef(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const updateCanvasSize = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    };
+
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+
+    const animate = () => {
+      if (!ctx || !canvas) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (isHovered) {
+        timeRef.current += animationSpeed * 0.01;
+
+        const cols = Math.floor(canvas.width / (dotSize * 10));
+        const rows = Math.floor(canvas.height / (dotSize * 10));
+
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            const x = i * dotSize * 10 + dotSize * 5;
+            const y = j * dotSize * 10 + dotSize * 5;
+            
+            const distance = Math.sqrt(
+              Math.pow(x - canvas.width / 2, 2) + 
+              Math.pow(y - canvas.height / 2, 2)
+            );
+            
+            const opacity = Math.sin(distance * 0.01 - timeRef.current) * 0.5 + 0.5;
+            
+            ctx.fillStyle = color + Math.floor(opacity * 255).toString(16).padStart(2, '0');
+            ctx.beginPath();
+            ctx.arc(x, y, dotSize, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', updateCanvasSize);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isHovered, color, animationSpeed, dotSize]);
+
+  return <canvas ref={canvasRef} className={styles.canvas} />;
+};
+
+// Icon components
+const Icon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="currentColor"
+    className={className}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+  </svg>
+);
 
 const ExpandableCards: React.FC = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: string]: number }>({});
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   
@@ -160,7 +255,6 @@ const ExpandableCards: React.FC = () => {
     setCurrentImageIndex(indices);
   }, []);
 
-  // Set active tab when card expands
   useEffect(() => {
     if (expandedCard) {
       setActiveTab(expandedCard);
@@ -310,16 +404,32 @@ const ExpandableCards: React.FC = () => {
               key={card.id}
               className={`${styles.card} ${expandedCard === card.id ? styles.active : ''}`}
               onClick={() => handleCardClick(card.id)}
+              onMouseEnter={() => setHoveredCard(card.id)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
+              {/* Corner icons */}
+              <Icon className={`${styles.cornerIcon} ${styles.topLeft}`} />
+              <Icon className={`${styles.cornerIcon} ${styles.topRight}`} />
+              <Icon className={`${styles.cornerIcon} ${styles.bottomLeft}`} />
+              <Icon className={`${styles.cornerIcon} ${styles.bottomRight}`} />
+
               <div className={styles.cardImage}>
                 <img 
                   src={card.image} 
                   alt={card.title} 
                   draggable="false"
                 />
+                <CanvasRevealEffect 
+                  isHovered={hoveredCard === card.id}
+                  color={card.color}
+                  animationSpeed={card.id === 'design-systems' ? 5.1 : 3}
+                  dotSize={card.id === 'accessibility' ? 2 : 3}
+                />
                 <div className={styles.cardOverlay} />
                 <div className={styles.cardContent}>
-                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                  <h3 className={styles.cardTitle}>
+                    {card.title}
+                  </h3>
                 </div>
               </div>
             </div>
