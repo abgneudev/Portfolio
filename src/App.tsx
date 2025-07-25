@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage/HomePage.tsx';
 import ProjectPage from './pages/ProjectPage/ProjectPage.tsx';
 import AboutPage from './pages/AboutPage/AboutPage.tsx';
 import Footer from './components/Footer/Footer.tsx';
+import ThreeDMarqueeSection from './components/ThreeDMarquee/ThreeDMarquee.tsx';
 import type { Project } from './types/index';
 import './styles/globals.css';
 import './App.css';
@@ -86,6 +87,7 @@ const App: React.FC = () => {
         {renderPage()}
       </main>
       
+      <ThreeDMarqueeSection />
       <Footer />
     </div>
   );
