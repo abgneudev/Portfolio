@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
           <p>&copy; {currentYear} Abhinav. All rights reserved.</p>
           <p className={styles.location}>
             <span className={styles.dot}></span>
-            Based in San Francisco
+            Based in  Boston, MA
           </p>
         </div>
       </div>

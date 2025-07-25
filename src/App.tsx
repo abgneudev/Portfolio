@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from './components/Navigation/Navigation.tsx';
 import HomePage from './pages/HomePage/HomePage.tsx';
+
 import ProjectPage from './pages/ProjectPage/ProjectPage.tsx';
 import AboutPage from './pages/AboutPage/AboutPage.tsx';
 import Footer from './components/Footer/Footer.tsx';

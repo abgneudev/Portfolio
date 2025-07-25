@@ -1,5 +1,6 @@
-import React from 'react';
-import Hero from '../../components/Hero/Hero';
+import React, { useState, useEffect } from 'react';
+// import Hero from '../../components/Hero/Hero';
+import ExpandableCards from '../../components/ExpandableCards/ExpandableCards';
 import ProjectList from '../../components/ProjectList/ProjectList';
 import type { Project } from '../../types';
 import styles from './HomePage.module.css';
@@ -10,6 +11,40 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [text, setText] = useState('');
+  const [delta, setDelta] = useState(100);
+
+  const roles = ['Product Designer', 'Frontend Developer', 'Information Architect'];
+  
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => clearInterval(ticker);
+  }, [text, isDeleting, currentRoleIndex]);
+
+  const tick = () => {
+    const currentRole = roles[currentRoleIndex];
+    const updatedText = isDeleting 
+      ? currentRole.substring(0, text.length - 1)
+      : currentRole.substring(0, text.length + 1);
+
+    setText(updatedText);
+
+    if (!isDeleting && updatedText === currentRole) {
+      setIsDeleting(true);
+      setDelta(2000); // Pause at full text
+    } else if (isDeleting && updatedText === '') {
+      setIsDeleting(false);
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+      setDelta(500); // Pause before typing next
+    } else {
+      setDelta(isDeleting ? 50 : 100); // Typing speed
+    }
+  };
   // Enhanced project data with better placeholders
   const enhancedProjects: Project[] = [
     {
@@ -85,11 +120,37 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
 
   return (
     <div className={styles.homePage}>
-      <Hero />
-      <ProjectList 
-        projects={enhancedProjects} 
-        onProjectClick={onProjectClick}
-      />
+      {/* Hero Section */}
+
+      <section className={styles.hero} aria-label="Introductory summary">
+        <div className={styles.container}>
+          <div className={styles.heroContainer}>
+            <h1 className={styles.heroTitle}>
+              Hello, I'm Abhinav — <span className={styles.typingText}>{text}<span className={styles.cursor}>|</span></span>
+            </h1>
+            <p className={styles.heroSubtitle}>
+              I design accessible digital experiences that scale. <br /> 
+              Currently at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> where I'm building design systems, writing production-ready code, and designing calming experiences for mental wellness through meditation and sound.
+            </p>
+            <button className={styles.heroButton} onClick={() => onProjectClick('fintech-redesign')}>VIEW MY WORK</button>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Expertise">
+        <div className={styles.container}>
+          <ExpandableCards />
+        </div>
+      </section>
+
+      <section aria-label="Projects">
+        <div className={styles.container}>
+          <ProjectList 
+            projects={enhancedProjects} 
+            onProjectClick={onProjectClick}
+          />
+        </div>
+      </section>
       
       {/* Services Section */}
       <section className={styles.servicesSection}>
@@ -134,22 +195,6 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
               <h3>Design Systems</h3>
               <p>Building scalable component libraries that ensure consistency across products</p>
             </article>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className={styles.ctaSection}>
-        <div className={styles.container}>
-          <div className={styles.ctaContent}>
-            <h2>Let's create something extraordinary</h2>
-            <p>I'm always excited to collaborate on projects that push boundaries and create meaningful impact.</p>
-            <a href="mailto:hello@example.com" className={styles.ctaButton}>
-              Start a conversation
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M7 13L13 7M13 7H7M13 7V13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
           </div>
         </div>
       </section>

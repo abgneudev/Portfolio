@@ -105,7 +105,8 @@ img {
 
 .main-content {
   flex: 1;
-  padding-top: 0; /* Hero section handles its own spacing */
+  padding-top: 0; /* No padding - hero handles its own spacing */
+  margin-top: 0;
 }
 
 /* Utility Classes */

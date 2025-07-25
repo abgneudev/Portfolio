@@ -175,3 +175,38 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-gray-600);
 }
+
+/* Accessible skip-link styles */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 10000;
+  background: #fff;
+  color: #222;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 2px solid #222;
+  transition: none;
+}
+
+.skip-link:focus {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  padding: 12px 24px;
+  outline: 2px solid #222;
+  outline-offset: 2px;
+  background: #fff;
+  color: #222;
+  z-index: 10000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
