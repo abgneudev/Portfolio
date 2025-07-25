@@ -150,51 +150,6 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
         />
       </section>
 
-      {/* Services Section */}
-      <section className={`${styles.section} ${styles.sectionAlt}`}>
-        <div className={styles.grid}>
-          <div className={styles.colCentered}>
-            <header className={styles.sectionHeader}>
-              <span className={styles.label}>Services</span>
-              <h2 className={styles.sectionTitle}>How I can help</h2>
-            </header>
-            <div className={styles.servicesGrid}>
-              <article className={styles.serviceCard}>
-                <div className={styles.serviceIcon}>
-                  <svg viewBox="0 0 48 48" fill="none">
-                    <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="1.5"/>
-                    <path d="M24 14V34M14 24H34" stroke="currentColor" strokeWidth="1.5"/>
-                  </svg>
-                </div>
-                <h3>Product Strategy</h3>
-                <p>Defining product vision and roadmaps that align user needs with business objectives</p>
-              </article>
-              <article className={styles.serviceCard}>
-                <div className={styles.serviceIcon}>
-                  <svg viewBox="0 0 48 48" fill="none">
-                    <rect x="8" y="8" width="32" height="32" rx="16" stroke="currentColor" strokeWidth="1.5"/>
-                    <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="1.5"/>
-                  </svg>
-                </div>
-                <h3>User Experience</h3>
-                <p>Creating intuitive interfaces through research, prototyping, and iterative design</p>
-              </article>
-              <article className={styles.serviceCard}>
-                <div className={styles.serviceIcon}>
-                  <svg viewBox="0 0 48 48" fill="none">
-                    <rect x="12" y="12" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-                    <rect x="26" y="12" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-                    <rect x="12" y="26" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-                    <rect x="26" y="26" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-                  </svg>
-                </div>
-                <h3>Design Systems</h3>
-                <p>Building scalable component libraries that ensure consistency across products</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
