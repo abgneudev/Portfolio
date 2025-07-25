@@ -26,8 +26,13 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
             className={styles.logo}
             onClick={() => onNavigate('home')}
             aria-label="Go to homepage"
+            style={{ padding: 0, background: 'none', border: 'none' }}
           >
-            A
+            <img 
+              src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753429538/ab_logo_rbvao6.png" 
+              alt="Logo" 
+              style={{ height: '40px', width: '40px', objectFit: 'contain', display: 'block' }} 
+            />
           </button>
 
           <nav className={styles.nav}>
