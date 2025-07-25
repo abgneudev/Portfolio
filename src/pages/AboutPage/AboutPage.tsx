@@ -4,70 +4,123 @@ import styles from './AboutPage.module.css';
 const About = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const timelineItemRefs = useRef<Array<HTMLElement | null>>([]);
 
   const timelineData = [
     {
-      year: "2024",
-      title: "Senior Full Stack Developer",
+      year: '2025',
+      title: 'Product Designer & Frontend Engineer',
+      subtitle: 'iEmbrace, Harvard Innovation Labs',
       content: {
-        description: "Led development of enterprise web applications using React, Node.js, and cloud technologies. Mentored junior developers and implemented best practices for code quality and performance.",
+        description:
+          'Leading design and development for AI-powered wellness platform, transforming user research into accessible, high-performing digital experiences that drive measurable business outcomes.',
         achievements: [
-          "Architected and deployed 5 major applications",
-          "Improved application performance by 40%",
-          "Led a team of 4 developers",
-          "Implemented CI/CD pipelines"
+          'Achieved 100/100 WCAG audit score, expanding market reach to users with disabilities',
+          'Reduced design-to-code handoff time by 40% through React component system',
+          'Increased user engagement through multi-sensory microinteractions',
+          'Synthesized feedback from 17 beta testers to optimize information architecture',
         ],
+        metrics: {
+          primary: { value: '100%', label: 'Accessibility Score' },
+          secondary: { value: '40%', label: 'Faster Handoff' },
+        },
         images: [
-          { src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop", alt: "Code on computer screen" },
-          { src: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500&h=300&fit=crop", alt: "Team collaboration" },
-          { src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop", alt: "Data visualization" },
-          { src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=300&fit=crop", alt: "Web development setup" }
-        ]
-      }
+          {
+            src: 'https://images.unsplash.com/photo-1517292987719-0369a794ec0f?w=500&h=300&fit=crop',
+            alt: 'Accessible design system',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&h=300&fit=crop',
+            alt: 'Component architecture',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=500&h=300&fit=crop',
+            alt: 'User research synthesis',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&h=300&fit=crop',
+            alt: 'Team collaboration',
+          },
+        ],
+      },
     },
     {
-      year: "2022-2023",
-      title: "Frontend Developer & UI/UX Designer",
+      year: '2021-2023',
+      title: 'UX Designer & Engineer',
+      subtitle: 'Wipro Ltd. (UBS Client)',
       content: {
-        description: "Specialized in creating beautiful, accessible user interfaces with modern frameworks. Collaborated closely with design teams to bring innovative concepts to life.",
+        description:
+          'Transformed enterprise financial systems serving 5,000+ wealth managers at UBS, streamlining complex workflows and reducing operational inefficiencies through data-driven design decisions.',
         achievements: [
-          "Designed and developed 15+ responsive websites",
-          "Improved user engagement by 60%",
-          "Created comprehensive design system",
-          "Implemented accessibility standards (WCAG 2.1)"
+          'Reduced average search time by 2 minutes for 5,000 wealth managers',
+          'Led requirements gathering for $30M Azure cloud development projects',
+          'Automated visualization workflows, saving 5 hours weekly per manager',
+          'Managed cross-functional teams across 3 concurrent enterprise projects',
         ],
+        metrics: {
+          primary: { value: '$30M', label: 'Project Value' },
+          secondary: { value: '5,000', label: 'Users Impacted' },
+        },
         images: [
-          { src: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop", alt: "UI design mockups" },
-          { src: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&h=300&fit=crop", alt: "Design tools and sketches" },
-          { src: "https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=500&h=300&fit=crop", alt: "Mobile app design" },
-          { src: "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=500&h=300&fit=crop", alt: "Creative workspace" }
-        ]
-      }
+          {
+            src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop',
+            alt: 'Financial dashboards',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop',
+            alt: 'Data visualization',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop',
+            alt: 'Enterprise UX',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&h=300&fit=crop',
+            alt: 'Agile workflow',
+          },
+        ],
+      },
     },
     {
-      year: "Current Projects",
-      title: "Open Source & Learning",
+      year: '2019-Present',
+      title: 'Design Leadership & Innovation',
+      subtitle: 'Freelance & Community Impact',
       content: {
-        description: "Actively contributing to open source projects and staying current with emerging technologies in web development.",
+        description:
+          'Driving design excellence through education, hackathons, and strategic consulting. From winning AWS competitions to scaling UNICEF initiatives reaching 8 million children.',
         achievements: [
-          "Contributing to React ecosystem projects",
-          "Building developer tools and libraries",
-          "Writing technical blog posts",
-          "Mentoring through coding bootcamps",
-          "Exploring AI/ML integration in web apps"
+          'AWS Women in AI Hackathon Impact Award Winner (2025)',
+          'Scaled design system for UNICEF campaign reaching 8M children',
+          'Mentored 120+ designers on visual design and problem-solving',
+          'Increased client inquiries by 35% through strategic redesigns',
+          'Built AI learning assistant using LLM + RAG architecture',
         ],
+        metrics: {
+          primary: { value: '8M', label: 'Lives Impacted' },
+          secondary: { value: '120+', label: 'Designers Mentored' },
+        },
         images: [
-          { src: "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?w=500&h=300&fit=crop", alt: "Open source code" },
-          { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop", alt: "Learning and collaboration" },
-          { src: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=300&fit=crop", alt: "Tech conference" },
-          { src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=300&fit=crop", alt: "Modern development tools" }
-        ]
-      }
-    }
+          {
+            src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&h=300&fit=crop',
+            alt: 'Hackathon victory',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&h=300&fit=crop',
+            alt: 'Design workshops',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=300&fit=crop',
+            alt: 'Leadership summit',
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&h=300&fit=crop',
+            alt: 'Community impact',
+          },
+        ],
+      },
+    },
   ];
 
   useEffect(() => {
@@ -76,11 +129,9 @@ const About = () => {
 
       const sectionRect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+
       // Check if section is in view
       const sectionInView = sectionRect.top < windowHeight && sectionRect.bottom > 0;
-      setIsInView(sectionInView);
-
       if (sectionInView) {
         // Calculate timeline progress
         const timelineRect = timelineRef.current.getBoundingClientRect();
@@ -101,7 +152,7 @@ const About = () => {
             const windowCenter = windowHeight / 2;
             const distance = Math.abs(itemCenter - windowCenter);
             const visibility = Math.max(0, windowHeight - distance);
-            
+
             if (visibility > maxVisibility) {
               maxVisibility = visibility;
               newActiveIndex = index;
@@ -128,21 +179,31 @@ const About = () => {
         <div className={styles.leftPanel}>
           <header className={styles.aboutHeader}>
             <h1>About Me</h1>
-            <p>My journey as a developer and the milestones that shaped my career</p>
+            <p>
+              Product designer with 4 years of experience transforming complex problems into elegant, 
+              accessible solutions that drive measurable business impact.
+            </p>
           </header>
-          
-          <section className={styles.timeline} role="region" aria-label="Career timeline" ref={timelineRef}>
+
+          <section
+            className={styles.timeline}
+            role="region"
+            aria-label="Career timeline"
+            ref={timelineRef}
+          >
             <div className={styles.timelineLine} aria-hidden="true">
-              <div 
-                className={styles.timelineProgress} 
+              <div
+                className={styles.timelineProgress}
                 style={{ height: `${scrollProgress}%` }}
               />
             </div>
-            
+
             {timelineData.map((item, index) => (
-              <article 
-                key={index} 
-                ref={el => { timelineItemRefs.current[index] = el; }}
+              <article
+                key={index}
+                ref={el => {
+                  timelineItemRefs.current[index] = el;
+                }}
                 className={`${styles.timelineItem} ${activeIndex === index ? styles.active : ''}`}
               >
                 <div className={styles.timelineMarker} aria-hidden="true">
@@ -152,21 +213,43 @@ const About = () => {
                   <header className={styles.timelineHeader}>
                     <time className={styles.timelineYear}>{item.year}</time>
                     <h2 className={styles.timelineTitle}>{item.title}</h2>
+                    <p className={styles.timelineSubtitle}>{item.subtitle}</p>
                   </header>
                   <div className={styles.timelineBody}>
                     <p className={styles.timelineDescription}>{item.content.description}</p>
+                    
+                    {item.content.metrics && (
+                      <div className={styles.metricsRow}>
+                        <div className={styles.metric}>
+                          <span className={styles.metricValue}>{item.content.metrics.primary.value}</span>
+                          <span className={styles.metricLabel}>{item.content.metrics.primary.label}</span>
+                        </div>
+                        <div className={styles.metric}>
+                          <span className={styles.metricValue}>{item.content.metrics.secondary.value}</span>
+                          <span className={styles.metricLabel}>{item.content.metrics.secondary.label}</span>
+                        </div>
+                      </div>
+                    )}
+                    
                     <section className={styles.achievements}>
                       <h3 className={styles.achievementsTitle}>Key Achievements</h3>
                       <ul className={styles.achievementsList}>
                         {item.content.achievements.map((achievement, idx) => (
                           <li key={idx} className={styles.achievementItem}>
-                            <span className={styles.achievementIcon} aria-hidden="true">✓</span>
+                            <span className={styles.achievementIcon} aria-hidden="true">
+                              ✓
+                            </span>
                             {achievement}
                           </li>
                         ))}
                       </ul>
                     </section>
-                    <div className={styles.imageGrid} role="img" aria-label={`Gallery for ${item.title}`}>
+                    
+                    <div
+                      className={styles.imageGrid}
+                      role="img"
+                      aria-label={`Gallery for ${item.title}`}
+                    >
                       {item.content.images.map((image, idx) => (
                         <img
                           key={idx}
@@ -185,7 +268,7 @@ const About = () => {
         </div>
 
         {/* Right side - Sticky year display */}
-        <div className={`${styles.rightPanel} ${isInView ? styles.sticky : ''}`}>
+        <div className={styles.rightPanel}>
           <div className={styles.yearDisplay}>
             <div className={styles.yearWrapper}>
               <span className={styles.yearText}>

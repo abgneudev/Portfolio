@@ -31,6 +31,7 @@
   margin: 0 auto;
   position: relative;
   padding-left: var(--container-padding);
+  padding-right: 0;
 }
 
 /* Left Panel - Normal flow */
@@ -145,6 +146,7 @@
 .rightPanel {
   position: relative;
   height: 100vh;
+  margin-right: calc(-50vw + 50%);
 }
 
 .rightPanel.sticky {
@@ -156,11 +158,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  max-width: 50vw;
-  margin-left: auto;
+  width: 80vw;
+  height: 100%;
   overflow: hidden;
   background: var(--color-black);
 }
@@ -231,6 +230,7 @@
     position: relative;
     height: 60vh;
     margin-bottom: 40px;
+    margin-right: 0;
   }
 
   .rightPanel.sticky {
