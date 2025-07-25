@@ -1,32 +1,541 @@
-.aboutPage {
-  padding: 80px 0;
-  min-height: 100vh;
+/* AboutPage.module.css - Progressive Timeline with Sticky Year */
+
+/* CSS Custom Properties for consistent theming */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #64748b;
+  --accent-color: #0ea5e9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius: 0.5rem;
+  --radius-lg: 0.75rem;
+  --timeline-width: 3px;
+  --dot-size: 12px;
+  --marker-size: 24px;
+  --container-max-width: 1400px;
+  --container-padding: 80px;
 }
 
-/* Reuse the grid system from HomePage for consistency */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 32px;
-  max-width: 1760px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 80px;
-  padding-right: 80px;
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --border-color: #334155;
+  }
+}
+
+/* Section wrapper */
+.aboutSection {
+  position: relative;
+  background: var(--bg-primary);
   width: 100%;
 }
 
-@media (max-width: 1400px) {
-  .grid {
-    max-width: 100%;
+/* Container */
+.aboutContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  position: relative;
+  padding-left: var(--container-padding);
+  gap: 80px;
+}
+
+/* Left Panel - Timeline */
+.leftPanel {
+  padding-right: 60px;
+}
+
+/* Header section */
+.aboutHeader {
+  text-align: left;
+  margin-bottom: 4rem;
+  padding-top: 4rem;
+}
+
+.aboutHeader h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--primary-color);
+}
+
+.aboutHeader p {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+/* Timeline styles */
+.timeline {
+  position: relative;
+  padding: 2rem 0 2rem 3rem;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--timeline-width);
+  background: var(--border-color);
+  border-radius: calc(var(--timeline-width) / 2);
+  overflow: hidden;
+}
+
+.timelineProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+  transition: height 0.3s ease-out;
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  opacity: 0.3;
+  transition: opacity 0.5s ease;
+}
+
+.timelineItem.active {
+  opacity: 1;
+}
+
+.timelineItem:last-child {
+  margin-bottom: 0;
+}
+
+/* Timeline marker */
+.timelineMarker {
+  position: absolute;
+  left: -3rem;
+  z-index: 2;
+  flex-shrink: 0;
+  width: var(--marker-size);
+  height: var(--marker-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border: 3px solid var(--border-color);
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.timelineItem.active .timelineMarker {
+  border-color: var(--primary-color);
+}
+
+.timelineDot {
+  width: var(--dot-size);
+  height: var(--dot-size);
+  background: var(--border-color);
+  border-radius: 50%;
+  display: block;
+  transition: background 0.3s ease;
+}
+
+.timelineItem.active .timelineDot {
+  background: var(--primary-color);
+}
+
+/* Timeline content */
+.timelineContent {
+  flex: 1;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timelineContent:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Timeline header */
+.timelineHeader {
+  margin-bottom: 1.5rem;
+}
+
+.timelineYear {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.timelineTitle {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+/* Timeline body */
+.timelineDescription {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+/* Achievements section */
+.achievements {
+  margin-bottom: 2rem;
+}
+
+.achievementsTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--text-primary);
+}
+
+.achievementsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievementItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.achievementIcon {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+
+/* Image grid */
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.timelineImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timelineImage:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* Right Panel - Sticky Year */
+.rightPanel {
+  position: relative;
+  height: 100vh;
+}
+
+.rightPanel.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.yearDisplay {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yearWrapper {
+  text-align: center;
+}
+
+.yearText {
+  display: block;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--primary-color);
+  line-height: 1;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.yearSubtext {
+  display: block;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .aboutContainer {
     padding-left: 40px;
+    gap: 40px;
+  }
+  
+  .leftPanel {
     padding-right: 40px;
   }
 }
-@media (max-width: 900px) {
-  .grid {
-    padding-left: 16px;
-    padding-right: 16px;
-    gap: 16px;
+
+@media (max-width: 1024px) {
+  .aboutContainer {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+    gap: 0;
+  }
+  
+  .rightPanel {
+    position: fixed;
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    height: auto;
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.5rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+  }
+  
+  .rightPanel.sticky {
+    position: fixed;
+  }
+  
+  .yearDisplay {
+    height: auto;
+  }
+  
+  .yearText {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .yearSubtext {
+    font-size: 0.875rem;
+  }
+  
+  .leftPanel {
+    padding: 0 40px;
+  }
+  
+  .timeline {
+    padding-left: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutHeader {
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .leftPanel {
+    padding: 0 20px;
+  }
+  
+  .timeline {
+    padding-left: 2.5rem;
+  }
+  
+  .timelineItem {
+    margin-bottom: 4rem;
+  }
+  
+  .timelineContent {
+    padding: 1.5rem;
+  }
+  
+  .imageGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .timelineImage {
+    height: 120px;
+  }
+  
+  .rightPanel {
+    bottom: 10px;
+    right: 10px;
+    padding: 0.75rem 1rem;
+  }
+  
+  .yearText {
+    font-size: 1.25rem;
+  }
+  
+  .yearSubtext {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutContainer {
+    padding: 0;
+  }
+  
+  .leftPanel {
+    padding: 0 16px;
+  }
+  
+  .timeline {
+    padding-left: 2rem;
+  }
+  
+  .timelineMarker {
+    left: -2rem;
+  }
+  
+  .timelineContent {
+    padding: 1rem;
+  }
+  
+  .imageGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timelineImage {
+    height: 150px;
+  }
+  
+  .achievementItem {
+    font-size: 0.85rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.timelineContent:focus-within {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.timelineImage:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .timelineContent,
+  .timelineImage,
+  .timelineProgress,
+  .yearText,
+  .yearSubtext {
+    transition: none;
+    animation: none;
+  }
+  
+  .timelineContent:hover,
+  .timelineImage:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --text-secondary: var(--text-primary);
+  }
+  
+  .timelineContent {
+    border: 2px solid var(--border-color);
+  }
+  
+  .timelineMarker {
+    border-width: 4px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .aboutContainer {
+    max-width: none;
+    padding: 0;
+    color: black;
+    background: white;
+    grid-template-columns: 1fr;
+  }
+  
+  .timelineContent {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  
+  .timelineLine {
+    background: #ccc;
+  }
+  
+  .timelineMarker {
+    border-color: #ccc;
+  }
+  
+  .timelineDot {
+    background: #ccc;
+  }
+  
+  .imageGrid {
+    display: none;
+  }
+  
+  .rightPanel {
+    display: none;
   }
 }
