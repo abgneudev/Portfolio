@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './AboutPage.module.css';
+import BentoGrid from '../../components/BentoGrid/BentoGrid';
 
 const About = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -173,115 +174,114 @@ const About = () => {
   }, []);
 
   return (
-    <div ref={sectionRef} className={styles.aboutSection}>
-      <div className={styles.aboutContainer}>
-        {/* Left side - Timeline items */}
-        <div className={styles.leftPanel}>
-          <header className={styles.aboutHeader}>
-            <h1>About Me</h1>
-            <p>
-              Product designer with 4 years of experience transforming complex problems into elegant, 
-              accessible solutions that drive measurable business impact.
-            </p>
-          </header>
+    <>
+      <BentoGrid />
+      <div ref={sectionRef} className={styles.aboutSection}>
+        <div className={styles.aboutContainer}>
+          {/* Left side - Timeline items */}
+          <div className={styles.leftPanel}>
+            <header className={styles.aboutHeader}>
+              <h1>About Me</h1>
+              <p>
+                Product designer with 4 years of experience transforming complex problems into elegant, 
+                accessible solutions that drive measurable business impact.
+              </p>
+            </header>
 
-          <section
-            className={styles.timeline}
-            role="region"
-            aria-label="Career timeline"
-            ref={timelineRef}
-          >
-            <div className={styles.timelineLine} aria-hidden="true">
-              <div
-                className={styles.timelineProgress}
-                style={{ height: `${scrollProgress}%` }}
-              />
-            </div>
+            <section
+              className={styles.timeline}
+              role="region"
+              aria-label="Career timeline"
+              ref={timelineRef}
+            >
+              <div className={styles.timelineLine} aria-hidden="true">
+                <div
+                  className={styles.timelineProgress}
+                  style={{ height: `${scrollProgress}%` }}
+                />
+              </div>
 
-            {timelineData.map((item, index) => (
-              <article
-                key={index}
-                ref={el => {
-                  timelineItemRefs.current[index] = el;
-                }}
-                className={`${styles.timelineItem} ${activeIndex === index ? styles.active : ''}`}
-              >
-                <div className={styles.timelineMarker} aria-hidden="true">
-                  <span className={styles.timelineDot}></span>
-                </div>
-                <div className={styles.timelineContent}>
-                  <header className={styles.timelineHeader}>
-                    <time className={styles.timelineYear}>{item.year}</time>
-                    <h2 className={styles.timelineTitle}>{item.title}</h2>
-                    <p className={styles.timelineSubtitle}>{item.subtitle}</p>
-                  </header>
-                  <div className={styles.timelineBody}>
-                    <p className={styles.timelineDescription}>{item.content.description}</p>
-                    
-                    {item.content.metrics && (
-                      <div className={styles.metricsRow}>
-                        <div className={styles.metric}>
-                          <span className={styles.metricValue}>{item.content.metrics.primary.value}</span>
-                          <span className={styles.metricLabel}>{item.content.metrics.primary.label}</span>
+              {timelineData.map((item, index) => (
+                <article
+                  key={index}
+                  ref={el => {
+                    timelineItemRefs.current[index] = el;
+                  }}
+                  className={`${styles.timelineItem} ${activeIndex === index ? styles.active : ''}`}
+                >
+                  <div className={styles.timelineMarker} aria-hidden="true">
+                    <span className={styles.timelineDot}></span>
+                  </div>
+                  <div className={styles.timelineContent}>
+                    <header className={styles.timelineHeader}>
+                      <time className={styles.timelineYear}>{item.year}</time>
+                      <h2 className={styles.timelineTitle}>{item.title}</h2>
+                      <p className={styles.timelineSubtitle}>{item.subtitle}</p>
+                    </header>
+                    <div className={styles.timelineBody}>
+                      <p className={styles.timelineDescription}>{item.content.description}</p>
+                      {item.content.metrics && (
+                        <div className={styles.metricsRow}>
+                          <div className={styles.metric}>
+                            <span className={styles.metricValue}>{item.content.metrics.primary.value}</span>
+                            <span className={styles.metricLabel}>{item.content.metrics.primary.label}</span>
+                          </div>
+                          <div className={styles.metric}>
+                            <span className={styles.metricValue}>{item.content.metrics.secondary.value}</span>
+                            <span className={styles.metricLabel}>{item.content.metrics.secondary.label}</span>
+                          </div>
                         </div>
-                        <div className={styles.metric}>
-                          <span className={styles.metricValue}>{item.content.metrics.secondary.value}</span>
-                          <span className={styles.metricLabel}>{item.content.metrics.secondary.label}</span>
-                        </div>
-                      </div>
-                    )}
-                    
-                    <section className={styles.achievements}>
-                      <h3 className={styles.achievementsTitle}>Key Achievements</h3>
-                      <ul className={styles.achievementsList}>
-                        {item.content.achievements.map((achievement, idx) => (
-                          <li key={idx} className={styles.achievementItem}>
-                            <span className={styles.achievementIcon} aria-hidden="true">
-                              ✓
-                            </span>
-                            {achievement}
-                          </li>
+                      )}
+                      <section className={styles.achievements}>
+                        <h3 className={styles.achievementsTitle}>Key Achievements</h3>
+                        <ul className={styles.achievementsList}>
+                          {item.content.achievements.map((achievement, idx) => (
+                            <li key={idx} className={styles.achievementItem}>
+                              <span className={styles.achievementIcon} aria-hidden="true">
+                                ✓
+                              </span>
+                              {achievement}
+                            </li>
+                          ))}
+                        </ul>
+                      </section>
+                      <div
+                        className={styles.imageGrid}
+                        role="img"
+                        aria-label={`Gallery for ${item.title}`}
+                      >
+                        {item.content.images.map((image, idx) => (
+                          <img
+                            key={idx}
+                            src={image.src}
+                            alt={image.alt}
+                            className={styles.timelineImage}
+                            loading="lazy"
+                          />
                         ))}
-                      </ul>
-                    </section>
-                    
-                    <div
-                      className={styles.imageGrid}
-                      role="img"
-                      aria-label={`Gallery for ${item.title}`}
-                    >
-                      {item.content.images.map((image, idx) => (
-                        <img
-                          key={idx}
-                          src={image.src}
-                          alt={image.alt}
-                          className={styles.timelineImage}
-                          loading="lazy"
-                        />
-                      ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </article>
-            ))}
-          </section>
-        </div>
-
-        {/* Right side - Sticky year display */}
-        <div className={styles.rightPanel}>
-          <div className={styles.yearDisplay}>
-            <div className={styles.yearWrapper}>
-              <span className={styles.yearText}>
-                {timelineData[activeIndex]?.year}
-              </span>
-              <span className={styles.yearSubtext}>
-                {timelineData[activeIndex]?.title}
-              </span>
+                </article>
+              ))}
+            </section>
+          </div>
+          {/* Right side - Sticky year display */}
+          <div className={styles.rightPanel}>
+            <div className={styles.yearDisplay}>
+              <div className={styles.yearWrapper}>
+                <span className={styles.yearText}>
+                  {timelineData[activeIndex]?.year}
+                </span>
+                <span className={styles.yearSubtext}>
+                  {timelineData[activeIndex]?.title}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

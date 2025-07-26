@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Navigation.module.css';
 
 interface NavigationProps {
@@ -7,19 +7,50 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const updateScrollDirection = () => {
+      const scrollY = window.scrollY;
+      
+      // Show navbar when at the very top
+      if (scrollY < 10) {
+        setIsVisible(false);
+        setIsHidden(false);
+      }
+      // Hide when scrolling down
+      else if (scrollY > lastScrollY.current && scrollY > 100) {
+        setIsVisible(false);
+        setIsHidden(true);
+      }
+      // Show when scrolling up
+      else if (scrollY < lastScrollY.current) {
+        setIsVisible(true);
+        setIsHidden(false);
+      }
+      
+      lastScrollY.current = scrollY;
+      ticking.current = false;
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => {
+      if (!ticking.current) {
+        window.requestAnimationFrame(updateScrollDirection);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    <header 
+      className={`${styles.header} ${isVisible ? styles.visible : ''} ${isHidden ? styles.hidden : ''}`}
+    >
       <div className={styles.grid}>
         <div className={styles.navContainer}>
           <button 
@@ -31,7 +62,12 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
             <img 
               src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753429538/ab_logo_rbvao6.png" 
               alt="Logo" 
-              style={{ height: '40px', width: '40px', objectFit: 'contain', display: 'block' }} 
+              style={{ 
+                height: '100%', 
+                width: '100%', 
+                objectFit: 'contain', 
+                display: 'block'
+              }} 
             />
           </button>
 

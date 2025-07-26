@@ -9,16 +9,8 @@
   --container-padding: 80px;
   --section-spacing: 120px;
   
-  /* Colors */
-  --color-primary: #1B383D;
-  --color-secondary: #55ADBD;
-  --color-accent: #3E7E8A;
-  --color-light: #9CA3AF;
-  --color-bg: #FAFAFA;
-  --color-white: #FFFFFF;
-  --color-black: #000000;
-  --color-border: #E5E7EB;
-  --color-border-light: #F3F4F6;
+
+  /* Use global palette from globals.css */
   
   /* Dark theme specific */
   --color-dark-bg: #000000;
@@ -39,7 +31,7 @@
 .section {
   width: 100%;
   padding: var(--section-spacing) 0;
-  background: var(--color-dark-bg);
+  background: var(--color-black);
   overflow: hidden;
   position: relative;
 }
@@ -74,7 +66,7 @@
 .sectionDescription {
   font-size: 18px;
   font-weight: 300;
-  color: var(--color-light);
+  color: var(--color-secondary);
   margin: 0;
   line-height: 1.6;
   max-width: 600px;

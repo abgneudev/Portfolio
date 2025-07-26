@@ -9,16 +9,8 @@
   --container-padding: 80px;
   --section-spacing: 80px;
   
-  /* Colors */
-  --color-primary: #1F2937;
-  --color-secondary: #4B5563;
-  --color-text: #6B7280;
-  --color-light: #9CA3AF;
-  --color-bg: #FAFAFA;
-  --color-white: #FFFFFF;
-  --color-black: #000000;
-  --color-border: #E5E7EB;
-  --color-border-light: #F3F4F6;
+
+  /* Use global palette from globals.css */
   
   /* Breakpoints */
   --breakpoint-large: 1400px;
@@ -74,19 +66,19 @@
   min-height: 90vh;
   display: flex;
   align-items: center;
-  background: var(--color-bg);
+  background: var(--color-white);
   padding: 0;
 }
 
 .sectionDark {
   background: var(--color-black);
   border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 60px rgba(27, 56, 61, 0.15);
   overflow: hidden;
 }
 
 .sectionAlt {
-  background: var(--color-bg);
+  background: var(--color-white);
 }
 
 /* Hero Section specific styles */
