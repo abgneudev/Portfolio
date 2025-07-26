@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './AboutPage.module.css';
-import BentoGrid from '../../components/BentoGrid/BentoGrid';
 
 const About = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -175,7 +174,6 @@ const About = () => {
 
   return (
     <>
-      <BentoGrid />
       <div ref={sectionRef} className={styles.aboutSection}>
         <div className={styles.aboutContainer}>
           {/* Left side - Timeline items */}
