@@ -117,6 +117,17 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
     }
   ];
 
+  const logos = [
+    { id: 'iembrace', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/hil_ss2qfh.png', alt: 'Harvard Innovation Labs' },
+    { id: 'northeastern', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/Northeastern_nwhyj7.png', alt: 'Northeastern University' },
+    { id: 'wipro', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/wipro_xh8uq3.png', alt: 'Wipro' },
+    { id: 'unicef', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/UNICEF-Logo_pcvi1l.png', alt: 'UNICEF' },
+    { id: 'aiesec', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/AIESEC-Logo_mevf7y.jpg', alt: 'AIESEC' },
+  ];
+
+  // Duplicate logos array to create seamless loop
+  const duplicatedLogos = [...logos, ...logos];
+
   return (
     <div className={styles.homePage}>
       {/* Hero Section */}
@@ -127,9 +138,35 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
               Hello, I'm Abhinav — <span className={styles.typingText}>{text}<span className={styles.cursor}>|</span></span>
             </h1>
             <p className={styles.heroSubtitle}>
-              I design accessible digital experiences that scale. <br />
+              I design accessible digital experiences that scale.
+            </p>
+            <p className={styles.currentPosition}>
               Currently at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> – designing and building mental wellness experiences through meditation and sound.
             </p>
+
+            {/* Logo Slider - Inside Hero Section */}
+            <div className={styles.logoSliderSection} aria-label="Partner organizations">
+              <span className={styles.logoSectionTitle}>Previously with:</span>
+              <div className={styles.sliderContainer}>
+                <div className={styles.sliderWrapper}>
+                  <div className={styles.sliderTrack}>
+                    {duplicatedLogos.map((logo, index) => (
+                      <div
+                        key={`${logo.id}-${index}`}
+                        className={styles.logoItem}
+                      >
+                        <img
+                          src={logo.src}
+                          alt={logo.alt}
+                          className={styles.logoImage}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <a
               className={styles.heroCtaButton}
               href="https://drive.google.com/file/d/1lVBPVZxY09ObA0ZXOy8_Y1NeXszIqF1h/view?usp=sharing"

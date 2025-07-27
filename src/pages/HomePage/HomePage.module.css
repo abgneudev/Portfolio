@@ -60,11 +60,13 @@
 }
 
 .sectionHero {
-  min-height: 90vh;
+  margin-top: 80px;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   background: var(--color-white);
   padding: 0;
+  position: relative;
 }
 
 .sectionDark {
@@ -91,12 +93,17 @@
   pointer-events: none;
 }
 
+/* Hero content positioning */
+.sectionHero .grid {
+  width: 100%;
+}
+
 .heroTitle {
   font-size: var(--font-h1);
   font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.02em;
-  margin: 0 0 28px 0;
+  margin: 0 0 32px 0;
   color: var(--color-gray-400);
 }
 
@@ -131,7 +138,117 @@
   line-height: 1.8;
   letter-spacing: 0;
   color: var(--color-text-secondary);
-  margin: 0 0 48px 0;
+  margin: 0;
+  max-width: 640px;
+}
+
+/* Logo Slider Section - Inside Hero */
+.logoSliderSection {
+  background: transparent;
+  padding: 0;
+  margin: 1.5rem 0 2rem 0;
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logoSectionTitle {
+  font-size: var(--font-small);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.sliderContainer {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+}
+
+.sliderTrack {
+  display: flex;
+  gap: 24px;
+  animation: scroll 40s linear infinite;
+  align-items: center;
+}
+
+.sliderTrack:hover {
+  animation-play-state: paused;
+}
+
+.logoItem {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
+  position: relative;
+}
+
+.logoImage {
+  display: block;
+  max-width: 80px;
+  max-height: 35px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.logoImage:hover {
+  opacity: 0.8;
+  filter: grayscale(0%);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 25px));
+  }
+}
+
+/* Current Position Text */
+.currentPosition {
+  font-size: var(--font-body-large);
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 0;
+  color: var(--color-text-secondary);
+  margin: 0;
   max-width: 640px;
 }
 
@@ -355,16 +472,56 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .sectionHero {
+    margin-top: 100px;
+    min-height: auto;
+  }
+  
+  .heroTitle {
+    font-size: clamp(24px, 5vw, 32px);
+    margin-bottom: 20px;
+  }
+  
   .heroSubtitle {
     font-size: clamp(15px, 4vw, 18px);
-    margin-bottom: 36px;
+    margin-bottom: 16px;
     line-height: 1.6;
+  }
+  
+  .currentPosition {
+    font-size: clamp(15px, 4vw, 18px);
+    margin-bottom: 36px;
   }
   
   .heroButton,
   .heroCtaButton {
     font-size: 14px;
     padding: 14px 28px;
+  }
+  
+  .logoSliderSection {
+    margin: 1rem 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .logoSectionTitle {
+    font-size: 13px;
+  }
+  
+  .sliderContainer {
+    width: 100%;
+  }
+  
+  .logoItem {
+    width: 80px;
+    height: 40px;
+  }
+  
+  .logoImage {
+    max-width: 60px;
+    max-height: 30px;
   }
   
   .sectionDark {
