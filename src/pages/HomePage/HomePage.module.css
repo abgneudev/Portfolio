@@ -198,7 +198,7 @@
 .sliderTrack {
   display: flex;
   gap: 24px;
-  animation: scroll 40s linear infinite;
+  animation: scroll 8s linear infinite;
   align-items: center;
 }
 

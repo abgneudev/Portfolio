@@ -257,24 +257,47 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
               // Mobile phone frame
               <div className={styles.mobileFrame}>
                 <div className={styles.mobileScreen}>
-                  <img 
-                    key={activeIndex}
-                    src={patchedProjects[activeIndex]?.thumbnail} 
-                    alt={patchedProjects[activeIndex]?.title}
-                    className={styles.projectImage}
-                  />
+                  <a
+                    href="https://www.figma.com/proto/KctXQSYE4LA9EKBHL4wypA/Winesy?page-id=0%3A1&node-id=148-98&starting-point-node-id=359%3A461&t=0nHl7uQwQ0k9tEvI-1&scaling=scale-down&content-scaling=fixed"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open interactive prototype ↗"
+                  >
+                    <img 
+                      key={activeIndex}
+                      src={patchedProjects[activeIndex]?.thumbnail} 
+                      alt={patchedProjects[activeIndex]?.title}
+                      className={styles.projectImage}
+                    />
+                  </a>
                 </div>
               </div>
             ) : (
               // Laptop frame with screen
               <div className={styles.laptopFrame}>
                 <div className={styles.laptopScreen}>
-                  <img 
-                    key={activeIndex}
-                    src={patchedProjects[activeIndex]?.thumbnail} 
-                    alt={patchedProjects[activeIndex]?.title}
-                    className={styles.projectImage}
-                  />
+                  {activeIndex === 0 ? (
+                    <a
+                      href="https://iembraceland.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="View live website ↗"
+                    >
+                      <img 
+                        key={activeIndex}
+                        src={patchedProjects[activeIndex]?.thumbnail} 
+                        alt={patchedProjects[activeIndex]?.title}
+                        className={styles.projectImage}
+                      />
+                    </a>
+                  ) : (
+                    <img 
+                      key={activeIndex}
+                      src={patchedProjects[activeIndex]?.thumbnail} 
+                      alt={patchedProjects[activeIndex]?.title}
+                      className={styles.projectImage}
+                    />
+                  )}
                 </div>
               </div>
             )}
