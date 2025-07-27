@@ -21,131 +21,166 @@ interface CardContent {
 
 const cardsData: CardContent[] = [
   {
-    id: 'design-systems',
-    title: 'Design Systems',
-    category: 'System Architecture',
-    image: 'https://images.unsplash.com/photo-1569163139394-de4798907684?w=600&h=600&fit=crop',
-    gallery: [
-      'https://images.unsplash.com/photo-1569163139394-de4798907684?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&h=600&fit=crop',
-    ],
-    description: 'Scalable design system architecture with reusable components and comprehensive documentation.',
-    features: [
-      'Component versioning',
-      'Design token architecture',
-      'Automated documentation',
-      'Cross-platform support'
-    ],
-    specs: [
-      { label: 'Components', value: '45+ patterns' },
-      { label: 'Platforms', value: 'Web, iOS, Android' },
-      { label: 'Framework', value: 'React + TypeScript' },
-      { label: 'Coverage', value: '95% tested' }
-    ],
-    color: '#064e3b'
-  },
-  {
-    id: 'accessibility',
-    title: 'Accessibility',
-    category: 'Inclusive Design',
-    image: 'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=600&h=600&fit=crop',
-    gallery: [
-      'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop',
-    ],
-    description: 'End-to-end accessibility solutions ensuring digital products are usable by everyone, with comprehensive testing and validation protocols.',
-    features: [
-      'ARIA pattern library',
-      'Keyboard navigation flows',
-      'Screen reader optimization',
-      'Color contrast systems',
-      'Focus management',
-      'Assistive tech testing'
-    ],
-    specs: [
-      { label: 'Compliance', value: 'WCAG 2.1 AA' },
-      { label: 'Testing', value: 'Automated + Manual' },
-      { label: 'Score', value: '100/100 Lighthouse' },
-      { label: 'Coverage', value: 'Full stack' }
-    ],
-    color: '#0A0E13'
-  },
-  {
     id: 'research',
     title: 'User Research',
-    category: 'Human-Centered Design',
+    category: 'Discovering Human Truths',
     image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=600&fit=crop',
     gallery: [
       'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=600&fit=crop',
       'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
       'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
     ],
-    description: 'Data-driven research methodologies combining qualitative insights with quantitative validation.',
+    description: 'Uncovering the "why" behind user behavior through empathetic inquiry and rigorous analysis, transforming assumptions into actionable insights.',
     features: [
-      'Mixed-methods research',
-      'Journey mapping',
-      'Usability testing',
-      'Analytics integration'
+      'Ethnographic field studies',
+      'Behavioral pattern analysis',
+      'Journey orchestration',
+      'Emotional resonance mapping',
+      'Co-creation workshops',
+      'Contextual deep dives'
     ],
     specs: [
-      { label: 'Methods', value: 'Qual + Quant' },
-      { label: 'Cadence', value: 'Bi-weekly' },
-      { label: 'Sample', value: '5-8 users' },
-      { label: 'Tools', value: 'Maze, Hotjar' }
+      { label: 'Methods', value: '15+ techniques' },
+      { label: 'Participants', value: '500+ interviewed' },
+      { label: 'Impact', value: '40% better retention' },
+      { label: 'Insights', value: 'Weekly synthesis' }
     ],
     color: '#075985'
   },
   {
-    id: 'ia',
+    id: 'visual-design',
+    title: 'Visual Design',
+    category: 'Crafting Emotional Experiences',
+    image: 'https://images.unsplash.com/photo-1569163139394-de4798907684?w=600&h=600&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1569163139394-de4798907684?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+    ],
+    description: 'Weaving visual narratives that spark joy and drive action, where every pixel serves a purpose and beauty meets function.',
+    features: [
+      'Systematic design languages',
+      'Motion choreography',
+      'Brand soul expression',
+      'Micro-interaction poetry',
+      'Data storytelling',
+      'Sensory design systems'
+    ],
+    specs: [
+      { label: 'Components', value: '200+ patterns' },
+      { label: 'Brands', value: '15+ evolved' },
+      { label: 'Consistency', value: '98% harmony' },
+      { label: 'Reach', value: 'Omnichannel' }
+    ],
+    color: '#064e3b'
+  },
+  {
+    id: 'accessibility',
+    title: 'Accessibility',
+    category: 'Design Without Barriers',
+    image: 'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=600&h=600&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop',
+    ],
+    description: 'Championing digital equality by designing experiences that adapt to every human, not the other way around.',
+    features: [
+      'Beyond compliance design',
+      'Assistive tech innovation',
+      'Cognitive load optimization',
+      'Multi-sensory experiences',
+      'Inclusive design sprints',
+      'Empathy-driven solutions'
+    ],
+    specs: [
+      { label: 'Standards', value: 'WCAG 2.1 AAA' },
+      { label: 'Testing', value: 'Real users first' },
+      { label: 'Score', value: '100% accessible' },
+      { label: 'Impact', value: '2M+ served' }
+    ],
+    color: '#0A0E13'
+  },
+  {
+    id: 'information-architecture',
     title: 'Information Architecture',
-    category: 'Structure Design',
+    category: 'Wayfinding for Digital Spaces',
     image: 'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=600&h=600&fit=crop',
     gallery: [
       'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=800&h=600&fit=crop',
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
     ],
-    description: 'Strategic information architecture for complex digital products, optimizing findability.',
+    description: 'Building invisible bridges between intention and action, creating spaces where users find what they need before they know they need it.',
     features: [
-      'Card sorting studies',
-      'Navigation patterns',
-      'Taxonomy development',
-      'Search optimization'
+      'Intuitive taxonomies',
+      'Predictive navigation',
+      'Content ecosystems',
+      'Mental model alignment',
+      'Findability optimization',
+      'Semantic architectures'
     ],
     specs: [
-      { label: 'Depth', value: '3 levels max' },
-      { label: 'Success', value: '87% findability' },
-      { label: 'Patterns', value: '12 templates' },
-      { label: 'Testing', value: 'Tree testing' }
+      { label: 'Findability', value: '92% first try' },
+      { label: 'Simplicity', value: '3 clicks max' },
+      { label: 'Scale', value: '10K+ pages' },
+      { label: 'Clarity', value: '0 dead ends' }
     ],
-    color: '#581c87'
+    color: '#92400e'
   },
   {
-    id: 'prototyping',
-    title: 'Rapid Prototyping',
-    category: 'Innovation Lab',
-    image: 'https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=600&h=600&fit=crop',
+    id: 'testing',
+    title: 'Usability Testing',
+    category: 'Validating with Real Humans',
+    image: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=600&h=600&fit=crop',
     gallery: [
-      'https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1594904351111-a072f80b1a71?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&h=600&fit=crop',
     ],
-    description: 'High-velocity prototyping delivering production-ready interactive prototypes.',
+    description: 'Transforming assumptions into certainty through rapid experimentation, where every failure is a stepping stone to breakthrough experiences.',
     features: [
-      'Interactive prototypes',
-      'Micro-interactions',
-      'Real data integration',
-      'Device testing'
+      'Guerrilla testing tactics',
+      'Remote observation labs',
+      'Rapid prototype cycles',
+      'Biometric analysis',
+      'A/B testing at scale',
+      'Continuous discovery'
     ],
     specs: [
-      { label: 'Fidelity', value: 'Production' },
-      { label: 'Speed', value: '48-72 hours' },
-      { label: 'Stack', value: 'React + Framer' },
-      { label: 'Testing', value: 'Live sessions' }
+      { label: 'Coverage', value: '95% features' },
+      { label: 'Velocity', value: '48hr cycles' },
+      { label: 'Success', value: '87% task rate' },
+      { label: 'Learning', value: 'Daily insights' }
     ],
     color: '#7c2d12'
+  },
+  {
+    id: 'leadership',
+    title: 'Design Leadership',
+    category: 'Cultivating Creative Excellence',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=600&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800&h=600&fit=crop',
+    ],
+    description: 'Orchestrating design excellence through visionary thinking and compassionate mentorship, turning creative teams into innovation powerhouses.',
+    features: [
+      'Design vision crafting',
+      'Culture transformation',
+      'Talent amplification',
+      'Strategic storytelling',
+      'Innovation frameworks',
+      'Executive influence'
+    ],
+    specs: [
+      { label: 'Teams', value: '50+ designers' },
+      { label: 'Mentored', value: '25+ careers' },
+      { label: 'Impact', value: '$50M+ value' },
+      { label: 'Culture', value: 'Design-led orgs' }
+    ],
+    color: '#581c87'
   }
 ];
 
@@ -362,7 +397,6 @@ const ExpandableCards: React.FC = () => {
                   />
                   <div className={styles.cardOverlay} />
                   <div className={styles.cardContent}>
-                    <p className={styles.cardCategory}>{card.category}</p>
                     <h3 className={styles.cardTitle}>{card.title}</h3>
                   </div>
                 </div>
@@ -464,7 +498,7 @@ const ExpandableCards: React.FC = () => {
               <X size={16} />
             </button>
           </div>
-        )}
+        )}  
       </div>
     </div>
   );
