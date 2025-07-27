@@ -40,7 +40,7 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
       setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
       setDelta(500); // Pause before typing next
     } else {
-      setDelta(isDeleting ? 4 : 16); // Typing speed
+      setDelta(isDeleting ? 24 : 40); // Typing speed
     }
   };
 
