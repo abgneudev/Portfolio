@@ -157,7 +157,7 @@
 
 /* Hover effects */
 .imageWrapper:hover {
-  transform: rotateY(0deg) translateZ(50px) scale(1.1);
+  transform: rotateY(0deg) translateZ(50px) scale(1.3);
   box-shadow: 
     0 12px 24px -8px rgba(0, 0, 0, 0.15),
     0 0 0 1px var(--color-gray-300),

@@ -298,19 +298,13 @@
 /* Right Panel - Sticky Year */
 .rightPanel {
   flex: 1;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  align-self: flex-start;
+  position: relative;
   min-width: 50%; /* Ensure it takes up proper space */
 }
 
 .yearDisplay {
-  position: fixed; /* Changed from absolute to fixed */
+  position: sticky;
   top: 0;
-  left: 50%; /* Start from middle of viewport */
-  right: 0;
-  width: 50vw; /* Take up right half of viewport */
   height: 100vh;
   display: flex;
   align-items: center;
