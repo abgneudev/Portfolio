@@ -150,18 +150,47 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
               <div className={styles.sliderContainer}>
                 <div className={styles.sliderWrapper}>
                   <div className={styles.sliderTrack}>
-                    {duplicatedLogos.map((logo, index) => (
-                      <div
-                        key={`${logo.id}-${index}`}
-                        className={styles.logoItem}
-                      >
-                        <img
-                          src={logo.src}
-                          alt={logo.alt}
-                          className={styles.logoImage}
-                        />
-                      </div>
-                    ))}
+                    {duplicatedLogos.map((logo, index) => {
+                      let href = '';
+                      switch (logo.id) {
+                        case 'iembrace':
+                          href = 'https://innovationlabs.harvard.edu/';
+                          break;
+                        case 'northeastern':
+                          href = 'https://www.northeastern.edu/';
+                          break;
+                        case 'wipro':
+                          href = 'https://www.wipro.com/';
+                          break;
+                        case 'unicef':
+                          href = 'https://www.unicef.org/sustainable-development-goals';
+                          break;
+                        case 'aiesec':
+                          href = 'https://aiesec.org/';
+                          break;
+                        default:
+                          href = '#';
+                      }
+                      return (
+                        <div
+                          key={`${logo.id}-${index}`}
+                          className={styles.logoItem}
+                        >
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabIndex={0}
+                          >
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              className={styles.logoImage}
+                            />
+                          </a>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
