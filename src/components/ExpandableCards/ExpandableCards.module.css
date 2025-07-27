@@ -24,7 +24,7 @@
 .container {
   width: 100%;
   padding: 120px 0 140px 0;
-  background: var(--color-bg-primary);
+  background: linear-gradient(135deg, #0b0b0e 0%, #141417 50%, #0a0a0a 100%);
   overflow: hidden;
   font-family: var(--font-sans);
   position: relative;

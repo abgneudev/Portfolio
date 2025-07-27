@@ -68,6 +68,14 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
             title: 'Embrace Landing Page'
           };
         }
+        if (i === 1) {
+          return {
+            ...p,
+            title: 'Vino Social',
+            category: 'MOBILE APP DESIGN',
+            thumbnail: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753607070/wine2_awu0gc.gif'
+          };
+        }
         return p;
       });
     }
@@ -96,13 +104,14 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
         keyMetricLabel: 'WCAG Compliance',
         technologies: ['React', 'CSS', 'Figma', 'Semantic HTML']
       },
-      'Quantum Finance': {
-        outcome: 'Increased mobile banking adoption by 127%',
-        challenge: 'Lost 3M+ Gen-Z users yearly to competitors',
-        role: 'Lead Designer',
-        duration: '6 months',
-        keyMetric: '$8.2M',
-        keyMetricLabel: 'Revenue Impact'
+      'Vino Social': {
+        outcome: 'Designed 30+ screens for a wine discovery social platform with Harvard MBA grad',
+        challenge: 'Wine enthusiasts lacked a Goodreads-style platform to discover, rate, and share wine experiences',
+        role: 'Product Designer',
+        duration: '2 months',
+        keyMetric: '30+',
+        keyMetricLabel: 'Screens Designed',
+        technologies: ['Figma', 'Prototyping', 'User Research', 'UI/UX']
       },
       'Artisan Market': {
         outcome: 'Boosted artisan sales by 89%',
@@ -136,7 +145,12 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                   <span className={styles.projectNumber}>
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  
+
+                  {/* Text overlay positioned outside/above laptop */}
+                  <div className={styles.imageOverlay}>
+                    <p className={styles.overlayCategory}>{patchedProjects[activeIndex]?.category}</p>
+                  </div>
+                        
                   {/* Enhanced description with outcome + challenge */}
                   <div className={styles.projectDetails}>
                     {enhancements ? (
@@ -238,22 +252,32 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
         <div className={`${styles.rightPanel} ${isInView ? styles.sticky : ''}`}>
           <div className={styles.imageWrapper}>
             
-            {/* Laptop frame with screen */}
-            <div className={styles.laptopFrame}>
-              <div className={styles.laptopScreen}>
-                <img 
-                  key={activeIndex}
-                  src={patchedProjects[activeIndex]?.thumbnail} 
-                  alt={patchedProjects[activeIndex]?.title}
-                  className={styles.projectImage}
-                />
+            {/* Conditional rendering: Laptop for first project, Mobile for second */}
+            {activeIndex === 1 ? (
+              // Mobile phone frame
+              <div className={styles.mobileFrame}>
+                <div className={styles.mobileScreen}>
+                  <img 
+                    key={activeIndex}
+                    src={patchedProjects[activeIndex]?.thumbnail} 
+                    alt={patchedProjects[activeIndex]?.title}
+                    className={styles.projectImage}
+                  />
+                </div>
               </div>
-            </div>
-                        {/* Text overlay positioned outside/above laptop */}
-            <div className={styles.imageOverlay}>
-              <p className={styles.overlayCategory}>{patchedProjects[activeIndex]?.category}</p>
-              <h3 className={styles.overlayTitle}>{patchedProjects[activeIndex]?.title}</h3>
-            </div>
+            ) : (
+              // Laptop frame with screen
+              <div className={styles.laptopFrame}>
+                <div className={styles.laptopScreen}>
+                  <img 
+                    key={activeIndex}
+                    src={patchedProjects[activeIndex]?.thumbnail} 
+                    alt={patchedProjects[activeIndex]?.title}
+                    className={styles.projectImage}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
