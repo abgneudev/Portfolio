@@ -237,11 +237,6 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
         {/* Right side - Sticky image with gradient background */}
         <div className={`${styles.rightPanel} ${isInView ? styles.sticky : ''}`}>
           <div className={styles.imageWrapper}>
-            {/* Text overlay positioned outside/above laptop */}
-            <div className={styles.imageOverlay}>
-              <p className={styles.overlayCategory}>{patchedProjects[activeIndex]?.category}</p>
-              <h3 className={styles.overlayTitle}>{patchedProjects[activeIndex]?.title}</h3>
-            </div>
             
             {/* Laptop frame with screen */}
             <div className={styles.laptopFrame}>
@@ -253,6 +248,11 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                   className={styles.projectImage}
                 />
               </div>
+            </div>
+                        {/* Text overlay positioned outside/above laptop */}
+            <div className={styles.imageOverlay}>
+              <p className={styles.overlayCategory}>{patchedProjects[activeIndex]?.category}</p>
+              <h3 className={styles.overlayTitle}>{patchedProjects[activeIndex]?.title}</h3>
             </div>
           </div>
         </div>
