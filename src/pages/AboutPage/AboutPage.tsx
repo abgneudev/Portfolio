@@ -6,7 +6,7 @@ const About = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const timelineRef = useRef<HTMLDivElement | null>(null);
-  const timelineItemRefs = useRef<Array<HTMLElement | null>>([]);
+  const timelineItemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const timelineData = [
     {
@@ -203,7 +203,7 @@ const About = () => {
                 <article
                   key={index}
                   ref={el => {
-                    timelineItemRefs.current[index] = el;
+                    timelineItemRefs.current[index] = el as HTMLDivElement | null;
                   }}
                   className={`${styles.timelineItem} ${activeIndex === index ? styles.active : ''}`}
                 >

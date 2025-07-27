@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import styles from './ExpandableCards.module.css';
 
 interface CardSpec {
@@ -19,138 +19,143 @@ interface CardContent {
   color: string;
 }
 
-interface DragState {
-  isDragging: boolean;
-  startX: number;
-  scrollLeft: number;
-  hasMoved: boolean;
-}
-
 const cardsData: CardContent[] = [
   {
     id: 'design-systems',
     title: 'Design Systems',
     category: 'System Architecture',
-    image: 'https://images.unsplash.com/photo-1569163139394-de4798907684?w=800&h=1000&fit=crop',
+    image: 'https://images.unsplash.com/photo-1569163139394-de4798907684?w=600&h=600&fit=crop',
     gallery: [
-      'https://images.unsplash.com/photo-1569163139394-de4798907684?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1569163139394-de4798907684?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&h=600&fit=crop',
     ],
-    description: 'Scalable design system architecture with reusable components, design tokens, and comprehensive documentation for consistent experiences.',
+    description: 'Scalable design system architecture with reusable components and comprehensive documentation.',
     features: [
       'Component versioning',
       'Design token architecture',
-      'Storybook documentation'
+      'Automated documentation',
+      'Cross-platform support'
     ],
     specs: [
       { label: 'Components', value: '45+ patterns' },
-      { label: 'Tokens', value: 'Multi-platform support' },
-      { label: 'Framework', value: 'React + TypeScript' }
+      { label: 'Platforms', value: 'Web, iOS, Android' },
+      { label: 'Framework', value: 'React + TypeScript' },
+      { label: 'Coverage', value: '95% tested' }
     ],
-    color: '#064e3b' // emerald-900
+    color: '#064e3b'
   },
   {
     id: 'accessibility',
     title: 'Accessibility',
     category: 'Inclusive Design',
-    image: 'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=800&h=1000&fit=crop',
+    image: 'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=600&h=600&fit=crop',
     gallery: [
-      'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop',
     ],
-    description: 'WCAG-compliant accessibility patterns ensuring digital experiences are usable by everyone, including keyboard navigation and screen reader support.',
+    description: 'End-to-end accessibility solutions ensuring digital products are usable by everyone, with comprehensive testing and validation protocols.',
     features: [
       'ARIA pattern library',
       'Keyboard navigation flows',
-      'Screen reader optimization'
+      'Screen reader optimization',
+      'Color contrast systems',
+      'Focus management',
+      'Assistive tech testing'
     ],
     specs: [
       { label: 'Compliance', value: 'WCAG 2.1 AA' },
-      { label: 'Testing Tools', value: 'axe DevTools' },
-      { label: 'Audit Score', value: '100/100' }
+      { label: 'Testing', value: 'Automated + Manual' },
+      { label: 'Score', value: '100/100 Lighthouse' },
+      { label: 'Coverage', value: 'Full stack' }
     ],
-    color: '#000000' // black
+    color: '#0A0E13'
   },
   {
     id: 'research',
     title: 'User Research',
     category: 'Human-Centered Design',
-    image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=1000&fit=crop',
+    image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=600&fit=crop',
     gallery: [
-      'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
     ],
-    description: 'Research-driven design process incorporating user interviews, usability testing, and data analytics to inform design decisions.',
+    description: 'Data-driven research methodologies combining qualitative insights with quantitative validation.',
     features: [
-      'Mixed methods research',
-      'Journey mapping tools',
+      'Mixed-methods research',
+      'Journey mapping',
+      'Usability testing',
       'Analytics integration'
     ],
     specs: [
       { label: 'Methods', value: 'Qual + Quant' },
-      { label: 'Sample Size', value: '5-8 per round' },
-      { label: 'Cadence', value: 'Bi-weekly testing' }
+      { label: 'Cadence', value: 'Bi-weekly' },
+      { label: 'Sample', value: '5-8 users' },
+      { label: 'Tools', value: 'Maze, Hotjar' }
     ],
-    color: '#075985' // sky-600
+    color: '#075985'
   },
   {
     id: 'ia',
     title: 'Information Architecture',
     category: 'Structure Design',
-    image: 'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=800&h=1000&fit=crop',
+    image: 'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=600&h=600&fit=crop',
     gallery: [
-      'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
     ],
-    description: 'Strategic information architecture patterns for complex applications, featuring intuitive navigation systems and clear content hierarchies.',
+    description: 'Strategic information architecture for complex digital products, optimizing findability.',
     features: [
-      'Card sorting methodologies',
-      'Navigation pattern library',
-      'Content taxonomy systems'
+      'Card sorting studies',
+      'Navigation patterns',
+      'Taxonomy development',
+      'Search optimization'
     ],
     specs: [
-      { label: 'Nav Depth', value: '3 levels maximum' },
-      { label: 'Categories', value: 'User-tested groupings' },
-      { label: 'Patterns', value: '12 IA templates' }
+      { label: 'Depth', value: '3 levels max' },
+      { label: 'Success', value: '87% findability' },
+      { label: 'Patterns', value: '12 templates' },
+      { label: 'Testing', value: 'Tree testing' }
     ],
-    color: '#581c87' // purple-900
+    color: '#581c87'
   },
   {
     id: 'prototyping',
-    title: 'Prototyping',
-    category: 'Rapid Development',
-    image: 'https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=800&h=1000&fit=crop',
+    title: 'Rapid Prototyping',
+    category: 'Innovation Lab',
+    image: 'https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=600&h=600&fit=crop',
     gallery: [
-      'https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1594904351111-a072f80b1a71?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1200&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1594904351111-a072f80b1a71?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=800&h=600&fit=crop',
     ],
-    description: 'High-fidelity prototyping workflows enabling rapid iteration and user testing with interactive, code-based prototypes.',
+    description: 'High-velocity prototyping delivering production-ready interactive prototypes.',
     features: [
       'Interactive prototypes',
-      'Micro-interaction details',
-      'Real data integration'
+      'Micro-interactions',
+      'Real data integration',
+      'Device testing'
     ],
     specs: [
-      { label: 'Fidelity', value: 'Production-ready' },
-      { label: 'Tools', value: 'Figma + React' },
-      { label: 'Turnaround', value: '48-72 hours' }
+      { label: 'Fidelity', value: 'Production' },
+      { label: 'Speed', value: '48-72 hours' },
+      { label: 'Stack', value: 'React + Framer' },
+      { label: 'Testing', value: 'Live sessions' }
     ],
-    color: '#7c2d12' // orange-900
+    color: '#7c2d12'
   }
 ];
 
-// Canvas component for the reveal effect
+// Canvas component
 const CanvasRevealEffect: React.FC<{
   isHovered: boolean;
   color: string;
   animationSpeed?: number;
   dotSize?: number;
-}> = ({ isHovered, color, animationSpeed = 3, dotSize = 3 }) => {
+}> = ({ isHovered, color, animationSpeed = 3, dotSize = 2 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
   const timeRef = useRef(0);
@@ -218,7 +223,7 @@ const CanvasRevealEffect: React.FC<{
   return <canvas ref={canvasRef} className={styles.canvas} />;
 };
 
-// Icon components
+// Corner icon
 const Icon: React.FC<{ className?: string }> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -239,13 +244,6 @@ const ExpandableCards: React.FC = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-  
-  const dragState = useRef<DragState>({
-    isDragging: false,
-    startX: 0,
-    scrollLeft: 0,
-    hasMoved: false
-  });
 
   useEffect(() => {
     const indices: { [key: string]: number } = {};
@@ -261,62 +259,6 @@ const ExpandableCards: React.FC = () => {
     }
   }, [expandedCard]);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-    dragState.current.isDragging = true;
-    dragState.current.startX = e.pageX - slider.offsetLeft;
-    dragState.current.scrollLeft = slider.scrollLeft;
-    dragState.current.hasMoved = false;
-    slider.classList.add(styles.dragging);
-    window.addEventListener('mousemove', handleMouseMoveWindow);
-    window.addEventListener('mouseup', handleMouseUpWindow);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!dragState.current.isDragging || !sliderRef.current) return;
-    e.preventDefault();
-    const slider = sliderRef.current;
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - dragState.current.startX) * 2;
-    slider.scrollLeft = dragState.current.scrollLeft - walk;
-    if (Math.abs(x - dragState.current.startX) > 5) {
-      dragState.current.hasMoved = true;
-    }
-  };
-
-  const handleMouseMoveWindow = (e: MouseEvent) => {
-    if (!dragState.current.isDragging || !sliderRef.current) return;
-    e.preventDefault();
-    const slider = sliderRef.current;
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - dragState.current.startX) * 2;
-    slider.scrollLeft = dragState.current.scrollLeft - walk;
-    if (Math.abs(x - dragState.current.startX) > 5) {
-      dragState.current.hasMoved = true;
-    }
-  };
-
-  const handleMouseUp = () => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.classList.remove(styles.dragging);
-    }
-    dragState.current.isDragging = false;
-    window.removeEventListener('mousemove', handleMouseMoveWindow);
-    window.removeEventListener('mouseup', handleMouseUpWindow);
-  };
-
-  const handleMouseUpWindow = () => {
-    handleMouseUp();
-  };
-
-  const handleMouseLeave = () => {
-    if (dragState.current.isDragging) {
-      handleMouseUp();
-    }
-  };
-
   const handleCardClick = (cardId: string) => {
     if (expandedCard === cardId) {
       setExpandedCard(null);
@@ -328,8 +270,6 @@ const ExpandableCards: React.FC = () => {
         expandedRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }
-    dragState.current.hasMoved = false;
-    dragState.current.isDragging = false;
   };
 
   const handleTabClick = (tabId: string) => {
@@ -352,7 +292,7 @@ const ExpandableCards: React.FC = () => {
 
   const scrollSlider = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
-      const scrollAmount = sliderRef.current.clientWidth * 0.8;
+      const scrollAmount = 344; // Card width + gap
       sliderRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -364,79 +304,72 @@ const ExpandableCards: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {/* Header */}
-      <div className={styles.grid}>
+      <div className={styles.wrapper}>
+        {/* Header */}
         <div className={styles.headerSection}>
-          <h2 className={styles.sectionTitle}>Explore my expertise</h2>
+          <h2 className={styles.sectionTitle}>Core Competencies</h2>
           {!expandedCard && (
             <div className={styles.sliderControls}>
               <button 
                 className={styles.sliderArrow}
                 onClick={() => scrollSlider('left')}
-                aria-label="Scroll left"
+                aria-label="Previous"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={16} />
               </button>
               <button 
                 className={styles.sliderArrow}
                 onClick={() => scrollSlider('right')}
-                aria-label="Scroll right"
+                aria-label="Next"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={16} />
               </button>
             </div>
           )}
         </div>
-      </div>
 
-      {/* Cards Slider or Tabs */}
-      {!expandedCard ? (
-        <div 
-          ref={sliderRef}
-          className={styles.cardsSlider}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-        >
-          {cardsData.map((card) => (
-            <div
-              key={card.id}
-              className={`${styles.card} ${expandedCard === card.id ? styles.active : ''}`}
-              onClick={() => handleCardClick(card.id)}
-              onMouseEnter={() => setHoveredCard(card.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              {/* Corner icons */}
-              <Icon className={`${styles.cornerIcon} ${styles.topLeft}`} />
-              <Icon className={`${styles.cornerIcon} ${styles.topRight}`} />
-              <Icon className={`${styles.cornerIcon} ${styles.bottomLeft}`} />
-              <Icon className={`${styles.cornerIcon} ${styles.bottomRight}`} />
+        {/* Cards or Tabs */}
+        {!expandedCard ? (
+          <div 
+            ref={sliderRef}
+            className={styles.cardsSlider}
+          >
+            {cardsData.map((card) => (
+              <div
+                key={card.id}
+                className={styles.card}
+                onClick={() => handleCardClick(card.id)}
+                onMouseEnter={() => setHoveredCard(card.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                {/* Corner icons */}
+                <Icon className={`${styles.cornerIcon} ${styles.topLeft}`} />
+                <Icon className={`${styles.cornerIcon} ${styles.topRight}`} />
+                <Icon className={`${styles.cornerIcon} ${styles.bottomLeft}`} />
+                <Icon className={`${styles.cornerIcon} ${styles.bottomRight}`} />
 
-              <div className={styles.cardImage}>
-                <img 
-                  src={card.image} 
-                  alt={card.title} 
-                  draggable="false"
-                />
-                <CanvasRevealEffect 
-                  isHovered={hoveredCard === card.id}
-                  color={card.color}
-                  animationSpeed={card.id === 'design-systems' ? 5.1 : 3}
-                  dotSize={card.id === 'accessibility' ? 2 : 3}
-                />
-                <div className={styles.cardOverlay} />
-                <div className={styles.cardContent}>
-                  <h3 className={styles.cardTitle}>
-                    {card.title}
-                  </h3>
+                <div className={styles.cardImage}>
+                  <img 
+                    src={card.image} 
+                    alt={card.title} 
+                    draggable="false"
+                  />
+                  <CanvasRevealEffect 
+                    isHovered={hoveredCard === card.id}
+                    color={card.color}
+                    animationSpeed={3}
+                    dotSize={2}
+                  />
+                  <div className={styles.cardOverlay} />
+                  <div className={styles.cardContent}>
+                    <p className={styles.cardCategory}>{card.category}</p>
+                    <h3 className={styles.cardTitle}>{card.title}</h3>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className={styles.grid}>
+            ))}
+          </div>
+        ) : (
           <div className={styles.tabNavigation}>
             <div className={styles.tabList}>
               {cardsData.map((card) => (
@@ -445,19 +378,17 @@ const ExpandableCards: React.FC = () => {
                   className={`${styles.tabButton} ${activeTab === card.id ? styles.active : ''}`}
                   onClick={() => handleTabClick(card.id)}
                 >
-                  {card.title.toUpperCase()}
+                  {card.title}
                 </button>
               ))}
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Expanded Section */}
-      {expandedCard && activeCardData && (
-        <div ref={expandedRef} className={styles.expandedSection}>
-          <div className={styles.grid}>
-            <div className={styles.expandedGrid}>
+        {/* Expanded Content */}
+        {expandedCard && activeCardData && (
+          <div ref={expandedRef} className={styles.expandedSection}>
+            <div className={styles.expandedContent}>
               {/* Gallery */}
               <div className={styles.gallerySection}>
                 <div className={styles.mainImage}>
@@ -466,32 +397,25 @@ const ExpandableCards: React.FC = () => {
                     alt={activeCardData.title}
                   />
                   
-                  {/* Image counter */}
                   <div className={styles.imageCounter}>
-                    {String(currentImageIndex[activeTab || ''] + 1 || 1).padStart(2, '0')}/{String(activeCardData.gallery.length).padStart(2, '0')}
+                    {currentImageIndex[activeTab || ''] + 1} / {activeCardData.gallery.length}
                   </div>
                   
                   {activeCardData.gallery.length > 1 && (
                     <>
                       <button
                         className={`${styles.galleryNav} ${styles.prevButton}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (activeTab) handleImageNav(activeTab, 'prev');
-                        }}
-                        aria-label="Previous image"
+                        onClick={() => activeTab && handleImageNav(activeTab, 'prev')}
+                        aria-label="Previous"
                       >
-                        <ChevronLeft size={20} />
+                        <ChevronLeft size={16} />
                       </button>
                       <button
                         className={`${styles.galleryNav} ${styles.nextButton}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (activeTab) handleImageNav(activeTab, 'next');
-                        }}
-                        aria-label="Next image"
+                        onClick={() => activeTab && handleImageNav(activeTab, 'next')}
+                        aria-label="Next"
                       >
-                        <ChevronRight size={20} />
+                        <ChevronRight size={16} />
                       </button>
                     </>
                   )}
@@ -506,8 +430,8 @@ const ExpandableCards: React.FC = () => {
                   <p className={styles.detailDescription}>{activeCardData.description}</p>
                 </div>
 
-                <div className={styles.features}>
-                  <h3 className={styles.featuresTitle}>Key Features</h3>
+                <div className={styles.infoSection}>
+                  <h3 className={styles.infoTitle}>Key Features</h3>
                   <ul className={styles.featuresList}>
                     {activeCardData.features.map((feature, index) => (
                       <li key={index}>{feature}</li>
@@ -515,38 +439,33 @@ const ExpandableCards: React.FC = () => {
                   </ul>
                 </div>
 
-                <div className={styles.specs}>
-                  <h3 className={styles.specsTitle}>Specifications</h3>
-                  <dl className={styles.specsList}>
+                <div className={styles.infoSection}>
+                  <h3 className={styles.infoTitle}>Specifications</h3>
+                  <div className={styles.specsList}>
                     {activeCardData.specs.map((spec, index) => (
                       <div key={index} className={styles.specItem}>
-                        <dt>{spec.label}</dt>
-                        <dd>{spec.value}</dd>
+                        <span className={styles.specLabel}>{spec.label}</span>
+                        <span className={styles.specValue}>{spec.value}</span>
                       </div>
                     ))}
-                  </dl>
+                  </div>
                 </div>
-
-                <button className={styles.shopButton}>
-                  Explore This Category
-                </button>
               </div>
             </div>
-          </div>
 
-          <button
-            className={styles.closeButton}
-            onClick={(e) => {
-              e.stopPropagation();
-              setExpandedCard(null);
-              setActiveTab(null);
-            }}
-            aria-label="Close"
-          >
-            ×
-          </button>
-        </div>
-      )}
+            <button
+              className={styles.closeButton}
+              onClick={() => {
+                setExpandedCard(null);
+                setActiveTab(null);
+              }}
+              aria-label="Close"
+            >
+              <X size={16} />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

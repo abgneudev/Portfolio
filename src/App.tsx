@@ -9,6 +9,8 @@ import ThreeDMarqueeSection from './components/ThreeDMarquee/ThreeDMarquee.tsx';
 import type { Project } from './types/index';
 import './styles/globals.css';
 import './App.css';
+import './styles/skip-link.css';
+import './styles/manrope.css';
 
 // Sample project data
 const projects: Project[] = [

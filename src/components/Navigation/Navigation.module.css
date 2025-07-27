@@ -1,28 +1,15 @@
 /* Navigation.module.css - Modern luxury glass effect */
 
 :root {
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-primary: var(--font-sans);
   --grid-columns: 12;
   --grid-gap: 32px;
   --container-max-width: 1760px;
   --container-padding: 80px;
-  
-  /* Unified monochrome blue palette */
-  --color-primary: #1B383D; /* Blue-1 */
-  --color-secondary: #55ADBD; /* Blue-3 */
-  --color-text: #1B383D; /* Blue-1 */
-  --color-white: #FFFFFF;
-  --color-black: #06343D; /* Blue-4 */
-  --color-border: #3E7E8A; /* Blue-5 */
-  --color-accent: #3E7E8A; /* Blue-5 */
-  
-  /* Navigation specific - elegant and refined */
   --nav-height: 72px;
-  --nav-bg: rgba(255, 255, 255, 0);
-  --nav-bg-visible: rgba(255, 255, 255, 0.95);
+  --nav-bg: rgba(250, 251, 252, 0);
+  --nav-bg-visible: rgba(250, 251, 252, 0.95);
   --nav-blur: 30px;
-  
-  /* Breakpoints */
   --breakpoint-large: 1400px;
   --breakpoint-medium: 900px;
   --breakpoint-small: 768px;
@@ -40,7 +27,7 @@
   align-items: center;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   background: var(--nav-bg);
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   transform: translateY(0);
 }
 
@@ -112,7 +99,7 @@
   background: none;
   border: none;
   color: var(--color-secondary);
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -151,12 +138,12 @@
 /* CTA Link - premium button */
 .ctaLink {
   padding: 12px 28px;
-  background: var(--color-black);
-  color: var(--color-white);
+  background: var(--color-white);
+  color: var(--color-black);
   border: 1px solid var(--color-black);
   border-radius: 50px;
   text-decoration: none;
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -164,28 +151,14 @@
   white-space: nowrap;
   position: relative;
   overflow: hidden;
-}
-
-.ctaLink::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease;
+  box-shadow: none;
 }
 
 .ctaLink:hover {
-  background: var(--color-white);
-  color: var(--color-black);
+  background: var(--color-black);
+  color: var(--color-white);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.ctaLink:hover::before {
-  left: 100%;
 }
 
 /* Initial state (not scrolled) - clean and minimal */
@@ -202,11 +175,6 @@
   color: var(--color-black);
 }
 
-.header:not(.visible) .ctaLink {
-  background: var(--color-black);
-  border-color: var(--color-black);
-  color: var(--color-white);
-}
 
 /* Responsive breakpoints */
 @media (max-width: 1400px) {

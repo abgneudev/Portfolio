@@ -23,7 +23,6 @@
   background: var(--color-white);
   width: 100%;
   min-height: 100vh;
-  /* Removed overflow-x: hidden to allow sticky child */
 }
 
 /* Container */
@@ -33,7 +32,7 @@
   margin: 0 auto;
   position: relative;
   padding-left: var(--container-padding);
-  padding-right: 0;
+  padding-right: var(--container-padding);
   gap: 60px;
 }
 
@@ -52,7 +51,7 @@
 }
 
 .aboutHeader h1 {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: clamp(48px, 5vw, 64px);
   font-weight: 300;
   color: var(--color-primary);
@@ -62,7 +61,7 @@
 }
 
 .aboutHeader p {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 20px;
   line-height: 1.6;
   color: var(--color-text);
@@ -73,17 +72,18 @@
 /* Timeline styles */
 .timeline {
   position: relative;
-  padding: 60px 0 60px 60px;
+  padding: 60px 0;
 }
 
 .timelineLine {
   position: absolute;
-  left: 0;
+  left: 10px; /* Center of 20px marker */
   top: 0;
   bottom: 0;
   width: 2px;
   background: var(--color-border);
   overflow: hidden;
+  z-index: 1;
 }
 
 .timelineProgress {
@@ -100,6 +100,9 @@
   margin-bottom: 120px;
   opacity: 0.3;
   transition: opacity 0.5s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
 }
 
 .timelineItem.active {
@@ -110,12 +113,10 @@
   margin-bottom: 120px;
 }
 
-/* Timeline marker - positioned relative to timeline header */
+/* Timeline marker - centered on timeline line */
 .timelineMarker {
-  position: absolute;
-  left: -60px;
-  top: 0;
-  z-index: 2;
+  position: relative;
+  flex-shrink: 0;
   width: 20px;
   height: 20px;
   display: flex;
@@ -125,11 +126,13 @@
   border: 2px solid var(--color-border);
   border-radius: 50%;
   transition: all 0.3s ease;
+  z-index: 2;
+  margin-top: 4px; /* Align with year text */
 }
 
 .timelineItem.active .timelineMarker {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.1);
+  box-shadow: 0 0 0 6px rgba(62, 126, 138, 0.1);
 }
 
 .timelineDot {
@@ -150,9 +153,10 @@
   background: transparent;
   padding: 0;
   position: relative;
+  flex: 1;
 }
 
-/* Timeline header - align with marker */
+/* Timeline header */
 .timelineHeader {
   margin-bottom: 32px;
   position: relative;
@@ -160,17 +164,18 @@
 
 .timelineYear {
   display: inline-block;
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin: 0 0 8px 0;
+  line-height: 20px;
 }
 
 .timelineTitle {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: clamp(28px, 3vw, 36px);
   font-weight: 300;
   margin: 0 0 8px 0;
@@ -180,7 +185,7 @@
 }
 
 .timelineSubtitle {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 16px;
   color: var(--color-text);
   margin: 0;
@@ -189,7 +194,7 @@
 
 /* Timeline body */
 .timelineDescription {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 18px;
   color: var(--color-text);
   margin: 0 0 32px 0;
@@ -210,7 +215,7 @@
 }
 
 .metricValue {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 36px;
   font-weight: 700;
   color: var(--color-accent);
@@ -219,7 +224,7 @@
 }
 
 .metricLabel {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--color-text);
   text-transform: uppercase;
@@ -232,7 +237,7 @@
 }
 
 .achievementsTitle {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 20px;
   font-weight: 400;
   margin: 0 0 24px 0;
@@ -251,7 +256,7 @@
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 16px;
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 16px;
   color: var(--color-text);
   line-height: 1.6;
@@ -294,19 +299,19 @@
 .rightPanel {
   flex: 1;
   position: sticky;
-  top: 80px;
-  height: calc(100vh - 80px);
+  top: 0;
+  height: 100vh;
   align-self: flex-start;
-  /* Removed margin-right to fix sticky positioning */
+  min-width: 50%; /* Ensure it takes up proper space */
 }
 
 .yearDisplay {
-  position: absolute;
+  position: fixed; /* Changed from absolute to fixed */
   top: 0;
-  left: 0;
+  left: 50%; /* Start from middle of viewport */
   right: 0;
-  width: 50vw;
-  height: 100%;
+  width: 50vw; /* Take up right half of viewport */
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -314,6 +319,10 @@
 }
 
 .yearWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 0 80px;
   width: 100%;
@@ -321,7 +330,7 @@
 
 .yearText {
   display: block;
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: clamp(60px, 6vw, 100px);
   font-weight: 700;
   color: var(--color-accent);
@@ -330,11 +339,13 @@
   letter-spacing: -0.03em;
   animation: fadeIn 0.6s ease-out;
   word-break: break-word;
+  max-width: 100%;
+  text-align: center;
 }
 
 .yearSubtext {
   display: block;
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 16px;
   color: var(--color-text);
   font-weight: 400;
@@ -343,6 +354,7 @@
   animation: fadeIn 0.6s ease-out 0.2s both;
   word-wrap: break-word;
   padding: 0 20px;
+  text-align: center;
 }
 
 @keyframes fadeIn {
@@ -360,6 +372,7 @@
 @media (max-width: 1400px) {
   .aboutContainer {
     padding-left: 40px;
+    padding-right: 40px;
   }
   
   .leftPanel {
@@ -371,6 +384,7 @@
   .aboutContainer {
     flex-direction: column;
     padding-left: 0;
+    padding-right: 0;
   }
   
   .rightPanel {
@@ -387,15 +401,16 @@
   }
   
   .timeline {
-    padding-left: 40px;
+    padding: 40px 0;
   }
   
   .timelineItem {
     margin-bottom: 80px;
+    gap: 30px;
   }
   
   .timelineMarker {
-    left: -40px;
+    margin-top: 6px;
   }
   
   .metricsRow {
@@ -433,10 +448,19 @@
     margin-bottom: 60px;
   }
   
+  .timelineLine {
+    left: 8px; /* Half of smaller marker width (16px / 2) */
+  }
+  
   .timelineMarker {
-    left: -30px;
+    left: 0; /* Keep at start */
+    top: 6px;
     width: 16px;
     height: 16px;
+  }
+  
+  .timelineContent {
+    margin-left: 30px; /* Space for smaller marker (16px) + gap (14px) */
   }
   
   .timelineDot {
@@ -477,11 +501,15 @@
   }
   
   .timeline {
-    padding-left: 24px;
+    padding: 20px 0;
+  }
+  
+  .timelineItem {
+    gap: 20px;
   }
   
   .timelineMarker {
-    left: -24px;
+    margin-top: 6px;
   }
   
   .achievementItem {

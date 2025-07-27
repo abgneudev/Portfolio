@@ -1,3 +1,39 @@
+.heroCtaButton {
+  padding: 12px 28px;
+  background: var(--color-black);
+  color: var(--color-white);
+  border: 1px solid var(--color-black);
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroCtaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.heroCtaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.heroCtaButton:hover::before {
+  left: 100%;
+}
 /* HomePage.module.css - Consistent Grid Layout & Spacing */
 
 /* CSS Variables for consistency */
@@ -30,7 +66,7 @@
 
 /* Global styles */
 .homePage {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   width: 100%;
   color: var(--color-primary);
 }
@@ -48,7 +84,7 @@
 
 /* Grid column utilities */
 .colCentered {
-  grid-column: 1 / span 6;
+  grid-column: 1 / span 8;
 }
 
 .colFull {
@@ -72,7 +108,6 @@
 
 .sectionDark {
   background: var(--color-black);
-  border-radius: 24px;
   box-shadow: 0 20px 60px rgba(27, 56, 61, 0.15);
   overflow: hidden;
 }
@@ -96,8 +131,8 @@
 }
 
 .heroTitle {
-  font-size: var(--font-h2);
-  font-weight: 300;
+  font-size: var(--font-h1);
+  font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.02em;
   margin: 0 0 28px 0;
@@ -136,7 +171,7 @@
   letter-spacing: 0;
   color: var(--color-text);
   margin: 0 0 48px 0;
-  max-width: 800px;
+  max-width: 640px;
 }
 
 .highlight {
@@ -180,7 +215,7 @@
   padding: 18px 40px;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: inherit;
+  font-family: var(--font-sans);
   position: relative;
   overflow: hidden;
 }
@@ -322,8 +357,7 @@
   }
   
   .sectionDark {
-    margin: 40px 0;
-    border-radius: 12px;
+    margin: 0;
   }
   
   .sectionHeader {

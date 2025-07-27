@@ -11,7 +11,7 @@ interface ThreeDMarqueeProps {
 
 const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
   images,
-  speed = 2,
+  speed = 30,
   pauseOnHover = true,
   reverse = false,
   className = ''
@@ -19,8 +19,8 @@ const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
   const marqueeRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Duplicate images for seamless loop
-  const duplicatedImages = [...images, ...images];
+  // Triple images for smoother loop
+  const duplicatedImages = [...images, ...images, ...images];
 
   useEffect(() => {
     const marquee = marqueeRef.current;
@@ -31,32 +31,20 @@ const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
     marquee.style.setProperty('--marquee-direction', reverse ? 'reverse' : 'normal');
   }, [speed, reverse]);
 
-  const handleMouseEnter = () => {
-    if (pauseOnHover) {
-      setIsPaused(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (pauseOnHover) {
-      setIsPaused(false);
-    }
-  };
-
   return (
     <div className={`${styles.marqueeContainer} ${className}`}>
       <div className={styles.perspective}>
         <div 
           ref={marqueeRef}
           className={`${styles.marquee} ${isPaused ? styles.paused : ''}`}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
           <div className={styles.marqueeContent}>
             {duplicatedImages.map((image, index) => (
               <div
                 key={index}
                 className={styles.imageWrapper}
+                onMouseEnter={() => pauseOnHover && setIsPaused(true)}
+                onMouseLeave={() => pauseOnHover && setIsPaused(false)}
                 style={{
                   '--item-index': index,
                   '--total-items': duplicatedImages.length
@@ -89,10 +77,6 @@ const ThreeDMarqueeSection: React.FC = () => {
     'https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=600&fit=crop',
     'https://images.unsplash.com/photo-1617727553252-65863c156eb0?w=400&h=600&fit=crop',
     'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=400&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?w=400&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1566577134770-3d85bb3a9cc4?w=400&h=600&fit=crop',
   ];
 
   return (
@@ -109,7 +93,7 @@ const ThreeDMarqueeSection: React.FC = () => {
       <div className={styles.marqueeWrapper}>
         <ThreeDMarquee
           images={sampleImages}
-          speed={10}
+          speed={20}
           pauseOnHover={true}
         />
       </div>

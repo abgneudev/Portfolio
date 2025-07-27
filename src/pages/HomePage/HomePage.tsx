@@ -128,11 +128,21 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
             </h1>
             <p className={styles.heroSubtitle}>
               I design accessible digital experiences that scale. <br />
-              Currently at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> where I'm building design systems, writing production-ready code, and designing calming experiences for mental wellness through meditation and sound.
+              Currently at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> – designing and building mental wellness experiences through meditation and sound.
             </p>
-            <button className={styles.heroButton} onClick={() => onProjectClick('fintech-redesign')}>
-              VIEW MY WORK
-            </button>
+            <a
+              className={styles.heroCtaButton}
+              href="https://drive.google.com/file/d/1lVBPVZxY09ObA0ZXOy8_Y1NeXszIqF1h/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+            >
+              <span>Download Resume</span>
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M10 3v10m0 0l-4-4m4 4l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <rect x="4" y="15" width="12" height="2" rx="1" fill="currentColor"/>
+              </svg>
+            </a>
           </div>
         </div>
       </section>

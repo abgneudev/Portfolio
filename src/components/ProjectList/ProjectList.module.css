@@ -1,25 +1,15 @@
 /* ProjectList.module.css - Main Scroll with Sticky Image */
 
 :root {
-  --font-primary: 'Source Sans Pro', Arial, sans-serif;
+  --font-primary: var(--font-sans);
   --container-max-width: 1760px;
   --container-padding: 80px;
-  
-  --color-primary: #1F2937;
-  --color-secondary: #4B5563;
-  --color-text: #6B7280;
-  --color-light: #9CA3AF;
-  --color-bg: #FAFAFA;
-  --color-white: #FFFFFF;
-  --color-black: #000000;
-  --color-border: #E5E7EB;
-  --color-accent: #7C3AED;
 }
 
 /* Section wrapper */
 .projectListSection {
   position: relative;
-  background: var(--color-white);
+  background: var(--color-background);
   width: 100%;
 }
 
@@ -60,7 +50,7 @@
 
 .projectNumber {
   display: block;
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 300;
   color: var(--color-light);
@@ -69,7 +59,7 @@
 }
 
 .projectCategory {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -79,7 +69,7 @@
 }
 
 .projectTitle {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: clamp(36px, 4vw, 48px);
   font-weight: 300;
   color: var(--color-primary);
@@ -89,7 +79,7 @@
 }
 
 .projectDescription {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 18px;
   line-height: 1.7;
   color: var(--color-text);
@@ -109,7 +99,7 @@
 }
 
 .metricValue {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 28px;
   font-weight: 300;
   color: var(--color-accent);
@@ -117,7 +107,7 @@
 }
 
 .metricLabel {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--color-text);
   letter-spacing: 0.02em;
@@ -128,7 +118,7 @@
   color: var(--color-white);
   border: none;
   padding: 16px 32px;
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
@@ -194,7 +184,7 @@
 }
 
 .overlayCategory {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -204,7 +194,7 @@
 }
 
 .overlayTitle {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: 36px;
   font-weight: 300;
   color: var(--color-white);
