@@ -1,7 +1,7 @@
 /* ProjectList.module.css - Main Scroll with Sticky Image */
 
 :root {
-  --font-primary: var(--font-sans);
+  --font-primary: 'Manrope', var(--font-sans);
   --container-max-width: 1760px;
   --container-padding: 80px;
 }
@@ -16,7 +16,7 @@
 /* Container */
 .projectListContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.9fr 1.1fr;
   max-width: var(--container-max-width);
   margin: 0 auto;
   position: relative;
@@ -48,95 +48,164 @@
   max-width: 500px;
 }
 
+/* Project Number */
 .projectNumber {
   display: block;
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--color-light);
-  letter-spacing: 0.05em;
-  margin-bottom: 40px;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  color: #999;
+  letter-spacing: 0.08em;
+  margin-bottom: 64px;
 }
 
-.projectCategory {
-  font-family: var(--font-sans);
+/* Project Details Section */
+.projectDetails {
+  margin-bottom: 24px;
+}
+
+.projectOutcome {
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-weight: 300;
+  color: #0a0a0a;
+  line-height: 1.3;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+}
+
+.projectChallenge {
+  font-family: var(--font-primary);
   font-size: 14px;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-text);
+  color: #6b7280;
+  line-height: 1.7;
   margin: 0 0 16px 0;
-}
-
-.projectTitle {
-  font-family: var(--font-sans);
-  font-size: clamp(36px, 4vw, 48px);
-  font-weight: 300;
-  color: var(--color-primary);
-  margin: 0 0 24px 0;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: 0.01em;
+  max-width: 400px;
 }
 
 .projectDescription {
-  font-family: var(--font-sans);
-  font-size: 18px;
+  font-family: var(--font-primary);
+  font-size: 16px;
   line-height: 1.7;
-  color: var(--color-text);
+  color: #6b7280;
   margin: 0 0 40px 0;
 }
 
-.projectMetrics {
+/* Technology Stack */
+.techStack {
   display: flex;
-  gap: 48px;
-  margin-bottom: 48px;
-}
-
-.metric {
-  display: flex;
-  flex-direction: column;
   gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
 }
 
-.metricValue {
-  font-family: var(--font-sans);
-  font-size: 28px;
-  font-weight: 300;
-  color: var(--color-accent);
-  letter-spacing: -0.02em;
-}
-
-.metricLabel {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  color: var(--color-text);
+.techTag {
+  font-family: var(--font-primary);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 14px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  color: #64748b;
   letter-spacing: 0.02em;
 }
 
-.viewProject {
-  background: var(--color-primary);
-  color: var(--color-white);
-  border: none;
-  padding: 16px 32px;
-  font-family: var(--font-sans);
-  font-size: 16px;
+/* Metrics Grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 80px;
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.metricValue {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 40px;
+  font-weight: 200;
+  color: #0066ff;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+}
+
+.metricLabel {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.03em;
+}
+
+/* Project Metadata */
+.projectMeta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-family: var(--font-primary);
+  font-size: 12px;
   font-weight: 400;
+  color: #94a3b8;
+  letter-spacing: 0.02em;
+}
+
+.separator {
+  color: #e5e7eb;
+}
+
+/* CTA Group */
+.ctaGroup {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.viewProject {
+  font-family: var(--font-primary);
+  background: #0066ff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 6px;
+  transition: all 0.2s;
   letter-spacing: 0.02em;
 }
 
 .viewProject:hover {
-  background: var(--color-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+  background: #0052cc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+}
+
+.downloadLink {
+  font-family: var(--font-primary);
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.downloadLink:hover {
+  color: #0066ff;
+  text-decoration: underline;
 }
 
 /* Right Panel */
 .rightPanel {
   position: relative;
   height: 100vh;
-  margin-right: calc(-50vw + 50%);
 }
 
 .rightPanel.sticky {
@@ -147,11 +216,56 @@
 .imageWrapper {
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
-  width: 80vw;
+  width: 100%;
   height: 100%;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  gap: 30px;
+}
+
+/* Laptop frame container */
+.laptopFrame {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+  aspect-ratio: 16 / 10;
+  background: #1a1a1a;
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 
+    0 50px 100px -20px rgba(0, 0, 0, 0.5),
+    0 30px 60px -30px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Laptop screen bezel */
+.laptopScreen {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 12px;
   overflow: hidden;
-  background: var(--color-black);
+  position: relative;
+}
+
+/* Camera notch */
+.laptopScreen::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: #333;
+  border-radius: 50%;
+  z-index: 2;
 }
 
 .projectImage {
@@ -173,40 +287,43 @@
   }
 }
 
+/* Text overlay outside laptop */
 .imageOverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 60px;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+  width: 90%;
+  max-width: 700px;
   color: var(--color-white);
+  z-index: 10;
+  text-align: left;
 }
 
 .overlayCategory {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.6);
   margin: 0 0 12px 0;
 }
 
 .overlayTitle {
-  font-family: var(--font-sans);
-  font-size: 36px;
+  font-family: var(--font-primary);
+  font-size: 42px;
   font-weight: 300;
   color: var(--color-white);
-  margin: 0;
+  margin: 0 0 30px 0;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 /* Responsive */
 @media (max-width: 1400px) {
   .projectListContainer {
     padding-left: 40px;
+  }
+  
+  .laptopFrame {
+    width: 85%;
   }
 }
 
@@ -233,6 +350,11 @@
     max-width: 100%;
     margin: 0;
   }
+  
+  .laptopFrame {
+    width: 90%;
+    max-width: 600px;
+  }
 
   .leftPanel {
     padding: 0 40px;
@@ -244,7 +366,8 @@
   }
 
   .imageOverlay {
-    padding: 40px;
+    padding: 0 40px;
+    bottom: 40px;
   }
 }
 
@@ -276,24 +399,34 @@
     margin-bottom: 20px;
   }
 
-  .projectTitle {
-    font-size: 32px;
+  .projectOutcome {
+    font-size: 24px;
+  }
+
+  .projectChallenge {
+    font-size: 14px;
   }
 
   .projectDescription {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .metricValue {
-    font-size: 24px;
+    font-size: 32px;
   }
 
   .rightPanel {
     height: 50vh;
   }
+  
+  .laptopFrame {
+    width: 95%;
+    padding: 6px;
+  }
 
   .imageOverlay {
-    padding: 30px 20px;
+    padding: 0 20px;
+    bottom: 30px;
   }
 
   .overlayTitle {

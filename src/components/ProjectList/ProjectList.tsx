@@ -56,6 +56,26 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
   }, []);
 
   // Enhanced project data mapping - customize based on your projects
+  // Patch: Set thumbnail for first project
+  const getPatchedProjects = (projects: Project[]) => {
+    if (projects.length > 0) {
+      projects = projects.map((p, i) => {
+        if (i === 0) {
+          return { 
+            ...p, 
+            thumbnail: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753595773/iemb_1_cbhloc.gif',
+            category: 'FRONTEND ENGINEERING',
+            title: 'Embrace Landing Page'
+          };
+        }
+        return p;
+      });
+    }
+    return projects;
+  };
+
+  const patchedProjects = getPatchedProjects(projects);
+
   const getProjectEnhancements = (project: Project) => {
     type Enhancement = {
       outcome: string;
@@ -64,8 +84,18 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
       duration: string;
       keyMetric: string;
       keyMetricLabel: string;
+      technologies?: string[];
     };
     const enhancements: Record<string, Enhancement> = {
+      'Embrace Landing Page': {
+        outcome: 'Enhanced landing page accessibility with WCAG-compliant semantic structures',
+        challenge: 'Needed to balance inclusive design with high-conversion UI/UX for diverse users',
+        role: 'Product Designer & Frontend Engineer',
+        duration: 'Jul 2025 - Present',
+        keyMetric: '100%',
+        keyMetricLabel: 'WCAG Compliance',
+        technologies: ['React', 'CSS', 'Figma', 'Semantic HTML']
+      },
       'Quantum Finance': {
         outcome: 'Increased mobile banking adoption by 127%',
         challenge: 'Lost 3M+ Gen-Z users yearly to competitors',
@@ -92,7 +122,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
       <div className={styles.projectListContainer}>
         {/* Left side - Project items */}
         <div className={styles.leftPanel}>
-          {projects.map((project, index) => {
+          {patchedProjects.map((project, index) => {
             const enhancements = getProjectEnhancements(project);
             
             return (
@@ -103,44 +133,38 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
               >
                 <div className={styles.projectContent}>
                   {/* Minimal project number */}
-                  <span className={styles.projectNumber} style={{ 
-                    fontSize: '12px',
-                    opacity: 0.4,
-                    marginBottom: '24px'
-                  }}>
+                  <span className={styles.projectNumber}>
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   
-                  {/* Category - smaller, lighter */}
-                  <p className={styles.projectCategory} style={{
-                    fontSize: '12px',
-                    opacity: 0.6,
-                    marginBottom: '12px'
-                  }}>
-                    {project.category}
-                  </p>
-                  
-                  {/* Title remains prominent */}
-                  <h2 className={styles.projectTitle}>{project.title}</h2>
-                  
                   {/* Enhanced description with outcome + challenge */}
-                  <div style={{ marginBottom: '32px' }}>
+                  <div className={styles.projectDetails}>
                     {enhancements ? (
                       <>
-                        <p style={{ 
-                          fontSize: '20px',
-                          fontWeight: '500',
-                          color: '#1a1a1a',
-                          lineHeight: '1.4',
-                          marginBottom: '8px'
-                        }}>
+                        <h2 className={styles.projectOutcome}>
                           {enhancements.outcome}
-                        </p>
-                        <p style={{ 
-                          fontSize: '16px',
-                          color: '#666',
-                          lineHeight: '1.5'
-                        }}>
+                        </h2>
+
+                        {/* Subtle metadata */}
+                        {enhancements && (
+                          <div className={styles.projectMeta}>
+                            <span>{enhancements.role}</span>
+                            <span className={styles.separator}>•</span>
+                            <span>{enhancements.duration}</span>
+                          </div>
+                        )}
+
+                        {enhancements.technologies && (
+                          <div className={styles.techStack}>
+                            {enhancements.technologies.map((tech, idx) => (
+                              <span key={idx} className={styles.techTag}>
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
+                        <p className={styles.projectChallenge}>
                           {enhancements.challenge}
                         </p>
                       </>
@@ -150,109 +174,45 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                   </div>
                   
                   {/* Streamlined metrics with hierarchy */}
-                  <div style={{ 
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '32px',
-                    marginBottom: '32px'
-                  }}>
+                  <div className={styles.metricsGrid}>
                     {/* Primary metric - larger */}
-                    <div>
-                      <span style={{
-                        display: 'block',
-                        fontSize: '36px',
-                        fontWeight: '300',
-                        color: '#0066ff',
-                        lineHeight: '1',
-                        marginBottom: '4px'
-                      }}>
+                    <div className={styles.metricItem}>
+                      <span className={styles.metricValue}>
                         {project.metrics?.primary.value}
                       </span>
-                      <span style={{
-                        fontSize: '13px',
-                        color: '#666',
-                        letterSpacing: '0.02em'
-                      }}>
+                      <span className={styles.metricLabel}>
                         {project.metrics?.primary.label}
                       </span>
                     </div>
                     
                     {/* Secondary metric or key impact */}
                     {enhancements && enhancements.keyMetric ? (
-                      <div>
-                        <span style={{
-                          display: 'block',
-                          fontSize: '36px',
-                          fontWeight: '300',
-                          color: '#0066ff',
-                          lineHeight: '1',
-                          marginBottom: '4px'
-                        }}>
+                      <div className={styles.metricItem}>
+                        <span className={styles.metricValue}>
                           {enhancements.keyMetric}
                         </span>
-                        <span style={{
-                          fontSize: '13px',
-                          color: '#666',
-                          letterSpacing: '0.02em'
-                        }}>
+                        <span className={styles.metricLabel}>
                           {enhancements.keyMetricLabel}
                         </span>
                       </div>
                     ) : project.metrics?.secondary && (
-                      <div>
-                        <span style={{
-                          display: 'block',
-                          fontSize: '36px',
-                          fontWeight: '300',
-                          color: '#0066ff',
-                          lineHeight: '1',
-                          marginBottom: '4px'
-                        }}>
+                      <div className={styles.metricItem}>
+                        <span className={styles.metricValue}>
                           {project.metrics.secondary.value}
                         </span>
-                        <span style={{
-                          fontSize: '13px',
-                          color: '#666',
-                          letterSpacing: '0.02em'
-                        }}>
+                        <span className={styles.metricLabel}>
                           {project.metrics.secondary.label}
                         </span>
                       </div>
                     )}
                   </div>
-                  
-                  {/* Subtle metadata */}
-                  {enhancements && (
-                    <div style={{ 
-                      display: 'flex',
-                      gap: '24px',
-                      marginBottom: '40px',
-                      fontSize: '13px',
-                      color: '#666',
-                      opacity: 0.8
-                    }}>
-                      <span>{enhancements.role}</span>
-                      <span>•</span>
-                      <span>{enhancements.duration}</span>
-                    </div>
-                  )}
+                
                   
                   {/* Clean CTAs */}
-                  <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                  <div className={styles.ctaGroup}>
                     <button 
                       className={styles.viewProject}
                       onClick={() => onProjectClick(project.id)}
-                      style={{
-                        background: '#0066ff',
-                        color: 'white',
-                        border: 'none',
-                        padding: '14px 28px',
-                        fontSize: '15px',
-                        fontWeight: '500',
-                        cursor: 'pointer',
-                        borderRadius: '4px',
-                        transition: 'all 0.2s'
-                      }}
                     >
                       View Case Study →
                     </button>
@@ -263,15 +223,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                         e.preventDefault();
                         console.log('Download deck for', project.title);
                       }}
-                      style={{ 
-                        color: '#0066ff',
-                        fontSize: '14px',
-                        textDecoration: 'none',
-                        opacity: 0.8,
-                        transition: 'opacity 0.2s'
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-                      onMouseLeave={(e) => e.currentTarget.style.opacity = '0.8'}
+                      className={styles.downloadLink}
                     >
                       Download deck (PDF)
                     </a>
@@ -282,18 +234,25 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
           })}
         </div>
 
-        {/* Right side - Sticky image */}
+        {/* Right side - Sticky image with gradient background */}
         <div className={`${styles.rightPanel} ${isInView ? styles.sticky : ''}`}>
           <div className={styles.imageWrapper}>
-            <img 
-              key={activeIndex}
-              src={projects[activeIndex]?.thumbnail} 
-              alt={projects[activeIndex]?.title}
-              className={styles.projectImage}
-            />
+            {/* Text overlay positioned outside/above laptop */}
             <div className={styles.imageOverlay}>
-              <p className={styles.overlayCategory}>{projects[activeIndex]?.category}</p>
-              <h3 className={styles.overlayTitle}>{projects[activeIndex]?.title}</h3>
+              <p className={styles.overlayCategory}>{patchedProjects[activeIndex]?.category}</p>
+              <h3 className={styles.overlayTitle}>{patchedProjects[activeIndex]?.title}</h3>
+            </div>
+            
+            {/* Laptop frame with screen */}
+            <div className={styles.laptopFrame}>
+              <div className={styles.laptopScreen}>
+                <img 
+                  key={activeIndex}
+                  src={patchedProjects[activeIndex]?.thumbnail} 
+                  alt={patchedProjects[activeIndex]?.title}
+                  className={styles.projectImage}
+                />
+              </div>
             </div>
           </div>
         </div>
