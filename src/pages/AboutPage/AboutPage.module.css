@@ -1,26 +1,14 @@
 /* AboutPage.module.css - Progressive Timeline with Sticky Year */
 
 :root {
-  --font-primary: 'Source Sans Pro', Arial, sans-serif;
   --container-max-width: 1760px;
   --container-padding: 80px;
-  
-  --color-primary: #1B383D;
-  --color-secondary: #55ADBD;
-  --color-text: #6B7280;
-  --color-light: #9CA3AF;
-  --color-bg: #FAFAFA;
-  --color-white: #FFFFFF;
-  --color-black: #000000;
-  --color-border: #E5E7EB;
-  --color-accent: #3E7E8A;
-  --color-success: #10B981;
 }
 
 /* Section wrapper */
 .aboutSection {
   position: relative;
-  background: var(--color-white);
+  background: var(--color-background);
   width: 100%;
   min-height: 100vh;
 }
@@ -33,7 +21,7 @@
   position: relative;
   padding-left: var(--container-padding);
   padding-right: var(--container-padding);
-  gap: 60px;
+  gap: 0px;
 }
 
 /* Left Panel - Timeline */
@@ -51,20 +39,20 @@
 }
 
 .aboutHeader h1 {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: clamp(48px, 5vw, 64px);
-  font-weight: 300;
-  color: var(--color-primary);
+  font-weight: 700;
+  color: var(--color-black);
   margin: 0 0 24px 0;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
 .aboutHeader p {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 20px;
   line-height: 1.6;
-  color: var(--color-text);
+  color: var(--color-gray-600);
   max-width: 600px;
   margin: 0;
 }
@@ -77,11 +65,11 @@
 
 .timelineLine {
   position: absolute;
-  left: 10px; /* Center of 20px marker */
+  left: 10px;
   top: 0;
   bottom: 0;
   width: 2px;
-  background: var(--color-border);
+  background: var(--color-gray-300);
   overflow: hidden;
   z-index: 1;
 }
@@ -91,7 +79,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: var(--color-accent);
+  background: var(--color-gray-500);
   transition: height 0.3s ease;
 }
 
@@ -123,7 +111,7 @@
   align-items: center;
   justify-content: center;
   background: var(--color-white);
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--color-primary-dark);
   border-radius: 50%;
   transition: all 0.3s ease;
   z-index: 2;
@@ -131,21 +119,21 @@
 }
 
 .timelineItem.active .timelineMarker {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 6px rgba(62, 126, 138, 0.1);
+  border-color: var(--color-gray-400);
+  box-shadow: 0 0 0 6px rgba(51, 133, 214, 0.15);
 }
 
 .timelineDot {
   width: 8px;
   height: 8px;
-  background: var(--color-border);
+  background: var(--color-gray-300);
   border-radius: 50%;
   display: block;
   transition: background 0.3s ease;
 }
 
 .timelineItem.active .timelineDot {
-  background: var(--color-accent);
+  background: var(--color-primary-light);
 }
 
 /* Timeline content */
@@ -164,20 +152,20 @@
 
 .timelineYear {
   display: inline-block;
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-primary-dark);
   margin: 0 0 8px 0;
   line-height: 20px;
 }
 
 .timelineTitle {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: clamp(28px, 3vw, 36px);
-  font-weight: 300;
+  font-weight: 600;
   margin: 0 0 8px 0;
   color: var(--color-primary);
   letter-spacing: -0.02em;
@@ -185,16 +173,16 @@
 }
 
 .timelineSubtitle {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 16px;
-  color: var(--color-text);
+  color: var(--color-gray-400);
   margin: 0;
   font-weight: 400;
 }
 
 /* Timeline body */
 .timelineDescription {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 18px;
   color: var(--color-text);
   margin: 0 0 32px 0;
@@ -215,18 +203,18 @@
 }
 
 .metricValue {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 36px;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-primary-light);
   letter-spacing: -0.02em;
   line-height: 1;
 }
 
 .metricLabel {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 14px;
-  color: var(--color-text);
+  color: var(--color-gray-600);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -237,9 +225,9 @@
 }
 
 .achievementsTitle {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 700;
   margin: 0 0 24px 0;
   color: var(--color-primary);
   letter-spacing: -0.01em;
@@ -256,9 +244,9 @@
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 16px;
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 16px;
-  color: var(--color-text);
+  color: var(--color-gray-600);
   line-height: 1.6;
 }
 
@@ -299,7 +287,7 @@
 .rightPanel {
   flex: 1;
   position: relative;
-  min-width: 50%; /* Ensure it takes up proper space */
+  max-width: 40%; /* Ensure it takes up proper space */
 }
 
 .yearDisplay {
@@ -309,7 +297,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-bg);
+  background: var(--color-background);
 }
 
 .yearWrapper {
@@ -324,10 +312,10 @@
 
 .yearText {
   display: block;
-  font-family: var(--font-sans);
-  font-size: clamp(60px, 6vw, 100px);
-  font-weight: 700;
-  color: var(--color-accent);
+  font-family: var(--font-primary);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 900;
+  color: var(--color-gray-400);
   line-height: 1;
   margin-bottom: 16px;
   letter-spacing: -0.03em;
@@ -339,9 +327,9 @@
 
 .yearSubtext {
   display: block;
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 16px;
-  color: var(--color-text);
+  color: var(--color-gray-600);
   font-weight: 400;
   letter-spacing: 0.05em;
   text-transform: uppercase;

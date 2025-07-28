@@ -133,28 +133,32 @@ const About = () => {
       // Check if section is in view
       const sectionInView = sectionRect.top < windowHeight && sectionRect.bottom > 0;
       if (sectionInView) {
-        // Calculate timeline progress
+        // Calculate timeline progress based on viewport center
         const timelineRect = timelineRef.current.getBoundingClientRect();
-        const timelineStart = timelineRect.top + window.scrollY;
-        const timelineHeight = timelineRect.height;
-        const scrolled = window.scrollY + windowHeight / 2 - timelineStart;
-        const progress = Math.max(0, Math.min(100, (scrolled / timelineHeight) * 100));
+        const viewportCenter = windowHeight / 2;
+        
+        // Calculate how far the viewport center has traveled through the timeline
+        const timelineTop = timelineRect.top;
+        const totalHeight = timelineRect.height;
+        
+        // Progress is 0% when viewport center is at timeline top
+        // Progress is 100% when viewport center is at timeline bottom
+        const progressPixels = viewportCenter - timelineTop;
+        const progress = Math.max(0, Math.min(100, (progressPixels / totalHeight) * 100));
         setScrollProgress(progress);
 
         // Find which timeline item is most visible
         let newActiveIndex = 0;
-        let maxVisibility = 0;
+        let minDistance = Infinity;
 
         timelineItemRefs.current.forEach((ref, index) => {
           if (ref) {
             const rect = ref.getBoundingClientRect();
             const itemCenter = rect.top + rect.height / 2;
-            const windowCenter = windowHeight / 2;
-            const distance = Math.abs(itemCenter - windowCenter);
-            const visibility = Math.max(0, windowHeight - distance);
+            const distance = Math.abs(itemCenter - viewportCenter);
 
-            if (visibility > maxVisibility) {
-              maxVisibility = visibility;
+            if (distance < minDistance) {
+              minDistance = distance;
               newActiveIndex = index;
             }
           }
@@ -212,7 +216,6 @@ const About = () => {
                   </div>
                   <div className={styles.timelineContent}>
                     <header className={styles.timelineHeader}>
-                      <time className={styles.timelineYear}>{item.year}</time>
                       <h2 className={styles.timelineTitle}>{item.title}</h2>
                       <p className={styles.timelineSubtitle}>{item.subtitle}</p>
                     </header>
