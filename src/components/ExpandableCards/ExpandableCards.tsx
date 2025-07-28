@@ -13,6 +13,7 @@ interface CardContent {
   category: string;
   image: string;
   gallery: string[];
+  galleryTitles?: string[];
   description: string;
   features: string[];
   specs: CardSpec[];
@@ -24,11 +25,18 @@ const cardsData: CardContent[] = [
     id: 'research',
     title: 'User Research',
     category: 'Discovering Human Truths',
-    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753671143/research_rx2ayp.png',
+    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753671143/research_rx2ayp.png',
     gallery: [
-      'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753678165/int_fspdg0.gif',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753674606/EmpathyMap_paguq5.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753675101/persona_ay0lhm.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753675685/cjm_xbcz40.png',
+    ],
+    galleryTitles: [
+      'User Interviews',
+      'Empathy Mapping',
+      'User Personas',
+      'Customer Journey Maps'
     ],
     description: 'Uncovering the "why" behind user behavior through empathetic inquiry and rigorous analysis, transforming assumptions into actionable insights.',
     features: [
@@ -51,11 +59,16 @@ const cardsData: CardContent[] = [
     id: 'visual-design',
     title: 'Visual Design',
     category: 'Crafting Emotional Experiences',
-    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753672061/color_i7ynme.png',
+    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753672061/color_i7ynme.png',
     gallery: [
-      'https://images.unsplash.com/photo-1569163139394-de4798907684?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1569163139394-de4798907684?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&auto=format&q=80',
+    ],
+    galleryTitles: [
+      'Brand Identity Systems',
+      'UI Component Libraries',
+      'Motion Design'
     ],
     description: 'Weaving visual narratives that spark joy and drive action, where every pixel serves a purpose and beauty meets function.',
     features: [
@@ -78,11 +91,16 @@ const cardsData: CardContent[] = [
     id: 'accessibility',
     title: 'Accessibility',
     category: 'Design Without Barriers',
-    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753671724/accessibility_pj5yw0.png',
+    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753671724/accessibility_pj5yw0.png',
     gallery: [
-      'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop&auto=format&q=80',
+    ],
+    galleryTitles: [
+      'Screen Reader Testing',
+      'Keyboard Navigation',
+      'Color Contrast Analysis'
     ],
     description: 'Championing digital equality by designing experiences that adapt to every human, not the other way around.',
     features: [
@@ -105,11 +123,16 @@ const cardsData: CardContent[] = [
     id: 'information-architecture',
     title: 'Information Architecture',
     category: 'Wayfinding for Digital Spaces',
-    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753672700/IA_qtey5i.png',
+    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753672700/IA_qtey5i.png',
     gallery: [
-      'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop&auto=format&q=80',
+    ],
+    galleryTitles: [
+      'Site Mapping',
+      'Navigation Structures',
+      'Content Taxonomy'
     ],
     description: 'Building invisible bridges between intention and action, creating spaces where users find what they need before they know they need it.',
     features: [
@@ -132,11 +155,16 @@ const cardsData: CardContent[] = [
     id: 'testing',
     title: 'Usability Testing',
     category: 'Validating with Real Humans',
-    image: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=600&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=640&h=880&fit=crop&auto=format&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&h=600&fit=crop&auto=format&q=80',
+    ],
+    galleryTitles: [
+      'A/B Testing Results',
+      'Heat Map Analysis',
+      'User Session Recordings'
     ],
     description: 'Transforming assumptions into certainty through rapid experimentation, where every failure is a stepping stone to breakthrough experiences.',
     features: [
@@ -159,11 +187,16 @@ const cardsData: CardContent[] = [
     id: 'leadership',
     title: 'Design Leadership',
     category: 'Cultivating Creative Excellence',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=640&h=880&fit=crop&auto=format&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800&h=600&fit=crop&auto=format&q=80',
+    ],
+    galleryTitles: [
+      'Team Workshops',
+      'Design Strategy Sessions',
+      'Mentorship Programs'
     ],
     description: 'Orchestrating design excellence through visionary thinking and compassionate mentorship, turning creative teams into innovation powerhouses.',
     features: [
@@ -184,6 +217,30 @@ const cardsData: CardContent[] = [
   }
 ];
 
+// Image preloader component
+const ImagePreloader: React.FC<{ src: string; alt: string; className?: string }> = ({ src, alt, className }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className={`${styles.imageWrapper} ${isLoaded ? styles.loaded : ''}`}>
+      {!isLoaded && !hasError && (
+        <div className={styles.imagePlaceholder}>
+          <div className={styles.imageLoader} />
+        </div>
+      )}
+      <img 
+        src={src} 
+        alt={alt}
+        className={className}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setHasError(true)}
+        loading="lazy"
+        draggable="false"
+      />
+    </div>
+  );
+};
 
 // Corner icon
 const Icon: React.FC<{ className?: string }> = ({ className }) => (
@@ -208,6 +265,7 @@ const ExpandableCards: React.FC = () => {
   const expandedRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
+  // Initialize image indices
   useEffect(() => {
     const indices: { [key: string]: number } = {};
     cardsData.forEach(card => {
@@ -216,11 +274,25 @@ const ExpandableCards: React.FC = () => {
     setCurrentImageIndex(indices);
   }, []);
 
+  // Set active tab when card expands
   useEffect(() => {
     if (expandedCard) {
       setActiveTab(expandedCard);
     }
   }, [expandedCard]);
+
+  // Preload expanded images when a card is hovered
+  useEffect(() => {
+    if (hoveredCard) {
+      const card = cardsData.find(c => c.id === hoveredCard);
+      if (card) {
+        card.gallery.forEach(url => {
+          const img = new Image();
+          img.src = url;
+        });
+      }
+    }
+  }, [hoveredCard]);
 
   const handleCardClick = (cardId: string) => {
     if (expandedCard === cardId) {
@@ -321,12 +393,10 @@ const ExpandableCards: React.FC = () => {
                 <Icon className={`${styles.cornerIcon} ${styles.bottomRight}`} />
 
                 <div className={styles.cardImage}>
-                  <img 
+                  <ImagePreloader 
                     src={card.image} 
-                    alt={card.title} 
-                    draggable="false"
+                    alt={card.title}
                   />
-                  {/* CanvasRevealEffect removed for no hover effect */}
                   <div className={styles.cardOverlay} />
                   <div className={styles.cardContent}>
                     <h3 className={styles.cardTitle}>{card.title}</h3>
@@ -371,7 +441,7 @@ const ExpandableCards: React.FC = () => {
               {/* Gallery */}
               <div className={styles.gallerySection}>
                 <div className={styles.mainImage}>
-                  <img 
+                  <ImagePreloader 
                     src={activeCardData.gallery[currentImageIndex[activeTab || ''] || 0]} 
                     alt={activeCardData.title}
                   />
@@ -399,6 +469,11 @@ const ExpandableCards: React.FC = () => {
                     </>
                   )}
                 </div>
+                {activeCardData.galleryTitles && (
+                  <p className={styles.imageTitle}>
+                    {activeCardData.galleryTitles[currentImageIndex[activeTab || ''] || 0]}
+                  </p>
+                )}
               </div>
 
               {/* Details */}
@@ -409,24 +484,26 @@ const ExpandableCards: React.FC = () => {
                   <p className={styles.detailDescription}>{activeCardData.description}</p>
                 </div>
 
-                <div className={styles.infoSection}>
-                  <h3 className={styles.infoTitle}>Key Features</h3>
-                  <ul className={styles.featuresList}>
-                    {activeCardData.features.map((feature, index) => (
-                      <li key={index}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
+                <div className={styles.infoContainer}>
+                  <div className={styles.infoSection}>
+                    <h3 className={styles.infoTitle}>Key Features</h3>
+                    <ul className={styles.featuresList}>
+                      {activeCardData.features.map((feature, index) => (
+                        <li key={index}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
 
-                <div className={styles.infoSection}>
-                  <h3 className={styles.infoTitle}>Specifications</h3>
-                  <div className={styles.specsList}>
-                    {activeCardData.specs.map((spec, index) => (
-                      <div key={index} className={styles.specItem}>
-                        <span className={styles.specLabel}>{spec.label}</span>
-                        <span className={styles.specValue}>{spec.value}</span>
-                      </div>
-                    ))}
+                  <div className={styles.infoSection}>
+                    <h3 className={styles.infoTitle}>Specifications</h3>
+                    <div className={styles.specsList}>
+                      {activeCardData.specs.map((spec, index) => (
+                        <div key={index} className={styles.specItem}>
+                          <span className={styles.specLabel}>{spec.label}</span>
+                          <span className={styles.specValue}>{spec.value}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

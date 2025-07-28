@@ -1,4 +1,4 @@
-/* ExpandableCards.module.css - Refined Minimal Design */
+/* ExpandableCards.module.css - Optimized with proper dimensions */
 
 /* CSS Variables */
 :root {
@@ -18,6 +18,21 @@
   --space-xl: 32px;
   --space-2xl: 48px;
   --space-3xl: 64px;
+  
+  /* Card dimensions */
+  --card-width: 320px;
+  --card-height: 440px;
+  --card-gap: 24px;
+  
+  /* Gallery dimensions */
+  --gallery-height: 400px;
+  
+  /* Colors */
+  --color-white: #ffffff;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-primary: #3b82f6;
 }
 
 /* Container */
@@ -123,7 +138,7 @@
 /* Cards Slider */
 .cardsSlider {
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--card-gap);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -144,10 +159,10 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
-  flex: 0 0 320px;
-  width: 320px;
-  min-width: 320px;
-  max-width: 320px;
+  flex: 0 0 var(--card-width);
+  width: var(--card-width);
+  min-width: var(--card-width);
+  max-width: var(--card-width);
   border-radius: 0;
 }
 
@@ -160,12 +175,20 @@
 .cardImage {
   position: relative;
   width: 100%;
-  height: 440px;
+  height: var(--card-height);
   overflow: hidden;
   background: var(--color-bg-primary);
 }
 
-.cardImage img {
+/* Image loading states */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.imageWrapper img {
   position: absolute;
   top: 0;
   left: 0;
@@ -173,14 +196,42 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
 }
 
-.card:hover .cardImage img {
+.imageWrapper.loaded img {
+  opacity: 1;
+}
+
+.card:hover .imageWrapper img {
   transform: scale(1.05);
 }
 
-/* Tooltip for card hover - CURSOR FOLLOWING VERSION */
+/* Image placeholder and loader */
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageLoader {
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Tooltip for card hover */
 .cardTooltip {
   position: absolute;
   background: rgba(20, 20, 20, 0.95);
@@ -195,7 +246,6 @@
   transition: opacity 0.1s ease;
 }
 
-/* Optional: Add a small arrow pointing down */
 .cardTooltip::after {
   content: '';
   position: absolute;
@@ -270,7 +320,7 @@
 .expandedSection {
   position: relative;
   background: var(--color-bg-primary);
-  padding: var(--space-3xl) 0;
+  padding: var(--space-3xl) 40px var(--space-3xl) 24px;
   margin-top: var(--space-2xl);
 }
 
@@ -284,23 +334,38 @@
 /* Gallery Section */
 .gallerySection {
   position: relative;
+  padding-left: var(--space-lg);
 }
 
 .mainImage {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: var(--gallery-height);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 0;
 }
 
-.mainImage img {
+.mainImage .imageWrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.mainImage .imageWrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Image title below image */
+.imageTitle {
+  margin-top: var(--space-md);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-gray-400);
+  text-align: center;
 }
 
 /* Image counter */
@@ -314,9 +379,10 @@
   color: var(--color-gray-400);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 5;
 }
 
-/* Gallery navigation - Only visible on hover */
+/* Gallery navigation */
 .galleryNav {
   position: absolute;
   top: 50%;
@@ -334,6 +400,7 @@
   transition: all 0.2s ease;
   color: var(--color-gray-400);
   opacity: 0;
+  z-index: 5;
 }
 
 .mainImage:hover .galleryNav {
@@ -360,6 +427,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .detailCategory {
@@ -384,6 +452,13 @@
   line-height: 1.6;
   color: var(--color-gray-400);
   margin: 0;
+}
+
+/* Info sections container - 2 column layout */
+.infoContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
 }
 
 /* Info sections */
@@ -486,41 +561,54 @@
     gap: var(--space-2xl);
   }
   
+  .gallerySection {
+    padding-left: 0;
+  }
+  
   .mainImage {
     max-width: 600px;
     margin: 0 auto;
+  }
+  
+  .infoContainer {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
   }
 }
 
 @media (max-width: 768px) {
   :root {
     --container-padding: 20px;
+    --card-width: 280px;
+    --card-height: 380px;
+    --gallery-height: 300px;
   }
   
   .container {
     padding: var(--space-xl) 0;
   }
   
-  .card {
-    flex: 0 0 280px;
-    width: 280px;
-    min-width: 280px;
-    max-width: 280px;
-  }
-  
-  .cardImage {
-    height: 280px;
-  }
-  
   .detailTitle {
     font-size: 28px;
   }
   
-  .mainImage {
-    height: 300px;
-  }
-  
   .specsList {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --card-width: 260px;
+    --card-height: 360px;
+    --gallery-height: 280px;
+  }
+  
+  .detailTitle {
+    font-size: 24px;
+  }
+  
+  .detailDescription {
+    font-size: 14px;
   }
 }
