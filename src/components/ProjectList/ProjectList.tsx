@@ -10,6 +10,8 @@ interface ProjectListProps {
 const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isInView, setIsInView] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const projectRefs = useRef<HTMLDivElement[]>([]);
 
@@ -54,6 +56,14 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
 
   // Enhanced project data mapping - customize based on your projects
   // Patch: Set thumbnail for first project
@@ -124,6 +134,16 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
     };
     
     return enhancements[project.title] || null;
+  };
+
+  // Get tooltip text based on active project
+  const getTooltipText = () => {
+    if (activeIndex === 0) {
+      return 'View live website ↗';
+    } else if (activeIndex === 1) {
+      return 'Open interactive prototype ↗';
+    }
+    return 'View project';
   };
 
   return (
@@ -256,12 +276,16 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
             {activeIndex === 1 ? (
               // Mobile phone frame
               <div className={styles.mobileFrame}>
-                <div className={styles.mobileScreen}>
+                <div 
+                  className={styles.mobileScreen}
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
                   <a
                     href="https://www.figma.com/proto/KctXQSYE4LA9EKBHL4wypA/Winesy?page-id=0%3A1&node-id=148-98&starting-point-node-id=359%3A461&t=0nHl7uQwQ0k9tEvI-1&scaling=scale-down&content-scaling=fixed"
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="Open interactive prototype ↗"
                   >
                     <img 
                       key={activeIndex}
@@ -270,18 +294,35 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                       className={styles.projectImage}
                     />
                   </a>
+                  {/* Cursor-following tooltip */}
+                  {isHovering && (
+                    <span 
+                      className={styles.tooltip}
+                      style={{
+                        left: `${mousePosition.x}px`,
+                        top: `${mousePosition.y - 30}px`,
+                        transform: 'translateX(-50%)'
+                      }}
+                    >
+                      {getTooltipText()}
+                    </span>
+                  )}
                 </div>
               </div>
             ) : (
               // Laptop frame with screen
               <div className={styles.laptopFrame}>
-                <div className={styles.laptopScreen}>
+                <div 
+                  className={styles.laptopScreen}
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
                   {activeIndex === 0 ? (
                     <a
                       href="https://iembraceland.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      title="View live website ↗"
                     >
                       <img 
                         key={activeIndex}
@@ -297,6 +338,19 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                       alt={patchedProjects[activeIndex]?.title}
                       className={styles.projectImage}
                     />
+                  )}
+                  {/* Cursor-following tooltip */}
+                  {isHovering && (
+                    <span 
+                      className={styles.tooltip}
+                      style={{
+                        left: `${mousePosition.x}px`,
+                        top: `${mousePosition.y - 30}px`,
+                        transform: 'translateX(-50%)'
+                      }}
+                    >
+                      {getTooltipText()}
+                    </span>
                   )}
                 </div>
               </div>

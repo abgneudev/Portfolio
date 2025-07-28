@@ -24,7 +24,7 @@ const cardsData: CardContent[] = [
     id: 'research',
     title: 'User Research',
     category: 'Discovering Human Truths',
-    image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=600&fit=crop',
+    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753671143/research_rx2ayp.png',
     gallery: [
       'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=600&fit=crop',
       'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
@@ -51,7 +51,7 @@ const cardsData: CardContent[] = [
     id: 'visual-design',
     title: 'Visual Design',
     category: 'Crafting Emotional Experiences',
-    image: 'https://images.unsplash.com/photo-1569163139394-de4798907684?w=600&h=600&fit=crop',
+    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753672061/color_i7ynme.png',
     gallery: [
       'https://images.unsplash.com/photo-1569163139394-de4798907684?w=800&h=600&fit=crop',
       'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop',
@@ -78,7 +78,7 @@ const cardsData: CardContent[] = [
     id: 'accessibility',
     title: 'Accessibility',
     category: 'Design Without Barriers',
-    image: 'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=600&h=600&fit=crop',
+    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753671724/accessibility_pj5yw0.png',
     gallery: [
       'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=800&h=600&fit=crop',
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop',
@@ -105,7 +105,7 @@ const cardsData: CardContent[] = [
     id: 'information-architecture',
     title: 'Information Architecture',
     category: 'Wayfinding for Digital Spaces',
-    image: 'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=600&h=600&fit=crop',
+    image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753672700/IA_qtey5i.png',
     gallery: [
       'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=800&h=600&fit=crop',
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
@@ -184,79 +184,6 @@ const cardsData: CardContent[] = [
   }
 ];
 
-// Canvas component
-const CanvasRevealEffect: React.FC<{
-  isHovered: boolean;
-  color: string;
-  animationSpeed?: number;
-  dotSize?: number;
-}> = ({ isHovered, color, animationSpeed = 3, dotSize = 2 }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const timeRef = useRef(0);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const updateCanvasSize = () => {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-    };
-
-    updateCanvasSize();
-    window.addEventListener('resize', updateCanvasSize);
-
-    const animate = () => {
-      if (!ctx || !canvas) return;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      if (isHovered) {
-        timeRef.current += animationSpeed * 0.01;
-
-        const cols = Math.floor(canvas.width / (dotSize * 10));
-        const rows = Math.floor(canvas.height / (dotSize * 10));
-
-        for (let i = 0; i < cols; i++) {
-          for (let j = 0; j < rows; j++) {
-            const x = i * dotSize * 10 + dotSize * 5;
-            const y = j * dotSize * 10 + dotSize * 5;
-            
-            const distance = Math.sqrt(
-              Math.pow(x - canvas.width / 2, 2) + 
-              Math.pow(y - canvas.height / 2, 2)
-            );
-            
-            const opacity = Math.sin(distance * 0.01 - timeRef.current) * 0.5 + 0.5;
-            
-            ctx.fillStyle = color + Math.floor(opacity * 255).toString(16).padStart(2, '0');
-            ctx.beginPath();
-            ctx.arc(x, y, dotSize, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-      }
-
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener('resize', updateCanvasSize);
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isHovered, color, animationSpeed, dotSize]);
-
-  return <canvas ref={canvasRef} className={styles.canvas} />;
-};
 
 // Corner icon
 const Icon: React.FC<{ className?: string }> = ({ className }) => (
@@ -276,6 +203,7 @@ const ExpandableCards: React.FC = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: string]: number }>({});
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -323,6 +251,14 @@ const ExpandableCards: React.FC = () => {
         ? (prev[cardId] + 1) % totalImages
         : prev[cardId] === 0 ? totalImages - 1 : prev[cardId] - 1
     }));
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
   };
 
   const scrollSlider = (direction: 'left' | 'right') => {
@@ -374,6 +310,7 @@ const ExpandableCards: React.FC = () => {
                 key={card.id}
                 className={styles.card}
                 onClick={() => handleCardClick(card.id)}
+                onMouseMove={(e) => handleMouseMove(e)}
                 onMouseEnter={() => setHoveredCard(card.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
@@ -389,16 +326,24 @@ const ExpandableCards: React.FC = () => {
                     alt={card.title} 
                     draggable="false"
                   />
-                  <CanvasRevealEffect 
-                    isHovered={hoveredCard === card.id}
-                    color={card.color}
-                    animationSpeed={3}
-                    dotSize={2}
-                  />
+                  {/* CanvasRevealEffect removed for no hover effect */}
                   <div className={styles.cardOverlay} />
                   <div className={styles.cardContent}>
                     <h3 className={styles.cardTitle}>{card.title}</h3>
                   </div>
+                  {/* Tooltip on hover */}
+                  {hoveredCard === card.id && (
+                    <span 
+                      className={styles.cardTooltip}
+                      style={{
+                        left: `${mousePosition.x}px`,
+                        top: `${mousePosition.y - 30}px`,
+                        transform: 'translateX(-50%)'
+                      }}
+                    >
+                      Quick view
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
