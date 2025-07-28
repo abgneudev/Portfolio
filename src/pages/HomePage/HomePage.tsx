@@ -122,7 +122,7 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
     { id: 'northeastern', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/Northeastern_nwhyj7.png', alt: 'Northeastern University' },
     { id: 'wipro', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/wipro_xh8uq3.png', alt: 'Wipro' },
     { id: 'unicef', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/UNICEF-Logo_pcvi1l.png', alt: 'UNICEF' },
-    { id: 'aiesec', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753608755/AIESEC-Logo_mevf7y.jpg', alt: 'AIESEC' },
+    { id: 'aiesec', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753612220/AIESEC-Logo_mevf7y.png', alt: 'AIESEC' },
   ];
 
   // Duplicate logos array to create seamless loop
@@ -134,14 +134,8 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
       <section className={`${styles.section} ${styles.sectionHero}`} aria-label="Introductory summary">
         <div className={styles.grid}>
           <div className={styles.colCentered}>
-            <h1 className={styles.heroTitle}>
-              Hello, I'm Abhinav — <span className={styles.typingText}>{text}<span className={styles.cursor}>|</span></span>
-            </h1>
-            <p className={styles.heroSubtitle}>
-              I design accessible digital experiences that scale.
-            </p>
             <p className={styles.currentPosition}>
-              Currently at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> – designing and building mental wellness experiences through meditation and sound.
+              Abhinav is a Product Designer at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> designing accessible digital experiences that scale.
             </p>
 
             {/* Logo Slider - Inside Hero Section */}

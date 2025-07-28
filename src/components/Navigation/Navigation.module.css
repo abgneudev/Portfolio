@@ -1,3 +1,19 @@
+/* Logo and Name Wrapper */
+.logoNameWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoName {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  color: #222;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
 /* Navigation.module.css - Modern luxury glass effect */
 
 :root {
@@ -66,8 +82,8 @@
 
 /* Logo */
 .logo {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -76,7 +92,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  opacity: 0.9;
 }
 
 .logo:hover {
@@ -100,14 +115,14 @@
   border: none;
   color: var(--color-text-secondary);
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 300;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.1em;
   cursor: pointer;
   padding: 8px 0;
   transition: all 0.3s ease;
   position: relative;
-  text-transform: none;
+  text-transform: uppercase;
 }
 
 .navLink:hover {

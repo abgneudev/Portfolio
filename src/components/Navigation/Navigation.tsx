@@ -53,23 +53,26 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
     >
       <div className={styles.grid}>
         <div className={styles.navContainer}>
-          <button 
-            className={styles.logo}
-            onClick={() => onNavigate('home')}
-            aria-label="Go to homepage"
-            style={{ padding: 0, background: 'none', border: 'none' }}
-          >
-            <img 
-              src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753429538/ab_logo_rbvao6.png" 
-              alt="Logo" 
-              style={{ 
-                height: '100%', 
-                width: '100%', 
-                objectFit: 'contain', 
-                display: 'block'
-              }} 
-            />
-          </button>
+          <div className={styles.logoNameWrapper}>
+            <button 
+              className={styles.logo}
+              onClick={() => onNavigate('home')}
+              aria-label="Go to homepage"
+              style={{ padding: 0, background: 'none', border: 'none' }}
+            >
+              <img 
+                src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753429538/ab_logo_rbvao6.png" 
+                alt="Logo" 
+                style={{ 
+                  height: '100%', 
+                  width: '100%', 
+                  objectFit: 'contain', 
+                  display: 'block'
+                }} 
+              />
+            </button>
+            <span className={styles.logoName}>Abhinav Gupta</span>
+          </div>
 
           <nav className={styles.nav}>
             <button

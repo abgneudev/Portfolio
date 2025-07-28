@@ -143,7 +143,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                 <div className={styles.projectContent}>
                   {/* Minimal project number */}
                   <span className={styles.projectNumber}>
-                    {String(index + 1).padStart(2, '0')}
+                    {`${index + 1}/${patchedProjects.length}`}
                   </span>
 
                   {/* Text overlay positioned outside/above laptop */}
