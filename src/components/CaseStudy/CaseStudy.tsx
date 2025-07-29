@@ -35,7 +35,7 @@ const CaseStudy: React.FC<CaseStudyProps> = () => {
           <div className={styles.heroImageSection}>
             <div className={styles.heroImage}>
               <img 
-                src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=672&h=480&fit=crop" 
+                src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753804136/Group_987_ue57nh.png" 
                 alt="Productivity app interface"
               />
             </div>
