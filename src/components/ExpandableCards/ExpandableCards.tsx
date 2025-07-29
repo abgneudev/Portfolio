@@ -125,13 +125,13 @@ const cardsData: CardContent[] = [
     category: 'Wayfinding for Digital Spaces',
     image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753672700/IA_qtey5i.png',
     gallery: [
-      'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=800&h=600&fit=crop&auto=format&q=80',
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753777569/Screenshot_2025-07-29_042238_fgaybw.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753777810/Screenshot_2025-07-29_042946_v0dcsr.png',
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop&auto=format&q=80',
     ],
     galleryTitles: [
       'Site Mapping',
-      'Navigation Structures',
+      'Process Engineering',
       'Content Taxonomy'
     ],
     description: 'Building invisible bridges between intention and action, creating spaces where users find what they need before they know they need it.',

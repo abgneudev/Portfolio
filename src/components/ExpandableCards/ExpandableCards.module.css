@@ -517,9 +517,8 @@
 }
 
 .fullscreenCloseButton:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 1);
   color: var(--color-white);
-  transform: rotate(90deg);
 }
 
 /* Details Section */
