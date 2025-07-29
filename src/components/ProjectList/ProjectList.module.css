@@ -271,10 +271,10 @@
 /* Mobile phone frame */
 .mobileFrame {
   position: relative;
-  width: 325px;
+  width: 328px;
   height: 680px;
   background: #1a1a1a;
-  border-radius: 36px;
+  border-radius: 40px;
   padding: 6px;
   box-shadow: 
     0 50px 100px -20px rgba(0, 0, 0, 0.5),
