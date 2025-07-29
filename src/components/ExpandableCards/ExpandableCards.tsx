@@ -93,14 +93,14 @@ const cardsData: CardContent[] = [
     category: 'Design Without Barriers',
     image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753671724/accessibility_pj5yw0.png',
     gallery: [
-      'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=800&h=600&fit=crop&auto=format&q=80',
-      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop&auto=format&q=80',
-      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753774437/Screenshot_2025-07-29_033338_uqqsen.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753774606/Screenshot_2025-07-29_033614_i84ltf.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753775328/Group_2_udwnmo.png',
     ],
     galleryTitles: [
-      'Screen Reader Testing',
+      'Color Contrast Ratios',
       'Keyboard Navigation',
-      'Color Contrast Analysis'
+      'Screen Reader Labels'
     ],
     description: 'Championing digital equality by designing experiences that adapt to every human, not the other way around.',
     features: [
