@@ -86,6 +86,14 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
             thumbnail: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753607070/wine2_awu0gc.gif'
           };
         }
+        if (i === 2) {
+          return {
+            ...p,
+            title: 'Stopwatch Pro',
+            category: 'MOBILE APP DESIGN',
+            thumbnail: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753795209/prod_guapwd.gif' // Add your 3rd project thumbnail URL here
+          };
+        }
         return p;
       });
     }
@@ -123,13 +131,14 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
         keyMetricLabel: 'Screens Designed',
         technologies: ['Figma', 'Prototyping', 'User Research', 'UI/UX']
       },
-      'Artisan Market': {
-        outcome: 'Boosted artisan sales by 89%',
-        challenge: 'Local artisans struggled against e-commerce giants',
-        role: 'Design Lead',
-        duration: '4 months',
-        keyMetric: '2,400',
-        keyMetricLabel: 'Artisans Onboarded'
+      'Stopwatch Pro': {
+        outcome: 'Designed a productivity stopwatch that helps young professionals boost focus',
+        challenge: 'Young professionals struggled with distractions and lack of feedback while working, leading to poor time management',
+        role: 'Product Designer & UX Researcher',
+        duration: '2 months',
+        keyMetric: '87%',
+        keyMetricLabel: 'Reduced Cognitive Load',
+        technologies: ['Figma', 'MS Office Suite', 'Adobe Firefly', 'User Research']
       }
     };
     
@@ -142,8 +151,15 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
       return 'View live website ↗';
     } else if (activeIndex === 1) {
       return 'Open interactive prototype ↗';
+    } else if (activeIndex === 2) {
+      return 'View case study ↗';
     }
     return 'View project';
+  };
+
+  // Determine if current project should use mobile frame
+  const shouldUseMobileFrame = (index: number) => {
+    return index === 1 || index === 2; // 2nd and 3rd projects
   };
 
   return (
@@ -272,8 +288,8 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
         <div className={`${styles.rightPanel} ${isInView ? styles.sticky : ''}`}>
           <div className={styles.imageWrapper}>
             
-            {/* Conditional rendering: Laptop for first project, Mobile for second */}
-            {activeIndex === 1 ? (
+            {/* Conditional rendering: Laptop for first project, Mobile for second and third */}
+            {shouldUseMobileFrame(activeIndex) ? (
               // Mobile phone frame
               <div className={styles.mobileFrame}>
                 <div 
@@ -282,18 +298,43 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
                 >
-                  <a
-                    href="https://www.figma.com/proto/KctXQSYE4LA9EKBHL4wypA/Winesy?page-id=0%3A1&node-id=148-98&starting-point-node-id=359%3A461&t=0nHl7uQwQ0k9tEvI-1&scaling=scale-down&content-scaling=fixed"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  {activeIndex === 1 ? (
+                    <a
+                      href="https://www.figma.com/proto/KctXQSYE4LA9EKBHL4wypA/Winesy?page-id=0%3A1&node-id=148-98&starting-point-node-id=359%3A461&t=0nHl7uQwQ0k9tEvI-1&scaling=scale-down&content-scaling=fixed"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img 
+                        key={activeIndex}
+                        src={patchedProjects[activeIndex]?.thumbnail} 
+                        alt={patchedProjects[activeIndex]?.title}
+                        className={styles.projectImage}
+                      />
+                    </a>
+                  ) : activeIndex === 2 ? (
+                    // For 3rd project (Stopwatch Pro)
+                    <a
+                      href="https://www.figma.com/proto/s2VkZLohw7I5X4Ua5RBAU5/Stopwatch?page-id=1%3A2&node-id=63-116&p=f&viewport=666%2C384%2C0.16&t=HTnQJyOp3xs21Jp0-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=63%3A116"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img 
+                        key={activeIndex}
+                        src={patchedProjects[activeIndex]?.thumbnail} 
+                        alt={patchedProjects[activeIndex]?.title}
+                        className={styles.projectImage}
+                      />
+                    </a>
+                  ) : (
                     <img 
                       key={activeIndex}
                       src={patchedProjects[activeIndex]?.thumbnail} 
                       alt={patchedProjects[activeIndex]?.title}
                       className={styles.projectImage}
+                      onClick={() => onProjectClick(patchedProjects[activeIndex].id)}
+                      style={{ cursor: 'pointer' }}
                     />
-                  </a>
+                  )}
                   {/* Cursor-following tooltip */}
                   {isHovering && (
                     <span 
