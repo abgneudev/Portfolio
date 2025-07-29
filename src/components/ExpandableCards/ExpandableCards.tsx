@@ -62,13 +62,17 @@ const cardsData: CardContent[] = [
     image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753672061/color_i7ynme.png',
     gallery: [
       'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753773089/responsive-ezgif.com-video-to-gif-converter_ezinzt.gif',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753785069/designsys_aimiwf.png',
       'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753772466/webError-UI_inryab.png',
       'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753771918/Moodboard_wpzsct.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753782203/handsketch_hq7ogw.jpg',
     ],
     galleryTitles: [
       'Responsive Design',
+      'Design System',
       'Wireframes',
-      'Moodboards'
+      'Moodboards',
+      'Hand Sketches'
     ],
     description: 'Weaving visual narratives that spark joy and drive action, where every pixel serves a purpose and beauty meets function.',
     features: [
