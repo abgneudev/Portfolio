@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, Maximize2, Minimize2 } from 'lucide-react';
 import styles from './ExpandableCards.module.css';
 
 interface CardSpec {
@@ -61,14 +61,14 @@ const cardsData: CardContent[] = [
     category: 'Crafting Emotional Experiences',
     image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753672061/color_i7ynme.png',
     gallery: [
-      'https://images.unsplash.com/photo-1569163139394-de4798907684?w=800&h=600&fit=crop&auto=format&q=80',
-      'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop&auto=format&q=80',
-      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&auto=format&q=80',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753773089/responsive-ezgif.com-video-to-gif-converter_ezinzt.gif',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753772466/webError-UI_inryab.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753771918/Moodboard_wpzsct.png',
     ],
     galleryTitles: [
-      'Brand Identity Systems',
-      'UI Component Libraries',
-      'Motion Design'
+      'Responsive Design',
+      'Wireframes',
+      'Moodboards'
     ],
     description: 'Weaving visual narratives that spark joy and drive action, where every pixel serves a purpose and beauty meets function.',
     features: [
@@ -262,6 +262,7 @@ const ExpandableCards: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: string]: number }>({});
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const expandedRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -293,6 +294,27 @@ const ExpandableCards: React.FC = () => {
       }
     }
   }, [hoveredCard]);
+
+  // Handle escape key for fullscreen
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    
+    if (isFullscreen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isFullscreen]);
 
   const handleCardClick = (cardId: string) => {
     if (expandedCard === cardId) {
@@ -468,6 +490,15 @@ const ExpandableCards: React.FC = () => {
                       </button>
                     </>
                   )}
+                  
+                  {/* Fullscreen button */}
+                  <button
+                    className={styles.fullscreenButton}
+                    onClick={() => setIsFullscreen(true)}
+                    aria-label="View fullscreen"
+                  >
+                    <Maximize2 size={16} />
+                  </button>
                 </div>
                 {activeCardData.galleryTitles && (
                   <p className={styles.imageTitle}>
@@ -522,6 +553,46 @@ const ExpandableCards: React.FC = () => {
           </div>
         )}  
       </div>
+
+      {/* Fullscreen overlay */}
+      {isFullscreen && activeCardData && (
+        <div className={styles.fullscreenOverlay} onClick={() => setIsFullscreen(false)}>
+          <div className={styles.fullscreenContent} onClick={(e) => e.stopPropagation()}>
+            <ImagePreloader 
+              src={activeCardData.gallery[currentImageIndex[activeTab || ''] || 0]} 
+              alt={activeCardData.title}
+              className={styles.fullscreenImage}
+            />
+            
+            {activeCardData.gallery.length > 1 && (
+              <>
+                <button
+                  className={`${styles.galleryNav} ${styles.prevButton}`}
+                  onClick={() => activeTab && handleImageNav(activeTab, 'prev')}
+                  aria-label="Previous"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  className={`${styles.galleryNav} ${styles.nextButton}`}
+                  onClick={() => activeTab && handleImageNav(activeTab, 'next')}
+                  aria-label="Next"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
+            
+            <button
+              className={styles.fullscreenCloseButton}
+              onClick={() => setIsFullscreen(false)}
+              aria-label="Exit fullscreen"
+            >
+              <Minimize2 size={20} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

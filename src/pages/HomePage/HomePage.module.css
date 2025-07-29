@@ -58,7 +58,7 @@
 }
 
 .sectionHero {
-  margin-top: 40px;
+  margin-top: 0px;
   min-height: 85vh;
   display: flex;
   align-items: center;
@@ -96,38 +96,11 @@
   width: 100%;
 }
 
-
-
-.typingText {
-  color: var(--color-text-secondary);
-  font-weight: 400;
-  min-height: 1.2em;
-  display: inline-block;
-  background: linear-gradient(90deg, var(--color-gray-700), var(--color-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.cursor {
-  display: inline-block;
-  animation: blink 1s infinite;
-  font-weight: 200;
-  color: var(--color-gray-400);
-  opacity: 0.5;
-  -webkit-text-fill-color: var(--color-gray-400);
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 0.5; }
-  51%, 100% { opacity: 0; }
-}
-
 /* Logo Slider Section - Inside Hero */
 .logoSliderSection {
   background: transparent;
   padding: 0;
-  margin: 0 0 2rem 0;
+  margin: 1rem 0 2rem 0;
   position: relative;
   width: 100%;
   max-width: 640px;
