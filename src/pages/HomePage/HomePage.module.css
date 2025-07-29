@@ -181,7 +181,6 @@
   animation: scroll 16s linear infinite;
   align-items: center;
   /* Remove gap to calculate width precisely */
-  gap: 0;
 }
 
 .sliderTrack:hover {
@@ -203,7 +202,7 @@
 .logoImage {
   display: block;
   max-width: 80px;
-  max-height: 35px;
+  max-height: 40px;
   width: auto;
   height: auto;
   object-fit: contain;
