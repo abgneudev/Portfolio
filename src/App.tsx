@@ -1,11 +1,11 @@
 import React from 'react';
-import Navigation from './components/Navigation/Navigation.tsx';
-import HomePage from './pages/HomePage/HomePage.tsx';
-
-import ProjectPage from './pages/ProjectPage/ProjectPage.tsx';
-import AboutPage from './pages/AboutPage/AboutPage.tsx';
-import Footer from './components/Footer/Footer.tsx';
-import ThreeDMarqueeSection from './components/ThreeDMarquee/ThreeDMarquee.tsx';
+import Navigation from './components/Navigation/Navigation';
+import HomePage from './pages/HomePage/HomePage';
+import ProjectPage from './pages/ProjectPage/ProjectPage';
+import AboutPage from './pages/AboutPage/AboutPage';
+import Footer from './components/Footer/Footer';
+import ThreeDMarqueeSection from './components/ThreeDMarquee/ThreeDMarquee';
+import CaseStudy from './components/CaseStudy/CaseStudy';
 import type { Project } from './types/index';
 import './styles/globals.css';
 import './App.css';
@@ -40,8 +40,9 @@ const projects: Project[] = [
   }
 ];
 
+type AppRoute = 'home' | 'project' | 'about' | 'case-study';
 interface AppState {
-  currentPage: 'home' | 'project' | 'about';
+  currentPage: AppRoute;
   selectedProject: string | null;
 }
 
@@ -51,7 +52,7 @@ const App: React.FC = () => {
     selectedProject: null
   });
 
-  const navigateTo = (page: AppState['currentPage'], projectId?: string) => {
+  const navigateTo = (page: AppRoute, projectId?: string) => {
     setState({
       currentPage: page,
       selectedProject: projectId || null
@@ -62,17 +63,34 @@ const App: React.FC = () => {
   const renderPage = () => {
     switch (state.currentPage) {
       case 'project': {
+        // Find the project if it exists in the projects array
         const project = projects.find(p => p.id === state.selectedProject);
-        return project ? (
-          <ProjectPage project={project} onBack={() => navigateTo('home')} />
-        ) : (
-          <HomePage onProjectClick={(id: string) => navigateTo('project', id)} />
+        
+        // Render ProjectPage with projectId - it will handle case study routing internally
+        return (
+          <ProjectPage 
+            project={project}
+            projectId={state.selectedProject || undefined}
+            onBack={() => navigateTo('home')}
+          />
         );
       }
+      case 'case-study':
+        return <CaseStudy />;
       case 'about':
         return <AboutPage />;
       default:
-        return <HomePage onProjectClick={(id: string) => navigateTo('project', id)} />;
+        return (
+          <HomePage 
+            onProjectClick={(id: string) => {
+              if (id === 'case-study') {
+                navigateTo('case-study');
+              } else {
+                navigateTo('project', id);
+              }
+            }}
+          />
+        );
     }
   };
 
@@ -81,7 +99,7 @@ const App: React.FC = () => {
       <a href="#main" className="skip-link">Skip to main content</a>
       
       <Navigation 
-        currentPage={state.currentPage}
+        currentPage={['home', 'project', 'about'].includes(state.currentPage) ? state.currentPage as 'home' | 'project' | 'about' : 'home'}
         onNavigate={navigateTo}
       />
       
@@ -94,7 +112,5 @@ const App: React.FC = () => {
     </div>
   );
 };
-
-// ...existing code...
 
 export default App;

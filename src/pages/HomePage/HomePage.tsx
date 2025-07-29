@@ -6,9 +6,10 @@ import styles from './HomePage.module.css';
 
 interface HomePageProps {
   onProjectClick: (projectId: string) => void;
+  onNavigate?: (page: 'home' | 'project' | 'about', projectId?: string) => void;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
+const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState('');
@@ -217,6 +218,7 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick }) => {
         <ProjectList 
           projects={enhancedProjects} 
           onProjectClick={onProjectClick}
+          onNavigate={onNavigate}
         />
       </section>
 

@@ -5,9 +5,10 @@ import styles from './ProjectList.module.css';
 interface ProjectListProps {
   projects: Project[];
   onProjectClick: (projectId: string) => void;
+  onNavigate?: (page: 'home' | 'project' | 'about', projectId?: string) => void;
 }
 
-const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) => {
+const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick, onNavigate }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -65,6 +66,17 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
     });
   };
 
+  // Handle navigation to case study
+  const handleViewCaseStudy = (projectId: string) => {
+    if (onNavigate) {
+      // Navigate to project page with the specific project ID
+      onNavigate('project', projectId);
+    } else {
+      // Fallback to onProjectClick if onNavigate is not provided
+      onProjectClick(projectId);
+    }
+  };
+
   // Enhanced project data mapping - customize based on your projects
   // Patch: Set thumbnail for first project
   const getPatchedProjects = (projects: Project[]) => {
@@ -72,7 +84,8 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
       projects = projects.map((p, i) => {
         if (i === 0) {
           return { 
-            ...p, 
+            ...p,
+            id: 'embrace-landing', // Set specific ID for navigation
             thumbnail: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753595773/iemb_1_cbhloc.gif',
             category: 'FRONTEND ENGINEERING',
             title: 'Embrace Landing Page'
@@ -81,6 +94,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
         if (i === 1) {
           return {
             ...p,
+            id: 'vino-social', // Set specific ID for navigation
             title: 'Vino Social',
             category: 'MOBILE APP DESIGN',
             thumbnail: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753607070/wine2_awu0gc.gif'
@@ -89,9 +103,10 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
         if (i === 2) {
           return {
             ...p,
+            id: 'stopwatch-pro', // Set specific ID for navigation
             title: 'Stopwatch Pro',
             category: 'MOBILE APP DESIGN',
-            thumbnail: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753795209/prod_guapwd.gif' // Add your 3rd project thumbnail URL here
+            thumbnail: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753795209/prod_guapwd.gif'
           };
         }
         return p;
@@ -262,7 +277,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                   <div className={styles.ctaGroup}>
                     <button 
                       className={styles.viewProject}
-                      onClick={() => onProjectClick(project.id)}
+                      onClick={() => handleViewCaseStudy(project.id)}
                     >
                       View Case Study →
                     </button>
@@ -331,7 +346,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                       src={patchedProjects[activeIndex]?.thumbnail} 
                       alt={patchedProjects[activeIndex]?.title}
                       className={styles.projectImage}
-                      onClick={() => onProjectClick(patchedProjects[activeIndex].id)}
+                      onClick={() => handleViewCaseStudy(patchedProjects[activeIndex].id)}
                       style={{ cursor: 'pointer' }}
                     />
                   )}
@@ -378,6 +393,8 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick }) =
                       src={patchedProjects[activeIndex]?.thumbnail} 
                       alt={patchedProjects[activeIndex]?.title}
                       className={styles.projectImage}
+                      onClick={() => handleViewCaseStudy(patchedProjects[activeIndex].id)}
+                      style={{ cursor: 'pointer' }}
                     />
                   )}
                   {/* Cursor-following tooltip */}
