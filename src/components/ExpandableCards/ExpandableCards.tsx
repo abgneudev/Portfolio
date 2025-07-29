@@ -27,10 +27,10 @@ const cardsData: CardContent[] = [
     category: 'Discovering Human Truths',
     image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753671143/research_rx2ayp.png',
     gallery: [
-      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753678165/int_fspdg0.gif',
-      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753674606/EmpathyMap_paguq5.png',
-      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753675101/persona_ay0lhm.png',
-      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753675685/cjm_xbcz40.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753678165/int_fspdg0.gif',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753674606/EmpathyMap_paguq5.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753675101/persona_ay0lhm.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753675685/cjm_xbcz40.png',
     ],
     galleryTitles: [
       'User Interviews',
@@ -61,9 +61,9 @@ const cardsData: CardContent[] = [
     category: 'Crafting Emotional Experiences',
     image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto,w_640,h_880,c_fill/v1753672061/color_i7ynme.png',
     gallery: [
-      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753773089/responsive-ezgif.com-video-to-gif-converter_ezinzt.gif',
-      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753772466/webError-UI_inryab.png',
-      'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753771918/Moodboard_wpzsct.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753773089/responsive-ezgif.com-video-to-gif-converter_ezinzt.gif',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753772466/webError-UI_inryab.png',
+      'https://res.cloudinary.com/dbvfgfqqh/image/upload/f_auto,q_auto/v1753771918/Moodboard_wpzsct.png',
     ],
     galleryTitles: [
       'Responsive Design',
@@ -217,8 +217,13 @@ const cardsData: CardContent[] = [
   }
 ];
 
-// Image preloader component
-const ImagePreloader: React.FC<{ src: string; alt: string; className?: string }> = ({ src, alt, className }) => {
+// Image preloader component with fit option
+const ImagePreloader: React.FC<{ 
+  src: string; 
+  alt: string; 
+  className?: string;
+  objectFit?: 'cover' | 'contain';
+}> = ({ src, alt, className, objectFit = 'cover' }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
@@ -233,6 +238,7 @@ const ImagePreloader: React.FC<{ src: string; alt: string; className?: string }>
         src={src} 
         alt={alt}
         className={className}
+        style={{ objectFit }}
         onLoad={() => setIsLoaded(true)}
         onError={() => setHasError(true)}
         loading="lazy"
@@ -466,6 +472,7 @@ const ExpandableCards: React.FC = () => {
                   <ImagePreloader 
                     src={activeCardData.gallery[currentImageIndex[activeTab || ''] || 0]} 
                     alt={activeCardData.title}
+                    objectFit="contain"
                   />
                   
                   <div className={styles.imageCounter}>
@@ -562,6 +569,7 @@ const ExpandableCards: React.FC = () => {
               src={activeCardData.gallery[currentImageIndex[activeTab || ''] || 0]} 
               alt={activeCardData.title}
               className={styles.fullscreenImage}
+              objectFit="contain"
             />
             
             {activeCardData.gallery.length > 1 && (
