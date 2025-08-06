@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ExpandableCards from '../../components/ExpandableCards/ExpandableCards';
 import ProjectList from '../../components/ProjectList/ProjectList';
 import type { Project } from '../../types';
@@ -10,40 +10,9 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [text, setText] = useState('');
-  const [delta, setDelta] = useState(100);
 
-  const roles = ['Product Designer', 'Frontend Developer', 'Information Architect'];
-  
-  useEffect(() => {
-    const ticker = setInterval(() => {
-      tick();
-    }, delta);
-
-    return () => clearInterval(ticker);
-  }, [text, isDeleting, currentRoleIndex]);
-
-  const tick = () => {
-    const currentRole = roles[currentRoleIndex];
-    const updatedText = isDeleting 
-      ? currentRole.substring(0, text.length - 1)
-      : currentRole.substring(0, text.length + 1);
-
-    setText(updatedText);
-
-    if (!isDeleting && updatedText === currentRole) {
-      setIsDeleting(true);
-      setDelta(2000); // Pause at full text
-    } else if (isDeleting && updatedText === '') {
-      setIsDeleting(false);
-      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
-      setDelta(500); // Pause before typing next
-    } else {
-      setDelta(isDeleting ? 24 : 40); // Typing speed
-    }
-  };
+  // Work in progress popup
+  const [showPopup, setShowPopup] = useState(true);
 
   // Enhanced project data with better placeholders
   const enhancedProjects: Project[] = [
@@ -131,6 +100,50 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
 
   return (
     <div className={styles.homePage}>
+      {showPopup && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0,0,0,0.4)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <div style={{
+            background: '#fff',
+            padding: '32px 40px',
+            borderRadius: '12px',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
+            textAlign: 'center',
+            maxWidth: 320,
+            fontFamily: 'var(--font-primary, sans-serif)',
+          }}>
+            <h2 style={{marginBottom: 12, color: '#013A40'}}>🚧 Work in Progress</h2>
+            <p style={{marginBottom: 20, color: '#404040', fontSize: 16}}>
+              This website is currently a work in progress. Some features or content will update soon.
+            </p>
+            <button
+              style={{
+                background: 'var(--color-teal, #2D7A82)',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 6,
+                padding: '10px 24px',
+                fontSize: 15,
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+              }}
+              onClick={() => setShowPopup(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       {/* Hero Section */}
       <section className={`${styles.section} ${styles.sectionHero}`} aria-label="Introductory summary">
         <div className={styles.grid}>
@@ -138,7 +151,6 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
             <p className={styles.currentPosition}>
               Abhinav is a Product Designer at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> designing accessible digital experiences that scale.
             </p>
-
             {/* Logo Slider - Inside Hero Section */}
             <div className={styles.logoSliderSection} aria-label="Partner organizations">
               <span className={styles.logoSectionTitle}>Previously with:</span>
@@ -190,7 +202,6 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
                 </div>
               </div>
             </div>
-
             <a
               className={styles.heroCtaButton}
               href="https://drive.google.com/file/d/1lVBPVZxY09ObA0ZXOy8_Y1NeXszIqF1h/view?usp=sharing"
