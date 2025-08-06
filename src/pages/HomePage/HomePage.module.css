@@ -43,7 +43,7 @@
 
 /* Grid column utilities */
 .colCentered {
-  grid-column: 1 / span 8;
+  grid-column: 1 / span 10;
 }
 
 .colFull {
@@ -431,78 +431,108 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .sectionHero {
-    margin-top: 100px;
+    margin-top: 80px;
     min-height: auto;
+    padding: 40px 16px 80px 16px; /* Add horizontal padding for sides */
   }
-  
+
+  .homePage {
+    padding: 0 0 32px 0;
+  }
+
+  .grid {
+    padding: 0 8px;
+    gap: 16px;
+  }
+
   .currentPosition {
-    font-size: clamp(15px, 4vw, 18px);
-    margin-bottom: 36px;
+    font-size: clamp(16px, 5vw, 18px);
+    margin-bottom: 40px;
+    max-width: 100%;
+    padding: 0;
   }
-  
+
   .heroButton,
   .heroCtaButton {
-    font-size: 14px;
-    padding: 14px 28px;
+    font-size: 15px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    min-width: 0;
   }
-  
+
   .logoSliderSection {
-    margin: 1rem 0;
+    margin: 0.5rem 0 1.2rem 0;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.8rem;
+    gap: 0.6rem;
+    max-width: 100%;
+    padding: 0 8px;
   }
-  
+
   .logoSectionTitle {
     font-size: 13px;
+    padding-left: 2px;
   }
-  
+
   .sliderContainer {
     width: 100%;
+    padding: 0 2px;
   }
-  
+
   .logoItem {
-    width: 80px;
-    height: 40px;
+    width: 70px;
+    height: 36px;
+    padding: 0 4px;
   }
-  
+
   .logoImage {
-    max-width: 60px;
-    max-height: 30px;
+    max-width: 54px;
+    max-height: 28px;
   }
-  
+
   .sectionDark {
     margin: 0;
+    padding: 0 0 32px 0; /* Add more bottom padding for mobile */
   }
-  
+
   .sectionHeader {
-    margin-bottom: 48px;
+    margin-bottom: 40px;
+    padding: 0 8px;
   }
-  
+
   .label {
-    padding: 0 16px;
+    padding: 0 10px;
+    font-size: 10px;
   }
-  
+
   .label::before,
   .label::after {
-    width: 20px;
+    width: 12px;
   }
-  
+
   .label::before {
-    left: -20px;
+    left: -12px;
   }
-  
+
   .label::after {
-    right: -20px;
+    right: -12px;
   }
-  
+
   .servicesGrid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 16px;
+    padding: 0 8px;
+  }
+
+  .serviceCard {
+    padding: 22px 14px;
+    font-size: 16px;
   }
   
-  .serviceCard {
-    padding: 36px 28px;
+  .sectionTitle {
+    font-size: 22px;
+    padding: 0 8px;
+    margin-bottom: 18px;
   }
 }
 

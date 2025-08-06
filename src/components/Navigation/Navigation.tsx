@@ -9,6 +9,7 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
@@ -70,6 +71,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
             </button>
           </div>
 
+          {/* Desktop Nav */}
           <nav className={styles.nav}>
             <button
               className={`${styles.navLink} ${currentPage === 'home' ? styles.active : ''}`}
@@ -90,6 +92,49 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
               Get in touch
             </a>
           </nav>
+
+          {/* Hamburger for mobile */}
+          <button
+            className={styles.hamburger}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            <span className={styles.hamburgerBox}>
+              <span className={styles.hamburgerInner}></span>
+            </span>
+          </button>
+
+          {/* Mobile Menu Overlay */}
+          {mobileMenuOpen && (
+            <div className={styles.mobileMenuOverlay} id="mobile-menu" role="menu">
+              <nav className={styles.mobileNav}>
+                <button
+                  className={`${styles.navLink} ${currentPage === 'home' ? styles.active : ''}`}
+                  onClick={() => { setMobileMenuOpen(false); onNavigate('home'); }}
+                  role="menuitem"
+                >
+                  Work
+                </button>
+                <button
+                  className={`${styles.navLink} ${currentPage === 'about' ? styles.active : ''}`}
+                  onClick={() => { setMobileMenuOpen(false); onNavigate('about'); }}
+                  role="menuitem"
+                >
+                  About
+                </button>
+                <a
+                  href="mailto:hello@example.com"
+                  className={styles.ctaLink}
+                  role="menuitem"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Get in touch
+                </a>
+              </nav>
+            </div>
+          )}
         </div>
       </div>
     </header>

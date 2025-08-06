@@ -332,3 +332,163 @@
     transform: translateY(0);
   }
 }
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  margin-left: 12px;
+  z-index: 1201;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.hamburgerBox {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburgerInner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text-secondary, #222);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.hamburgerInner::before,
+.hamburgerInner::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text-secondary, #222);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.hamburgerInner::before {
+  top: -8px;
+}
+.hamburgerInner::after {
+  bottom: -8px;
+}
+
+/* Hamburger open state (optional: animate to X) */
+.hamburger[aria-expanded="true"] .hamburgerInner {
+  background: transparent;
+}
+.hamburger[aria-expanded="true"] .hamburgerInner::before {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger[aria-expanded="true"] .hamburgerInner::after {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile menu overlay */
+.mobileMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 20, 20, 0.92);
+  z-index: 1200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  animation: fadeInMenu 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.mobileNav {
+  background: var(--color-white, #fff);
+  width: 80vw;
+  max-width: 340px;
+  height: 100vh;
+  box-shadow: -2px 0 24px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 48px 24px 24px 24px;
+  gap: 24px;
+  position: relative;
+}
+
+
+/* Remove blue underline and improve button styling for mobile nav */
+.mobileNav .navLink {
+  font-size: 18px;
+  padding: 14px 0 10px 0;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--color-text, #222);
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+  outline: none;
+  position: relative;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.mobileNav .navLink::after {
+  display: none !important;
+}
+.mobileNav .navLink.active {
+  color: var(--color-primary, #0066cc);
+  font-weight: 600;
+}
+.mobileNav .navLink:focus {
+  color: var(--color-primary, #0066cc);
+}
+
+.mobileNav .ctaLink {
+  display: block;
+  width: 100%;
+  background: var(--color-primary, #0066cc);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  text-align: center;
+  margin-top: 18px;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 14px 0;
+  box-shadow: 0 4px 16px rgba(0,102,204,0.08);
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.04em;
+}
+.mobileNav .ctaLink:hover,
+.mobileNav .ctaLink:focus {
+  background: var(--color-text, #222);
+  color: #fff;
+}
+
+@keyframes fadeInMenu {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Hide desktop nav and show hamburger on mobile */
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
