@@ -77,6 +77,47 @@
   background: var(--color-white);
 }
 
+.sectionGallery {
+  background: var(--color-black);
+  padding-top: 160px;
+  color: var(--color-white);
+}
+
+.sectionGallery .grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  width: 100%;
+}
+
+.sectionGallery .sectionHeader {
+  text-align: center;
+  margin-bottom: 64px;
+  grid-column: 1 / -1;
+}
+
+.sectionGallery .label {
+  color: var(--color-gray-600);
+  background: transparent;
+  font-size: small;
+}
+
+.sectionGallery .label::before,
+.sectionGallery .label::after {
+  background: var(--color-gray-700) !important;
+}
+
+.sectionGallery .sectionTitle {
+  color: var(--color-white) !important;
+}
+
+.sectionGallery .sectionDescription {
+  color: var(--color-gray-400) !important;
+}
+
 /* Hero Section specific styles */
 .sectionHero::before {
   content: '';
@@ -368,6 +409,17 @@
   letter-spacing: -0.01em;
   color: var(--color-text);
   margin: 0;
+}
+
+.sectionDescription {
+  font-size: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-gray-400);
+  margin: 16px 0 0 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Services Section */

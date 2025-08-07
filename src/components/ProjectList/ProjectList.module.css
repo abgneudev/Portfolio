@@ -48,6 +48,16 @@
   max-width: 500px;
 }
 
+/* Mobile image wrapper - hidden on desktop, shown on mobile */
+.mobileImageWrapper {
+  display: none;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Project Number */
 .projectNumber {
   display: block;
@@ -292,21 +302,6 @@
   position: relative;
 }
 
-/* Dynamic Island / Notch */
-.mobileScreen::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 26px;
-  background: #000;
-  border-radius: 18px;
-  z-index: 2;
-  box-shadow: 0 0 0 3px #1a1a1a;
-}
-
 .projectImage {
   width: 100%;
   height: 100%;
@@ -399,38 +394,43 @@
   }
 }
 
+/* Tablet breakpoint */
+@media (max-width: 1200px) {
+  .projectListContainer {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  
+  .leftPanel {
+    padding-right: 40px;
+  }
+  
+  .laptopFrame {
+    width: 80%;
+  }
+  
+  .mobileFrame {
+    width: 240px;
+    height: 560px;
+  }
+}
+
 @media (max-width: 1024px) {
   .projectListContainer {
     grid-template-columns: 1fr;
     padding-left: 0;
+    padding-right: 0;
   }
 
+  /* Hide the sticky right panel on mobile */
   .rightPanel {
-    position: relative;
-    height: 60vh;
-    margin-bottom: 40px;
-    margin-right: 0;
+    display: none;
   }
 
-  .rightPanel.sticky {
-    position: relative;
-  }
-  
-  .imageWrapper {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-  }
-  
-  .laptopFrame {
-    width: 90%;
-    max-width: 600px;
-  }
-  
-  .mobileFrame {
-    width: 250px;
-    height: 580px;
+  /* Show mobile images within each project */
+  .mobileImageWrapper {
+    display: flex;
+    justify-content: center;
   }
 
   .leftPanel {
@@ -439,49 +439,106 @@
 
   .projectItem {
     min-height: auto;
-    padding: 60px 0;
+    padding: 80px 0;
+    opacity: 1; /* All items visible on mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .imageOverlay {
-    padding: 0 40px;
-    bottom: 40px;
+  .projectContent {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  /* Mobile frame adjustments */
+  .mobileImageWrapper .laptopFrame {
+    width: 100%;
+    max-width: 450px;
+  }
+  
+  .mobileImageWrapper .mobileFrame {
+    width: 280px;
+    height: 580px;
+    margin: 0 auto;
+  }
+
+  /* Center content blocks */
+  .projectDetails {
+    text-align: left;
+    margin-bottom: 32px;
+  }
+
+  .metricsGrid {
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .ctaGroup {
+    justify-content: center;
   }
 }
 
 @media (max-width: 900px) {
   .projectListContainer {
-    padding-left: 16px;
-  }
-  
-  .leftPanel {
-    padding-left: 0;
-    padding-right: 16px;
-  }
-}
-
-@media (max-width: 768px) {
-  .projectListContainer {
-    padding-left: 0;
+    padding-left: 24px;
+    padding-right: 24px;
   }
   
   .leftPanel {
     padding: 0 16px;
   }
+
+  .projectItem {
+    padding: 60px 0;
+  }
+
+  .projectContent {
+    max-width: 500px;
+  }
+
+  /* Tablet frame adjustments */
+  .mobileImageWrapper .laptopFrame {
+    max-width: 380px;
+  }
+  
+  .mobileImageWrapper .mobileFrame {
+    width: 260px;
+    height: 540px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectListContainer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .leftPanel {
+    padding: 0 8px;
+  }
   
   .projectItem {
-    padding: 40px 0;
+    padding: 50px 0;
+  }
+
+  .projectContent {
+    max-width: 100%;
   }
 
   .projectNumber {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .projectOutcome {
-    font-size: 24px;
+    font-size: 22px;
+    margin-bottom: 20px;
   }
 
   .projectChallenge {
     font-size: 14px;
+    margin-bottom: 20px;
   }
 
   .projectDescription {
@@ -489,29 +546,99 @@
   }
 
   .metricValue {
-    font-size: 32px;
+    font-size: 28px;
   }
 
-  .rightPanel {
-    height: 50vh;
+  .projectDetails {
+    margin-bottom: 28px;
   }
-  
-  .laptopFrame {
-    width: 95%;
+
+  .metricsGrid {
+    margin-bottom: 32px;
+    gap: 16px;
+  }
+
+  /* Mobile image adjustments for smaller screens */
+  .mobileImageWrapper {
+    margin-bottom: 32px;
+  }
+
+  .mobileImageWrapper .laptopFrame {
+    width: 100%;
+    max-width: 320px;
     padding: 6px;
   }
 
-  .mobileFrame {
-    width: 240px;
-    height: 560px;
+  .mobileImageWrapper .mobileFrame {
+    width: 220px;
+    height: 460px;
   }
 
   .imageOverlay {
-    padding: 0 20px;
-    bottom: 30px;
+    margin-bottom: 16px;
+  }
+
+  .overlayCategory {
+    font-size: 12px;
   }
 
   .overlayTitle {
     font-size: 28px;
+  }
+
+  /* CTA adjustments */
+  .ctaGroup {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .viewProject {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .projectListContainer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .leftPanel {
+    padding: 0 4px;
+  }
+
+  .projectItem {
+    padding: 40px 0;
+  }
+
+  .mobileImageWrapper .laptopFrame {
+    max-width: 280px;
+    padding: 4px;
+  }
+
+  .mobileImageWrapper .mobileFrame {
+    width: 180px;
+    height: 380px;
+  }
+
+  .projectOutcome {
+    font-size: 20px;
+  }
+
+  .metricValue {
+    font-size: 24px;
+  }
+
+  .techStack {
+    gap: 6px;
+  }
+
+  .techTag {
+    font-size: 10px;
+    padding: 4px 10px;
   }
 }

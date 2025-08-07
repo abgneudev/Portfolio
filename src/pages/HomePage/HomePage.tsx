@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ExpandableCards from '../../components/ExpandableCards/ExpandableCards';
 import ProjectList from '../../components/ProjectList/ProjectList';
+import BiDirectionalSlider from '../../components/BiDirectionalSlider/BiDirectionalSlider';
 import type { Project } from '../../types';
 import styles from './HomePage.module.css';
 
@@ -231,6 +232,20 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
           onProjectClick={onProjectClick}
           onNavigate={onNavigate}
         />
+      </section>
+
+      {/* BiDirectional Slider Section */}
+      <section aria-label="Visual Gallery" className={`${styles.section} ${styles.sectionGallery}`}>
+        <div className={styles.grid}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.label}>Gallery</span>
+            <h2 className={styles.sectionTitle}>Featured Work</h2>
+            <p className={styles.sectionDescription}>
+              A showcase of recent projects and design explorations
+            </p>
+          </div>
+        </div>
+        <BiDirectionalSlider />
       </section>
 
     </div>

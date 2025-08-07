@@ -197,9 +197,74 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick, onN
                     {`${index + 1}/${patchedProjects.length}`}
                   </span>
 
+                  {/* Mobile image - shows only on mobile */}
+                  <div className={styles.mobileImageWrapper}>
+                    {shouldUseMobileFrame(index) ? (
+                      <div className={styles.mobileFrame}>
+                        <div className={styles.mobileScreen}>
+                          {index === 1 ? (
+                            <a
+                              href="https://www.figma.com/proto/KctXQSYE4LA9EKBHL4wypA/Winesy?page-id=0%3A1&node-id=148-98&starting-point-node-id=359%3A461&t=0nHl7uQwQ0k9tEvI-1&scaling=scale-down&content-scaling=fixed"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <img 
+                                src={project.thumbnail} 
+                                alt={project.title}
+                                className={styles.projectImage}
+                              />
+                            </a>
+                          ) : index === 2 ? (
+                            <a
+                              href="https://www.figma.com/proto/s2VkZLohw7I5X4Ua5RBAU5/Stopwatch?page-id=1%3A2&node-id=63-116&p=f&viewport=666%2C384%2C0.16&t=HTnQJyOp3xs21Jp0-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=63%3A116"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <img 
+                                src={project.thumbnail} 
+                                alt={project.title}
+                                className={styles.projectImage}
+                              />
+                            </a>
+                          ) : (
+                            <img 
+                              src={project.thumbnail} 
+                              alt={project.title}
+                              className={styles.projectImage}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={styles.laptopFrame}>
+                        <div className={styles.laptopScreen}>
+                          {index === 0 ? (
+                            <a
+                              href="https://iembraceland.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <img 
+                                src={project.thumbnail} 
+                                alt={project.title}
+                                className={styles.projectImage}
+                              />
+                            </a>
+                          ) : (
+                            <img 
+                              src={project.thumbnail} 
+                              alt={project.title}
+                              className={styles.projectImage}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   {/* Text overlay positioned outside/above laptop */}
                   <div className={styles.imageOverlay}>
-                    <p className={styles.overlayCategory}>{patchedProjects[activeIndex]?.category}</p>
+                    <p className={styles.overlayCategory}>{project.category}</p>
                   </div>
                         
                   {/* Enhanced description with outcome + challenge */}

@@ -4,7 +4,6 @@ import HomePage from './pages/HomePage/HomePage';
 import ProjectPage from './pages/ProjectPage/ProjectPage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import Footer from './components/Footer/Footer';
-import ThreeDMarqueeSection from './components/ThreeDMarquee/ThreeDMarquee';
 import CaseStudy from './components/CaseStudy/CaseStudy';
 import type { Project } from './types/index';
 import './styles/globals.css';
@@ -107,7 +106,6 @@ const App: React.FC = () => {
         {renderPage()}
       </main>
       
-      <ThreeDMarqueeSection />
       <Footer />
     </div>
   );

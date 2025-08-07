@@ -1,0 +1,323 @@
+/* BiDirectionalSlider.css */
+
+/* Scoped CSS Variables for slider only */
+.slider-demo-root {
+  --marquee-duration: 30s;
+  --card-width: 400px;
+  --card-height: 250px;
+  --card-gap: 24px;
+  --row-gap: 32px;
+  
+  /* Colors matching portfolio style */
+  --color-bg: #0b0b0e;
+  --color-surface: rgba(255, 255, 255, 0.02);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-muted: rgba(255, 255, 255, 0.5);
+  
+  /* Animation easing */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Demo Container */
+.demo-container {
+  --marquee-duration: 30s;
+  --card-gap: 32px;
+  --row-gap: 40px;
+  
+  /* Instagram post dimensions (1:1 ratio) for top row */
+  --card-width-instagram: 320px;
+  --card-height-instagram: 320px;
+  
+  /* Desktop dimensions (16:9 ratio) for bottom row - 3x larger */
+  --card-width-desktop: 560px;
+  --card-height-desktop: 400px;
+  
+  /* Colors matching portfolio style */
+  --color-surface: rgba(255, 255, 255, 0.02);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-muted: rgba(255, 255, 255, 0.5);
+  
+  /* Animation easing */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+  width: 100%;
+  height: auto;
+  background: transparent; /* Use transparent to inherit from parent section */
+  padding: 0 0 160px 0; /* Remove padding since parent section handles spacing */
+  overflow: hidden;
+}
+
+/* Slider Container */
+.slider-container {
+  width: 100%;
+  position: relative;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--row-gap);
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* Slider Rows */
+.slider-row {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+/* 3D perspective for rows */
+.top-row {
+  transform: rotateX(-2deg) translateZ(0);
+}
+
+.bottom-row {
+  transform: rotateX(2deg) translateZ(0);
+}
+
+/* Marquee */
+.marquee {
+  display: flex;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  gap: var(--card-gap);
+  padding: 0 calc(var(--card-gap) / 2);
+  will-change: transform;
+}
+
+/* Left and right animations */
+.marquee-left {
+  animation: scrollLeft var(--marquee-duration) linear infinite;
+}
+
+.marquee-right {
+  animation: scrollRight var(--marquee-duration) linear infinite;
+}
+
+.marquee.paused .marquee-content {
+  animation-play-state: paused;
+}
+
+/* Slide Card */
+.slide-card {
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.4s var(--ease-out-expo);
+  cursor: pointer;
+}
+
+/* Instagram post dimensions (1:1 ratio) for top row */
+.slide-card-instagram {
+  width: var(--card-width-instagram);
+  height: var(--card-height-instagram);
+}
+
+/* Desktop dimensions (16:9 ratio) for bottom row */
+.slide-card-desktop {
+  width: var(--card-width-desktop);
+  height: var(--card-height-desktop);
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 2px solid #e5e7eb; /* light grey border */
+  transition: all 0.4s var(--ease-out-expo);
+  transform-style: preserve-3d;
+}
+
+/* Image */
+.card-image-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.card-overlay {
+  display: none;
+}
+
+/* Content */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  transform: translateZ(20px);
+}
+
+.card-category {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.card-description {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.9;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+/* Hover Effects */
+
+/* Animations */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(calc(-100% / 3));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .demo-container {
+    --card-width-instagram: 280px;
+    --card-height-instagram: 280px;
+    --card-width-desktop: 840px;
+    --card-height-desktop: 473px;
+  }
+}
+
+@media (max-width: 768px) {
+  .demo-container {
+    --card-width-instagram: 240px;
+    --card-height-instagram: 240px;
+    --card-width-desktop: 720px;
+    --card-height-desktop: 405px;
+    --card-gap: 20px;
+    --row-gap: 60px;
+    padding: 60px 0;
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+  }
+  
+  .card-description {
+    font-size: 13px;
+  }
+  
+  .card-category {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-container {
+    --card-width-instagram: 200px;
+    --card-height-instagram: 200px;
+    --card-width-desktop: 600px;
+    --card-height-desktop: 338px;
+    --card-gap: 16px;
+    --row-gap: 40px;
+    padding: 60px 0;
+  }
+  
+  .card-title {
+    font-size: 18px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-content {
+    animation: none;
+  }
+  
+  .slide-card,
+  .card-inner,
+  .card-image {
+    transition: none;
+  }
+}
+
+/* Dark mode enhancement */
+@media (prefers-color-scheme: dark) {
+  .card-inner {
+    background: rgba(255, 255, 255, 0.01);
+  }
+  
+  .card-overlay {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+}
