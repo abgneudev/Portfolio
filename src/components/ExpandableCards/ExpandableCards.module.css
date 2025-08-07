@@ -38,7 +38,7 @@
 /* Container */
 .container {
   width: 100%;
-  padding: 80px 0; /* Reduced from 120px 0 140px 0 */
+  padding: 120px 0; /* Reduced from 120px 0 140px 0 */
   background: linear-gradient(135deg, #0b0b0e 0%, #141417 50%, #0a0a0a 100%);
   overflow: hidden;
   font-family: var(--font-sans);
