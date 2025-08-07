@@ -36,7 +36,7 @@
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   gap: var(--grid-gap);
   max-width: var(--container-max-width);
-  margin: 0 auto;
+  margin: 0;
   padding: 0 var(--container-padding);
   width: 100%;
 }
@@ -58,8 +58,8 @@
 }
 
 .sectionHero {
-  margin-top: 0px;
-  min-height: 85vh;
+  margin-top: 0;
+  min-height: calc(100vh - 72px); /* Subtract navigation height */
   display: flex;
   align-items: center;
   background: var(--color-white);
@@ -79,7 +79,7 @@
 
 .sectionGallery {
   background: var(--color-black);
-  padding-top: 160px;
+  padding-top: 120px; /* Reduced from 160px */
   color: var(--color-white);
 }
 
@@ -112,6 +112,7 @@
 
 .sectionGallery .sectionTitle {
   color: var(--color-white) !important;
+  font-size: 56px;
 }
 
 .sectionGallery .sectionDescription {
@@ -483,13 +484,13 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .sectionHero {
-    margin-top: 80px;
-    min-height: auto;
-    padding: 40px 16px 80px 16px; /* Add horizontal padding for sides */
+    margin-top: 0;
+    min-height: calc(100vh - 56px); /* Account for mobile nav height */
+    padding: 20px 16px 40px 16px; /* Reduced padding */
   }
 
   .homePage {
-    padding: 0 0 32px 0;
+    padding: 0;
   }
 
   .grid {
@@ -544,7 +545,7 @@
 
   .sectionDark {
     margin: 0;
-    padding: 0 0 32px 0; /* Add more bottom padding for mobile */
+    padding: 0; /* Remove extra bottom padding */
   }
 
   .sectionHeader {

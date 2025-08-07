@@ -50,8 +50,8 @@
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   gap: var(--grid-gap);
-  max-width: var(--container-max-width);
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 0 var(--container-padding);
   width: 100%;
 }
@@ -223,7 +223,7 @@
 
 /* Initial state (not scrolled) - clean and minimal */
 .header:not(.visible) {
-  background: transparent;
+  background: var(--color-white);
 }
 
 .header:not(.visible) .navLink {

@@ -29,7 +29,7 @@
 /* Section container */
 .section {
   width: 100%;
-  padding: var(--section-spacing) 0;
+  padding: 80px 0; /* Reduced from var(--section-spacing) which was 160px */
   overflow: hidden;
   position: relative;
 }
@@ -372,12 +372,12 @@
 
 @media (max-width: 768px) {
   :root {
-    --section-spacing: 60px;
+    --section-spacing: 40px; /* Reduced from 60px */
     --container-padding: 20px;
   }
   
   .section {
-    padding: 60px 0;
+    padding: 40px 0; /* Reduced from 60px 0 */
   }
   
   .headerSection {

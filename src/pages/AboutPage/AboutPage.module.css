@@ -35,7 +35,7 @@
 .aboutHeader {
   text-align: left;
   margin-bottom: 80px;
-  padding-top: 120px;
+  padding-top: 40px; /* Reduced from 120px */
 }
 
 .aboutHeader h1 {
@@ -378,7 +378,7 @@
   }
   
   .aboutHeader {
-    padding-top: 80px;
+    padding-top: 40px; /* Reduced from 80px */
     margin-bottom: 60px;
   }
   
@@ -410,7 +410,7 @@
   }
   
   .aboutHeader {
-    padding-top: 60px;
+    padding-top: 20px; /* Reduced from 60px */
     margin-bottom: 40px;
   }
   
@@ -479,7 +479,7 @@
   }
   
   .aboutHeader {
-    padding-top: 40px;
+    padding-top: 20px; /* Keep same as 768px breakpoint */
   }
   
   .timeline {

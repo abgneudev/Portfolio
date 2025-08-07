@@ -43,15 +43,15 @@
 
 .footerContainer {
   position: relative;
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: 120px var(--container-padding) 40px;
+  max-width: 100%;
+  margin: 0;
+  padding: 80px var(--container-padding) 40px; /* Reduced from 120px */
   z-index: 1;
 }
 
 /* CTA Section */
 .ctaSection {
-  margin-bottom: 120px;
+  margin-bottom: 80px; /* Reduced from 120px */
   max-width: 800px;
 }
 
@@ -339,17 +339,17 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .footerContainer {
-    padding: 100px 60px 40px;
+    padding: 80px 60px 40px; /* Reduced from 100px */
   }
 }
 
 @media (max-width: 900px) {
   .footerContainer {
-    padding: 80px 40px 30px;
+    padding: 60px 40px 30px; /* Reduced from 80px */
   }
 
   .ctaSection {
-    margin-bottom: 80px;
+    margin-bottom: 60px; /* Reduced from 80px */
   }
 
   .ctaTitle {
@@ -368,11 +368,11 @@
 
 @media (max-width: 600px) {
   .footer {
-    margin-top: 100px;
+    margin-top: 60px; /* Reduced from 100px */
   }
 
   .footerContainer {
-    padding: 60px 24px 30px;
+    padding: 40px 24px 30px; /* Reduced from 60px */
   }
 
   .ctaTitle {

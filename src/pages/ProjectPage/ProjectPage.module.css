@@ -1,5 +1,5 @@
 .projectPage {
-  padding: 120px 0 80px;
+  padding: 40px 0 80px; /* Reduced from 120px 0 80px */
   min-height: 100vh;
   background: #fafafa;
 }
@@ -233,7 +233,7 @@
 
 @media (max-width: 600px) {
   .projectPage {
-    padding: 80px 0 60px;
+    padding: 20px 0 60px; /* Reduced from 80px 0 60px */
   }
 
   .container {
