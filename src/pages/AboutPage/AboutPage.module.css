@@ -16,8 +16,8 @@
 /* Container */
 .aboutContainer {
   display: flex;
-  max-width: var(--container-max-width);
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   position: relative;
   padding-left: var(--container-padding);
   padding-right: var(--container-padding);
