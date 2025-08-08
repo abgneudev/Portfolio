@@ -1,4 +1,4 @@
-/* AboutPage.module.css - Progressive Timeline with Sticky Year */
+/* AboutPage.module.css - Hero Section + Progressive Timeline */
 
 :root {
   --container-max-width: 1760px;
@@ -13,14 +13,95 @@
   min-height: 100vh;
 }
 
+/* Hero Section */
+.heroSection {
+  width: 100%;
+  padding: 120px var(--container-padding) 120px;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.heroContainer {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Hero Image */
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 16px;
+  filter: grayscale(20%);
+  transition: filter 0.5s ease;
+}
+
+.heroImage:hover {
+  filter: grayscale(0%);
+}
+
+/* Hero Content */
+.heroContent {
+  padding: 0;
+}
+
+.heroTitle {
+  font-family: var(--font-primary);
+  font-size: clamp(48px, 5vw, 64px);
+  font-weight: 700;
+  color: var(--color-black);
+  margin: 0 0 48px 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.philosophyText {
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-gray-700);
+  margin: 0;
+}
+
+.philosophyText em {
+  font-style: normal;
+  color: var(--color-gray-600);
+  font-weight: 400;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.philosophyText em:first-child {
+  font-size: 20px;
+  color: var(--color-primary);
+  margin-bottom: 32px;
+  font-weight: 600;
+}
+
+/* Timeline Section Container */
+.timelineSection {
+  width: 100%;
+  padding: 80px var(--container-padding) 120px;
+}
+
 /* Container */
 .aboutContainer {
   display: flex;
-  max-width: 100%;
-  margin: 0;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
   position: relative;
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
   gap: 0px;
 }
 
@@ -31,16 +112,15 @@
   min-height: 100vh;
 }
 
-/* Header section */
-.aboutHeader {
+/* Timeline header */
+.timelineHeader {
   text-align: left;
   margin-bottom: 80px;
-  padding-top: 40px; /* Reduced from 120px */
 }
 
-.aboutHeader h1 {
+.timelineHeader h2 {
   font-family: var(--font-primary);
-  font-size: clamp(48px, 5vw, 64px);
+  font-size: clamp(36px, 4vw, 48px);
   font-weight: 700;
   color: var(--color-black);
   margin: 0 0 24px 0;
@@ -48,7 +128,7 @@
   line-height: 1.1;
 }
 
-.aboutHeader p {
+.timelineHeader p {
   font-family: var(--font-primary);
   font-size: 20px;
   line-height: 1.6;
@@ -101,7 +181,7 @@
   margin-bottom: 120px;
 }
 
-/* Timeline marker - centered on timeline line */
+/* Timeline marker */
 .timelineMarker {
   position: relative;
   flex-shrink: 0;
@@ -115,7 +195,7 @@
   border-radius: 50%;
   transition: all 0.3s ease;
   z-index: 2;
-  margin-top: 4px; /* Align with year text */
+  margin-top: 4px;
 }
 
 .timelineItem.active .timelineMarker {
@@ -142,12 +222,6 @@
   padding: 0;
   position: relative;
   flex: 1;
-}
-
-/* Timeline header */
-.timelineHeader {
-  margin-bottom: 32px;
-  position: relative;
 }
 
 .timelineYear {
@@ -287,13 +361,13 @@
 .rightPanel {
   flex: 1;
   position: relative;
-  max-width: 40%; /* Ensure it takes up proper space */
+  max-width: 40%;
 }
 
 .yearDisplay {
   position: sticky;
-  top: 0;
-  height: 100vh;
+  top: 100px;
+  height: calc(100vh - 100px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -352,9 +426,12 @@
 
 /* Responsive design */
 @media (max-width: 1400px) {
-  .aboutContainer {
-    padding-left: 40px;
-    padding-right: 40px;
+  .heroSection {
+    padding: 100px 60px;
+  }
+  
+  .timelineSection {
+    padding: 60px 40px 100px;
   }
   
   .leftPanel {
@@ -363,10 +440,29 @@
 }
 
 @media (max-width: 1024px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+  
+  .heroImageWrapper {
+    max-width: 400px;
+    order: 2;
+  }
+  
+  .heroContent {
+    order: 1;
+  }
+  
+  .philosophyText {
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
   .aboutContainer {
     flex-direction: column;
-    padding-left: 0;
-    padding-right: 0;
   }
   
   .rightPanel {
@@ -374,11 +470,10 @@
   }
   
   .leftPanel {
-    padding: 0 40px;
+    padding-right: 0;
   }
   
-  .aboutHeader {
-    padding-top: 40px; /* Reduced from 80px */
+  .timelineHeader {
     margin-bottom: 60px;
   }
   
@@ -391,10 +486,6 @@
     gap: 30px;
   }
   
-  .timelineMarker {
-    margin-top: 6px;
-  }
-  
   .metricsRow {
     gap: 32px;
   }
@@ -405,20 +496,33 @@
 }
 
 @media (max-width: 768px) {
-  .leftPanel {
-    padding: 0 20px;
+  .heroSection {
+    padding: 80px 20px;
   }
   
-  .aboutHeader {
-    padding-top: 20px; /* Reduced from 60px */
-    margin-bottom: 40px;
-  }
-  
-  .aboutHeader h1 {
+  .heroTitle {
     font-size: 36px;
+    margin-bottom: 32px;
   }
   
-  .aboutHeader p {
+  .philosophyText {
+    font-size: 16px;
+  }
+  
+  .philosophyText em:first-child {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+  
+  .timelineSection {
+    padding: 40px 20px 80px;
+  }
+  
+  .timelineHeader h2 {
+    font-size: 32px;
+  }
+  
+  .timelineHeader p {
     font-size: 18px;
   }
   
@@ -431,18 +535,16 @@
   }
   
   .timelineLine {
-    left: 8px; /* Half of smaller marker width (16px / 2) */
+    left: 8px;
   }
   
   .timelineMarker {
-    left: 0; /* Keep at start */
-    top: 6px;
     width: 16px;
     height: 16px;
   }
   
   .timelineContent {
-    margin-left: 30px; /* Space for smaller marker (16px) + gap (14px) */
+    margin-left: 30px;
   }
   
   .timelineDot {
@@ -474,12 +576,16 @@
 }
 
 @media (max-width: 480px) {
-  .leftPanel {
-    padding: 0 16px;
+  .heroSection {
+    padding: 60px 16px;
   }
   
-  .aboutHeader {
-    padding-top: 20px; /* Keep same as 768px breakpoint */
+  .heroImageWrapper {
+    max-width: 100%;
+  }
+  
+  .timelineSection {
+    padding: 40px 16px 60px;
   }
   
   .timeline {
@@ -488,10 +594,6 @@
   
   .timelineItem {
     gap: 20px;
-  }
-  
-  .timelineMarker {
-    margin-top: 6px;
   }
   
   .achievementItem {

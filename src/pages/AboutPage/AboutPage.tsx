@@ -178,109 +178,138 @@ const About = () => {
 
   return (
     <>
-      <div ref={sectionRef} className={styles.aboutSection}>
-        <div className={styles.aboutContainer}>
-          {/* Left side - Timeline items */}
-          <div className={styles.leftPanel}>
-            <header className={styles.aboutHeader}>
-              <h1>About Me</h1>
-              <p>
-                Product designer with 4 years of experience transforming complex problems into elegant, 
-                accessible solutions that drive measurable business impact.
-              </p>
-            </header>
-
-            <section
-              className={styles.timeline}
-              role="region"
-              aria-label="Career timeline"
-              ref={timelineRef}
-            >
-              <div className={styles.timelineLine} aria-hidden="true">
-                <div
-                  className={styles.timelineProgress}
-                  style={{ height: `${scrollProgress}%` }}
-                />
-              </div>
-
-              {timelineData.map((item, index) => (
-                <article
-                  key={index}
-                  ref={el => {
-                    timelineItemRefs.current[index] = el as HTMLDivElement | null;
-                  }}
-                  className={`${styles.timelineItem} ${activeIndex === index ? styles.active : ''}`}
-                >
-                  <div className={styles.timelineMarker} aria-hidden="true">
-                    <span className={styles.timelineDot}></span>
-                  </div>
-                  <div className={styles.timelineContent}>
-                    <header className={styles.timelineHeader}>
-                      <h2 className={styles.timelineTitle}>{item.title}</h2>
-                      <p className={styles.timelineSubtitle}>{item.subtitle}</p>
-                    </header>
-                    <div className={styles.timelineBody}>
-                      <p className={styles.timelineDescription}>{item.content.description}</p>
-                      {item.content.metrics && (
-                        <div className={styles.metricsRow}>
-                          <div className={styles.metric}>
-                            <span className={styles.metricValue}>{item.content.metrics.primary.value}</span>
-                            <span className={styles.metricLabel}>{item.content.metrics.primary.label}</span>
-                          </div>
-                          <div className={styles.metric}>
-                            <span className={styles.metricValue}>{item.content.metrics.secondary.value}</span>
-                            <span className={styles.metricLabel}>{item.content.metrics.secondary.label}</span>
-                          </div>
-                        </div>
-                      )}
-                      <section className={styles.achievements}>
-                        <h3 className={styles.achievementsTitle}>Key Achievements</h3>
-                        <ul className={styles.achievementsList}>
-                          {item.content.achievements.map((achievement, idx) => (
-                            <li key={idx} className={styles.achievementItem}>
-                              <span className={styles.achievementIcon} aria-hidden="true">
-                                ✓
-                              </span>
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
-                      </section>
-                      <div
-                        className={styles.imageGrid}
-                        role="img"
-                        aria-label={`Gallery for ${item.title}`}
-                      >
-                        {item.content.images.map((image, idx) => (
-                          <img
-                            key={idx}
-                            src={image.src}
-                            alt={image.alt}
-                            className={styles.timelineImage}
-                            loading="lazy"
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </section>
-          </div>
-          {/* Right side - Sticky year display */}
-          <div className={styles.rightPanel}>
-            <div className={styles.yearDisplay}>
-              <div className={styles.yearWrapper}>
-                <span className={styles.yearText}>
-                  {timelineData[activeIndex]?.year}
-                </span>
-                <span className={styles.yearSubtext}>
-                  {timelineData[activeIndex]?.title}
-                </span>
+      <div className={styles.aboutSection}>
+        {/* Hero Section */}
+        <section className={styles.heroSection}>
+          <div className={styles.heroContainer}>
+            <div className={styles.heroImageWrapper}>
+              <img 
+                src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754637891/portfoliopic_ag6pi0.png"
+                alt="Portfolio photograph"
+                className={styles.heroImage}
+                loading="eager"
+              />
+            </div>
+            <div className={styles.heroContent}>
+              <h1 className={styles.heroTitle}>Hey, I'm Abhinav!</h1>
+              <div className={styles.philosophyText}>
+                <em>I'm a designer and developer who thinks about interfaces the way I think about wind - shaped by everything they touch, adapting to contexts, finding paths of least resistance.</em>
+                <em>I believe great design fits its context. Sometimes it's subtle shifts for efficiency. Other times, bold interactions for engagement. Or smart automation for time back. The key is listening and knowing which solution fits.</em>
+                <em>Being both designer and developer means I see the whole landscape. I design in Figma, code in React, ship to production. No handoffs. No translation gaps. Just ideas becoming real.</em>
+                <em>Four years across enterprise, startups, and nonprofits - from UNICEF campaigns reaching millions to financial systems managing billions to Harvard Innovation Labs building what's next. Each taught me something different about how design moves through the world.</em>
+                <em>That's what I build - interfaces where complexity becomes clear and work just flows.</em>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Timeline Section */}
+        <section ref={sectionRef} className={styles.timelineSection}>
+          <div className={styles.aboutContainer}>
+            {/* Left side - Timeline items */}
+            <div className={styles.leftPanel}>
+              <header className={styles.timelineHeader}>
+                <h2>Experience Timeline</h2>
+                <p>
+                  Four years of transforming complex problems into elegant, 
+                  accessible solutions that drive measurable business impact.
+                </p>
+              </header>
+
+              <section
+                className={styles.timeline}
+                role="region"
+                aria-label="Career timeline"
+                ref={timelineRef}
+              >
+                <div className={styles.timelineLine} aria-hidden="true">
+                  <div
+                    className={styles.timelineProgress}
+                    style={{ height: `${scrollProgress}%` }}
+                  />
+                </div>
+
+                {timelineData.map((item, index) => (
+                  <article
+                    key={index}
+                    ref={el => {
+                      timelineItemRefs.current[index] = el as HTMLDivElement | null;
+                    }}
+                    className={`${styles.timelineItem} ${activeIndex === index ? styles.active : ''}`}
+                  >
+                    <div className={styles.timelineMarker} aria-hidden="true">
+                      <span className={styles.timelineDot}></span>
+                    </div>
+                    <div className={styles.timelineContent}>
+                      <header className={styles.timelineHeader}>
+                        <span className={styles.timelineYear}>{item.year}</span>
+                        <h3 className={styles.timelineTitle}>{item.title}</h3>
+                        <p className={styles.timelineSubtitle}>{item.subtitle}</p>
+                      </header>
+                      <div className={styles.timelineBody}>
+                        <p className={styles.timelineDescription}>{item.content.description}</p>
+                        {item.content.metrics && (
+                          <div className={styles.metricsRow}>
+                            <div className={styles.metric}>
+                              <span className={styles.metricValue}>{item.content.metrics.primary.value}</span>
+                              <span className={styles.metricLabel}>{item.content.metrics.primary.label}</span>
+                            </div>
+                            <div className={styles.metric}>
+                              <span className={styles.metricValue}>{item.content.metrics.secondary.value}</span>
+                              <span className={styles.metricLabel}>{item.content.metrics.secondary.label}</span>
+                            </div>
+                          </div>
+                        )}
+                        <section className={styles.achievements}>
+                          <h4 className={styles.achievementsTitle}>Key Achievements</h4>
+                          <ul className={styles.achievementsList}>
+                            {item.content.achievements.map((achievement, idx) => (
+                              <li key={idx} className={styles.achievementItem}>
+                                <span className={styles.achievementIcon} aria-hidden="true">
+                                  ✓
+                                </span>
+                                {achievement}
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                        <div
+                          className={styles.imageGrid}
+                          role="img"
+                          aria-label={`Gallery for ${item.title}`}
+                        >
+                          {item.content.images.map((image, idx) => (
+                            <img
+                              key={idx}
+                              src={image.src}
+                              alt={image.alt}
+                              className={styles.timelineImage}
+                              loading="lazy"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </section>
+            </div>
+            
+            {/* Right side - Sticky year display */}
+            <div className={styles.rightPanel}>
+              <div className={styles.yearDisplay}>
+                <div className={styles.yearWrapper}>
+                  <span className={styles.yearText}>
+                    {timelineData[activeIndex]?.year}
+                  </span>
+                  <span className={styles.yearSubtext}>
+                    {timelineData[activeIndex]?.title}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

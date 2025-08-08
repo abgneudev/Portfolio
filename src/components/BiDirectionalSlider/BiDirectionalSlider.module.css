@@ -31,7 +31,7 @@
   --card-height-instagram: 320px;
   
   /* Desktop dimensions (16:9 ratio) for bottom row - 3x larger */
-  --card-width-desktop: 560px;
+  --card-width-desktop: 640px;
   --card-height-desktop: 400px;
   
   /* Colors matching portfolio style */

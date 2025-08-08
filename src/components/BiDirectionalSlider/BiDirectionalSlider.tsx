@@ -102,7 +102,7 @@ const BiDirectionalSlider: React.FC<BiDirectionalSliderProps> = ({
   const defaultBottomSlides: SlideContent[] = [
     {
       id: 9,
-      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754548119/therapy_f2bril.png',
+      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754639400/therapy_f2bril.png',
       title: 'Therapy',
       description: '',
       category: '',
@@ -110,7 +110,7 @@ const BiDirectionalSlider: React.FC<BiDirectionalSliderProps> = ({
     },
     {
       id: 10,
-      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754548118/grinding_q07kbk.png',
+      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754639414/grinding_q07kbk.png',
       title: 'Grinding',
       description: '',
       category: '',
@@ -118,7 +118,7 @@ const BiDirectionalSlider: React.FC<BiDirectionalSliderProps> = ({
     },
     {
       id: 11,
-      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754548117/grammarly_djs11m.png',
+      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754639425/grammarly_djs11m.png',
       title: 'Grammarly',
       description: '',
       category: '',
@@ -126,11 +126,19 @@ const BiDirectionalSlider: React.FC<BiDirectionalSliderProps> = ({
     },
     {
       id: 12,
-      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754548116/ai_ed40h2.png',
+      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754639435/ai_ed40h2.png',
       title: 'AI',
       description: '',
       category: '',
       gradient: 'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)'
+    },
+    {
+      id: 13,
+      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754639448/prototype_z63xhh.png',
+      title: 'Prototype',
+      description: '',
+      category: '',
+      gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
     }
   ];
 
