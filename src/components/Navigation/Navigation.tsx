@@ -62,12 +62,11 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
             >
               <div className={styles.logo}>
                 <img 
-                  src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753429538/ab_logo_rbvao6.png" 
+                  src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1754659011/ab_logo_rbvao6.png" 
                   alt="Logo" 
                   className={styles.logoImage}
                 />
               </div>
-              <span className={styles.logoName}>Abhinav Gupta</span>
             </button>
           </div>
 

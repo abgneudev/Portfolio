@@ -6,7 +6,7 @@
   --grid-gap: 32px;
   --container-max-width: 1760px;
   --container-padding: 80px;
-  --nav-height: 72px;
+  --nav-height: 100px;
   --nav-bg: rgba(250, 251, 252, 0);
   --nav-bg-visible: rgba(250, 251, 252, 0.95);
   --nav-blur: 30px;
@@ -101,8 +101,8 @@
 
 /* Logo */
 .logo {
-  width: 24px;
-  height: 24px;
+  width: 200px;
+  height: 200px;
   background: transparent;
   border: none;
   cursor: pointer;
