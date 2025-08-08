@@ -4,9 +4,37 @@ import styles from './AboutPage.module.css';
 const About = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const timelineItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const playPronunciation = () => {
+    setIsPlaying(true);
+    
+    // Using the Web Speech API for pronunciation
+    const utterance = new SpeechSynthesisUtterance('Abhinav');
+    utterance.rate = 0.8; // Slower rate for clarity
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    
+    // Optional: Set specific voice if you want consistency
+    const voices = window.speechSynthesis.getVoices();
+    const englishVoice = voices.find(voice => 
+      voice.lang.startsWith('en') && voice.name.includes('Google') // Prefer Google voices if available
+    ) || voices.find(voice => voice.lang.startsWith('en'));
+    
+    if (englishVoice) {
+      utterance.voice = englishVoice;
+    }
+    
+    utterance.onend = () => {
+      setIsPlaying(false);
+    };
+    
+    window.speechSynthesis.cancel(); // Cancel any ongoing speech
+    window.speechSynthesis.speak(utterance);
+  };
 
   const timelineData = [
     {
@@ -123,6 +151,17 @@ const About = () => {
     },
   ];
 
+  // Load voices on component mount
+  useEffect(() => {
+    // Load voices (they might not be immediately available)
+    const loadVoices = () => {
+      window.speechSynthesis.getVoices();
+    };
+    
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current || !timelineRef.current) return;
@@ -191,7 +230,34 @@ const About = () => {
               />
             </div>
             <div className={styles.heroContent}>
-              <h1 className={styles.heroTitle}>Hey, I'm Abhinav!</h1>
+              <h1 className={styles.heroTitle}>
+                Hey, I'm Abhinav!
+                <div className={styles.pronunciationWrapper}>
+                  <button 
+                    className={`${styles.pronunciationButton} ${isPlaying ? styles.playing : ''}`}
+                    onClick={playPronunciation}
+                    aria-label="Listen to pronunciation: uh-bee-nahv"
+                    type="button"
+                  >
+                    <svg 
+                      className={styles.speakerIcon} 
+                      width="16" 
+                      height="16" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <span className={styles.pronunciationText}>/uh-bee-nahv/</span>
+                  </button>
+                  <span className={styles.pronunciationMeaning}>signifies something new, original, or innovative</span>
+                </div>
+              </h1>
               <div className={styles.philosophyText}>
                 <em>I'm a designer and developer who thinks about interfaces the way I think about wind - shaped by everything they touch, adapting to contexts, finding paths of least resistance.</em>
                 <em>I believe great design fits its context. Sometimes it's subtle shifts for efficiency. Other times, bold interactions for engagement. Or smart automation for time back. The key is listening and knowing which solution fits.</em>

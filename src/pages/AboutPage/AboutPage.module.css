@@ -65,6 +65,18 @@
   margin: 0 0 48px 0;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Pronunciation Wrapper */
+.pronunciationWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  flex-wrap: wrap;
 }
 
 .philosophyText {
@@ -88,6 +100,118 @@
   color: var(--color-primary);
   margin-bottom: 32px;
   font-weight: 600;
+}
+
+/* Pronunciation Button Styles */
+.pronunciationButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.35em; /* Relative to the h1 size */
+  font-weight: 400;
+  color: var(--color-gray-500);
+  background: transparent;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 2em;
+  padding: 0.4em 0.8em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  font-family: var(--font-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.pronunciationButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(51, 133, 214, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.pronunciationButton:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: rgba(51, 133, 214, 0.05);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(51, 133, 214, 0.15);
+}
+
+.pronunciationButton:hover::before {
+  left: 100%;
+}
+
+.pronunciationButton:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(51, 133, 214, 0.1);
+}
+
+/* Playing state animation */
+.pronunciationButton.playing {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: rgba(51, 133, 214, 0.08);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(51, 133, 214, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(51, 133, 214, 0);
+  }
+}
+
+/* Speaker Icon */
+.speakerIcon {
+  width: 1.2em;
+  height: 1.2em;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.pronunciationButton:hover .speakerIcon {
+  transform: scale(1.1);
+}
+
+.pronunciationButton.playing .speakerIcon {
+  animation: soundWave 0.5s ease-in-out infinite;
+}
+
+@keyframes soundWave {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* Pronunciation Text */
+.pronunciationText {
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* Pronunciation Meaning */
+.pronunciationMeaning {
+  font-size: 0.3em; /* Relative to h1 */
+  font-style: italic;
+  color: var(--color-gray-500);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+  font-family: var(--font-primary);
 }
 
 /* Timeline Section Container */
@@ -424,6 +548,16 @@
   }
 }
 
+/* Accessibility - Focus States */
+.pronunciationButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.pronunciationButton:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Responsive design */
 @media (max-width: 1400px) {
   .heroSection {
@@ -453,6 +587,26 @@
   
   .heroContent {
     order: 1;
+  }
+  
+  .heroTitle {
+    justify-content: center;
+  }
+  
+  .pronunciationWrapper {
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: center;
+  }
+  
+  .pronunciationButton {
+    margin-left: 0;
+    font-size: 0.4em;
+  }
+  
+  .pronunciationMeaning {
+    font-size: 0.35em;
+    text-align: center;
   }
   
   .philosophyText {
@@ -503,6 +657,27 @@
   .heroTitle {
     font-size: 36px;
     margin-bottom: 32px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .pronunciationWrapper {
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top: 0.5em;
+  }
+  
+  .pronunciationButton {
+    font-size: 0.45em;
+    margin-left: 0;
+  }
+  
+  .pronunciationMeaning {
+    font-size: 0.4em;
+    max-width: 280px;
+    text-align: center;
+    line-height: 1.4;
   }
   
   .philosophyText {
@@ -584,6 +759,21 @@
     max-width: 100%;
   }
   
+  .pronunciationButton {
+    font-size: 0.5em;
+    padding: 0.5em 1em;
+  }
+  
+  .pronunciationMeaning {
+    font-size: 0.45em;
+    padding: 0 1em;
+  }
+  
+  .speakerIcon {
+    width: 1em;
+    height: 1em;
+  }
+  
   .timelineSection {
     padding: 40px 16px 60px;
   }
@@ -602,5 +792,25 @@
   
   .timelineSubtitle {
     font-size: 14px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .pronunciationButton,
+  .pronunciationButton::before,
+  .speakerIcon,
+  .heroImage,
+  .timelineImage {
+    animation: none;
+    transition: none;
+  }
+  
+  .pronunciationButton.playing {
+    animation: none;
+  }
+  
+  .pronunciationButton.playing .speakerIcon {
+    animation: none;
   }
 }
