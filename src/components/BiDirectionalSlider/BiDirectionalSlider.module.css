@@ -1,24 +1,4 @@
-/* BiDirectionalSlider.css */
-
-/* Scoped CSS Variables for slider only */
-.slider-demo-root {
-  --marquee-duration: 30s;
-  --card-width: 400px;
-  --card-height: 250px;
-  --card-gap: 24px;
-  --row-gap: 32px;
-  
-  /* Colors matching portfolio style */
-  --color-bg: #0b0b0e;
-  --color-surface: rgba(255, 255, 255, 0.02);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-text-primary: #ffffff;
-  --color-text-secondary: rgba(255, 255, 255, 0.7);
-  --color-text-muted: rgba(255, 255, 255, 0.5);
-  
-  /* Animation easing */
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-}
+/* BiDirectionalSlider.module.css - Optimized Version */
 
 /* Demo Container */
 .demo-container {
@@ -30,7 +10,7 @@
   --card-width-instagram: 320px;
   --card-height-instagram: 320px;
   
-  /* Desktop dimensions (16:9 ratio) for bottom row - 3x larger */
+  /* Desktop dimensions (16:9 ratio) for bottom row */
   --card-width-desktop: 640px;
   --card-height-desktop: 400px;
   
@@ -46,15 +26,26 @@
 
   width: 100%;
   height: auto;
-  background: transparent; /* Use transparent to inherit from parent section */
-  padding: 0 0 160px 0; /* Remove padding since parent section handles spacing */
+  background: transparent;
+  padding: 0 0 160px 0;
   overflow: hidden;
+  
+  /* Performance optimizations */
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 /* Slider Container */
 .slider-container {
   width: 100%;
   position: relative;
+  
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: auto;
 }
 
 .slider-wrapper {
@@ -63,8 +54,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--row-gap);
-  perspective: 1200px;
+  
+  /* 3D optimization */
   transform-style: preserve-3d;
+  transform: translateZ(0);
 }
 
 /* Slider Rows */
@@ -72,6 +65,13 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  
+  /* Performance containment */
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: auto;
+  
+  /* Gradient mask for smooth edges */
   mask-image: linear-gradient(
     to right,
     transparent,
@@ -88,29 +88,35 @@
   );
 }
 
-/* 3D perspective for rows */
+/* Remove 3D rotation for better performance */
 .top-row {
-  transform: rotateX(-2deg) translateZ(0);
+  transform: translateZ(0);
 }
 
 .bottom-row {
-  transform: rotateX(2deg) translateZ(0);
+  transform: translateZ(0);
 }
 
 /* Marquee */
 .marquee {
   display: flex;
   width: 100%;
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 .marquee-content {
   display: flex;
   gap: var(--card-gap);
   padding: 0 calc(var(--card-gap) / 2);
+  
+  /* Hardware acceleration */
+  transform: translateZ(0);
   will-change: transform;
+  backface-visibility: hidden;
 }
 
-/* Left and right animations */
+/* Optimized animations using transform only */
 .marquee-left {
   animation: scrollLeft var(--marquee-duration) linear infinite;
 }
@@ -119,25 +125,33 @@
   animation: scrollRight var(--marquee-duration) linear infinite;
 }
 
-.marquee.paused .marquee-content {
-  animation-play-state: paused;
+/* Pause state */
+.marquee.paused .marquee-content,
+.paused .marquee-content {
+  animation-play-state: paused !important;
 }
 
-/* Slide Card */
+/* Slide Card with optimized rendering */
 .slide-card {
   flex-shrink: 0;
   position: relative;
-  transition: all 0.4s var(--ease-out-expo);
+  transition: transform 0.3s var(--ease-out-expo);
   cursor: pointer;
+  
+  /* Isolate card rendering */
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-/* Instagram post dimensions (1:1 ratio) for top row */
+/* Instagram post dimensions */
 .slide-card-instagram {
   width: var(--card-width-instagram);
   height: var(--card-height-instagram);
 }
 
-/* Desktop dimensions (16:9 ratio) for bottom row */
+/* Desktop dimensions */
 .slide-card-desktop {
   width: var(--card-width-desktop);
   height: var(--card-height-desktop);
@@ -150,27 +164,45 @@
   border-radius: 20px;
   overflow: hidden;
   background: var(--color-surface);
-  border: 2px solid #e5e7eb; /* light grey border */
-  transition: all 0.4s var(--ease-out-expo);
-  transform-style: preserve-3d;
+  border: 2px solid #e5e7eb;
+  transition: transform 0.3s var(--ease-out-expo), 
+              box-shadow 0.3s var(--ease-out-expo);
+  
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-/* Image */
+/* Image wrapper */
 .card-image-wrapper {
   position: absolute;
   inset: 0;
   overflow: hidden;
+  
+  /* Isolate image rendering */
+  contain: layout style paint;
+  transform: translateZ(0);
 }
 
 .card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease-out-expo);
+  transition: transform 0.4s var(--ease-out-expo);
+  
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  
+  /* Optimize image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .card-overlay {
-  display: none;
+  display: none; /* Remove overlay for performance */
 }
 
 /* Content */
@@ -180,7 +212,8 @@
   left: 0;
   right: 0;
   padding: 24px;
-  transform: translateZ(20px);
+  transform: translateZ(0);
+  pointer-events: none; /* Prevent event bubbling issues */
 }
 
 .card-category {
@@ -198,43 +231,35 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.card-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin: 0 0 8px 0;
-  line-height: 1.2;
-  transition: transform 0.4s var(--ease-out-expo);
+/* Hover Effects - Simplified for performance */
+.slide-card:hover {
+  transform: scale(1.02) translateZ(0);
 }
 
-.card-description {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--color-text-secondary);
-  margin: 0;
-  line-height: 1.5;
-  opacity: 0.9;
-  transition: all 0.4s var(--ease-out-expo);
+.slide-card:hover .card-image {
+  transform: scale(1.05) translateZ(0);
 }
 
-/* Hover Effects */
+.slide-card:hover .card-inner {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
 
-/* Animations */
+/* Optimized Animations using GPU-accelerated transforms */
 @keyframes scrollLeft {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(calc(-100% / 3));
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @keyframes scrollRight {
   0% {
-    transform: translateX(calc(-100% / 3));
+    transform: translate3d(-50%, 0, 0);
   }
   100% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -243,8 +268,8 @@
   .demo-container {
     --card-width-instagram: 280px;
     --card-height-instagram: 280px;
-    --card-width-desktop: 840px;
-    --card-height-desktop: 473px;
+    --card-width-desktop: 560px;
+    --card-height-desktop: 350px;
   }
 }
 
@@ -252,23 +277,15 @@
   .demo-container {
     --card-width-instagram: 240px;
     --card-height-instagram: 240px;
-    --card-width-desktop: 720px;
-    --card-height-desktop: 405px;
+    --card-width-desktop: 480px;
+    --card-height-desktop: 300px;
     --card-gap: 20px;
-    --row-gap: 60px;
+    --row-gap: 30px;
     padding: 60px 0;
   }
   
   .card-content {
     padding: 16px;
-  }
-  
-  .card-title {
-    font-size: 20px;
-  }
-  
-  .card-description {
-    font-size: 13px;
   }
   
   .card-category {
@@ -281,43 +298,39 @@
   .demo-container {
     --card-width-instagram: 200px;
     --card-height-instagram: 200px;
-    --card-width-desktop: 600px;
-    --card-height-desktop: 338px;
+    --card-width-desktop: 400px;
+    --card-height-desktop: 250px;
     --card-gap: 16px;
-    --row-gap: 40px;
-    padding: 60px 0;
-  }
-  
-  .card-title {
-    font-size: 18px;
+    --row-gap: 24px;
+    padding: 40px 0;
   }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .marquee-content {
-    animation: none;
+    animation: none !important;
   }
   
   .slide-card,
   .card-inner,
   .card-image {
-    transition: none;
+    transition: none !important;
   }
 }
 
-/* Dark mode enhancement */
-@media (prefers-color-scheme: dark) {
-  .card-inner {
-    background: rgba(255, 255, 255, 0.01);
+/* High performance mode for low-end devices */
+@media (max-width: 768px), (max-height: 600px) {
+  .slide-card {
+    will-change: auto;
   }
   
-  .card-overlay {
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.9) 100%
-    );
+  .card-image {
+    will-change: auto;
+    image-rendering: auto;
+  }
+  
+  .marquee-content {
+    will-change: auto;
   }
 }
