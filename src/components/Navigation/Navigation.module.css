@@ -189,7 +189,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  height: 40px;
+  height: 48px;
   padding: 0 20px;
   background: var(--color-white);
   border: 1px solid var(--color-gray-200);
@@ -202,7 +202,7 @@
 }
 
 .contactMenu:hover {
-  padding-right: 180px;
+  padding-right: 210px;
   border-color: var(--color-primary);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
@@ -244,7 +244,7 @@
   align-items: center;
   gap: 12px;
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(24px);
   pointer-events: none;
   transition: opacity 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
 }
@@ -260,8 +260,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   color: var(--color-text-secondary);
   background: transparent;
   border: none;
@@ -301,8 +301,8 @@
 
 .contactIconLink svg {
   display: block;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   position: relative;
   z-index: 1;
 }
