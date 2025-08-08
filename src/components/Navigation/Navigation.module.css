@@ -13,6 +13,11 @@
   --breakpoint-large: 1400px;
   --breakpoint-medium: 900px;
   --breakpoint-small: 768px;
+  
+  /* Spring-like easing curves */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Header */
@@ -179,46 +184,127 @@
   width: 100%;
 }
 
-/* CTA Link - Consistent with footer button style */
-.ctaLink {
+/* Modern Expanding Contact Button */
+.contactMenu {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 24px;
+  height: 40px;
+  padding: 0 20px;
   background: var(--color-white);
   border: 1px solid var(--color-gray-200);
   border-radius: 24px;
-  text-decoration: none;
   color: var(--color-text-secondary);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out-expo);
+  min-width: fit-content;
+}
+
+.contactMenu:hover {
+  padding-right: 180px;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Contact Label with Arrow */
+.contactLabel {
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.01em;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   position: relative;
-  overflow: hidden;
+  z-index: 2;
+  vertical-align: middle;
+  transition: opacity 0.3s var(--ease-smooth);
 }
 
-.ctaLink:hover {
-  border-color: var(--color-primary);
-  color: var(--color-text);
-  background: var(--color-gray-50);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* Arrow icon for CTA */
-.ctaLink::after {
+/* Arrow in label */
+.contactLabel::after {
   content: '→';
   font-size: 16px;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
-  transform: rotate(0deg);
+  transition: transform 0.3s var(--ease-spring);
 }
 
-.ctaLink:hover::after {
-  transform: rotate(0deg);
+.contactMenu:hover .contactLabel::after {
+  transform: translateX(3px);
+}
+
+/* Contact Icons Container */
+.contactIcons {
+  position: absolute;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateX(20px);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
+}
+
+.contactMenu:hover .contactIcons {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Individual Icon Links - No borders, modern scaling */
+.contactIconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  transition: transform 0.3s var(--ease-spring), color 0.3s ease;
+  position: relative;
+}
+
+/* Icon hover effects */
+.contactIconLink:hover {
+  color: var(--color-primary);
+  transform: scale(1.15) translateY(-2px);
+}
+
+/* Subtle glow effect on hover */
+.contactIconLink::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--color-primary, #0066cc) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.contactIconLink:hover::before {
+  opacity: 0.1;
+  transform: scale(1.5);
+}
+
+.contactIconLink:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.contactIconLink svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Initial state (not scrolled) - clean and minimal */
@@ -235,20 +321,15 @@
   color: var(--color-text);
 }
 
-/* When scrolled, adjust CTA button for better visibility */
-.header.visible .ctaLink {
+/* When scrolled, adjust contact button for better visibility */
+.header.visible .contactMenu {
   background: var(--color-white);
   border-color: var(--color-gray-200);
 }
 
-.header.visible .ctaLink:hover {
-  background: var(--color-primary);
-  color: var(--color-white);
+.header.visible .contactMenu:hover {
   border-color: var(--color-primary);
-}
-
-.header.visible .ctaLink:hover::after {
-  color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive breakpoints */
@@ -288,9 +369,28 @@
     padding: 6px 0;
   }
   
-  .ctaLink {
-    padding: 8px 20px;
+  .contactMenu {
+    padding: 0 16px;
+    min-width: fit-content;
+    height: 38px;
+  }
+  
+  .contactMenu:hover {
+    padding-right: 130px;
+  }
+  
+  .contactLabel {
     font-size: 13px;
+  }
+  
+  .contactIconLink {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .contactIconLink svg {
+    width: 15px;
+    height: 15px;
   }
 }
 
@@ -303,15 +403,6 @@
   .navLink {
     font-size: 12px;
     letter-spacing: 0.01em;
-  }
-  
-  .ctaLink {
-    padding: 8px 16px;
-    font-size: 12px;
-  }
-  
-  .ctaLink::after {
-    display: none;
   }
 }
 
@@ -468,14 +559,16 @@
   font-size: 17px;
   font-weight: 500;
   padding: 14px 0;
-  box-shadow: 0 4px 16px rgba(0,102,204,0.08);
-  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.08);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
   letter-spacing: 0.04em;
 }
 .mobileNav .ctaLink:hover,
 .mobileNav .ctaLink:focus {
   background: var(--color-text, #222);
   color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes fadeInMenu {
