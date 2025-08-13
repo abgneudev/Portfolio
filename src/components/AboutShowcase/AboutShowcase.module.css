@@ -720,7 +720,7 @@
 }
 
 .book:nth-child(6) {
-  width: 70px;
+  width: 24px;
   height: 315px;
   margin-right: 7px;
   transform: rotate(1.5deg);
@@ -736,7 +736,7 @@
 }
 
 .book:nth-child(8) {
-  width: 85px;
+  width: 56px;
   height: 305px;
   margin-right: 10px;
   transform: rotate(1deg);
@@ -758,6 +758,15 @@
   transform: rotate(0.5deg);
   z-index: 10;
 }
+
+.book:nth-child(11) {
+  width: 24px;
+  height: 290px;
+  margin: 0 8px;
+  transform: rotate(-1deg);
+  z-index: 9;
+}
+
 
 .book:hover {
   transform: translateY(-8px) rotate(var(--base-rotation, 0deg)) !important;
