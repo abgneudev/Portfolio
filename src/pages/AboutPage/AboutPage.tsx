@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import AboutShowcase from '../../components/AboutShowcase/AboutShowcase';
 import styles from './AboutPage.module.css';
 
 const About = () => {
@@ -258,18 +259,21 @@ const About = () => {
                   <span className={styles.pronunciationMeaning}>signifies something new, original, or innovative</span>
                 </div>
               </h1>
-              <div className={styles.philosophyText}>
-                <em>I'm a designer and developer who thinks about interfaces the way I think about wind - shaped by everything they touch, adapting to contexts, finding paths of least resistance.</em>
-                <em>I believe great design fits its context. Sometimes it's subtle shifts for efficiency. Other times, bold interactions for engagement. Or smart automation for time back. The key is listening and knowing which solution fits.</em>
-                <em>Being both designer and developer means I see the whole landscape. I design in Figma, code in React, ship to production. No handoffs. No translation gaps. Just ideas becoming real.</em>
-                <em>Four years across enterprise, startups, and nonprofits - from UNICEF campaigns reaching millions to financial systems managing billions to Harvard Innovation Labs building what's next. Each taught me something different about how design moves through the world.</em>
-                <em>That's what I build - interfaces where complexity becomes clear and work just flows.</em>
-              </div>
+                <div className={styles.philosophyText}>
+                    <em>I design and build digital experiences that are accessible and scalable.</em>
+                    <em>Four years across enterprise, startups, and nonprofits - from UNICEF campaigns reaching millions to financial systems managing billions to Harvard Innovation Labs building what's next - taught me that great design isn't universal. It's contextual. The key is listening and knowing which solution fits each moment.</em>
+                    <em>I like to think about design the way I think about wind - shaped by everything it touches, adapting to contexts, finding paths of least resistance.</em>
+                    <em>My approach is simple: Research deeply. Remove friction. Ship solutions. As both designer and developer, I see the entire landscape - from user needs to technical constraints. No handoffs, no translation gaps. Just ideas becoming real.</em>
+                    <em>I'm here to create mindful digital experiences that help us better understand ourselves <br /> and the world around us.</em>
+                </div>
             </div>
           </div>
         </section>
 
-        {/* Timeline Section */}
+  {/* Showcase Section */}
+  <AboutShowcase />
+
+  {/* Timeline Section */}
         <section ref={sectionRef} className={styles.timelineSection}>
           <div className={styles.aboutContainer}>
             {/* Left side - Timeline items */}

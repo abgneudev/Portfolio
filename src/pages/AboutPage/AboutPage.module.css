@@ -85,6 +85,7 @@
   line-height: 1.8;
   color: var(--color-gray-700);
   margin: 0;
+  padding: 0 40px 0 0;
 }
 
 .philosophyText em {
@@ -96,7 +97,7 @@
 }
 
 .philosophyText em:first-child {
-  font-size: 20px;
+  font-size: 18px;
   color: var(--color-primary);
   margin-bottom: 32px;
   font-weight: 600;

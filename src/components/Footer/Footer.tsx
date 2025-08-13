@@ -114,7 +114,7 @@ const Footer: React.FC = () => {
           <div className={styles.copyright}>
             <p>&copy; {currentYear} Abhinav Gupta</p>
             <span className={styles.separator}>•</span>
-            <p>Product Designer & Frontend Developer</p>
+            <p>Custom Built with &#128153; using Figma, React, AI</p>
           </div>
           <div className={styles.footerMeta}>
             <button className={styles.scrollTop} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
