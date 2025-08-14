@@ -1,5 +1,8 @@
 /* AboutShowcase.module.css */
 
+/* Import handwriting fonts */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+
 /* Main container */
 .showcase {
   width: 100%;
@@ -7,284 +10,9 @@
   background: #FAFBFC;
 }
 
-/* Navigation */
-.navigation {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(250, 251, 252, 0.95);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
-  border-bottom: 1px solid #E1E7EB;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
 
-.navigationContainer {
-  max-width: 1760px;
-  margin: 0 auto;
-  padding: 24px 80px;
-}
 
-.navigationButtons {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-}
 
-.navButton {
-  padding: 12px 32px;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: -0.01em;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid transparent;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.navButtonWork {
-  background: #1C242B;
-  color: #FAFBFC;
-  border-color: #1C242B;
-}
-
-.navButtonWorkInactive {
-  background: #F7F9FA;
-  color: #5E6B73;
-  border-color: #E1E7EB;
-}
-
-.navButtonWorkInactive:hover {
-  background: #F0F3F5;
-  border-color: #D1D9DE;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.navButtonPersonal {
-  background: #0066CC;
-  color: #FAFBFC;
-  border-color: #0066CC;
-}
-
-.navButtonPersonalInactive {
-  background: #F7F9FA;
-  color: #5E6B73;
-  border-color: #E1E7EB;
-}
-
-.navButtonPersonalInactive:hover {
-  background: #F0F3F5;
-  border-color: #D1D9DE;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* Work Section - Slider */
-.workSection {
-  padding: 80px 80px 120px;
-  background: #FAFBFC;
-}
-
-.workContainer {
-  max-width: 1760px;
-  margin: 0 auto;
-}
-
-.workTitle {
-  font-size: 48px;
-  font-weight: 700;
-  color: #1C242B;
-  margin-bottom: 60px;
-  text-align: center;
-  letter-spacing: -0.02em;
-}
-
-/* Slider Container */
-.sliderContainer {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.slider {
-  overflow: hidden;
-  border-radius: 0;
-}
-
-.sliderTrack {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide {
-  min-width: 100%;
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  padding: 0 20px;
-}
-
-/* Work Cards in Slider */
-.workCard {
-  width: 100%;
-  max-width: 500px;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.workCardHovered {
-  z-index: 30;
-}
-
-.workCardNormal {
-  z-index: 10;
-}
-
-.workCardContent {
-  position: relative;
-  background: #FFFFFF;
-  padding: 0;
-  border-radius: 0;
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.workCardContentHovered {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  transform: translateY(-8px);
-}
-
-.workCardContentNormal {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.showcaseImageWork {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.brightnessWorkHovered {
-  filter: brightness(1.05) contrast(1.02);
-}
-
-.brightnessWorkNormal {
-  filter: brightness(0.98);
-}
-
-.workOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.workOverlayHovered {
-  opacity: 1;
-}
-
-.workCardText {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  color: white;
-  transition: all 0.5s ease;
-}
-
-.workCardTextHovered {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.workCardTextNormal {
-  opacity: 0;
-  transform: translateY(12px);
-}
-
-.workCardTitle {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.workCardCategory {
-  font-size: 14px;
-  opacity: 0.9;
-  text-transform: capitalize;
-}
-
-/* Slider Controls */
-.sliderControls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  margin-top: 40px;
-}
-
-.sliderButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 2px solid var(--color-gray-300, #D1D9DE);
-  background: var(--color-white, #FAFBFC);
-  color: var(--color-gray-600, #5E6B73);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.sliderButton:hover {
-  border-color: var(--color-primary, #0066CC);
-  color: var(--color-primary, #0066CC);
-  background: var(--color-gray-50, #F7F9FA);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
-}
-
-.sliderButton:active {
-  transform: translateY(0);
-}
-
-/* Slider Dots */
-.sliderDots {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.sliderDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  background: var(--color-gray-300, #D1D9DE);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.sliderDot:hover {
-  background: var(--color-gray-500, #7E8C94);
-  transform: scale(1.2);
-}
-
-.sliderDotActive {
-  background: var(--color-primary, #0066CC);
-  transform: scale(1.3);
-}
-
-.sliderDotActive:hover {
-  background: var(--color-primary-dark, #0052A3);
-}
 
 /* Scrapbook Section */
 .scrapbookSection {
@@ -355,8 +83,7 @@
 .polaroidContent {
   position: relative;
   background: white;
-  padding: 12px;
-  padding-bottom: 8px;
+  padding: 8px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -477,7 +204,9 @@
   text-align: center;
   color: #374151;
   font-size: 18px;
-  font-family: 'Comic Sans MS', cursive;
+  font-family: "Patrick Hand SC", cursive;
+  font-weight: 400;
+  font-style: normal;
   transform: rotate(-1deg);
   margin-bottom: 4px;
 }
@@ -486,7 +215,9 @@
   text-align: center;
   color: #6B7280;
   font-size: 14px;
-  font-family: 'Comic Sans MS', cursive;
+  font-family: "Patrick Hand SC", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Tape styles */
@@ -623,11 +354,6 @@
   transform: rotate(6deg);
 }
 
-/* Book Section - Full width */
-.bookSection {
-  width: 100%;
-  margin-top: 80px;
-}
 
 /* Bookshelf Section */
 .bookshelfSection {
@@ -790,14 +516,6 @@
   border: none;
 }
 
-.bookSpine::before {
-  content: none;
-}
-
-.bookSpine::after {
-  content: none;
-}
-
 .bookTitle {
   writing-mode: vertical-rl;
   text-orientation: mixed;
@@ -837,10 +555,6 @@
   object-fit: cover;
   object-position: center;
   transition: none;
-}
-
-.bookCover:hover .bookCoverImage {
-  transform: none;
 }
 
 
@@ -905,27 +619,6 @@
 
 /* Responsive Design */
 @media (max-width: 1400px) {
-  .navigationContainer {
-    padding: 24px 60px;
-  }
-  
-  .workSection {
-    padding: 60px 60px 80px;
-  }
-  
-  .slide {
-    gap: 30px;
-    padding: 0 15px;
-  }
-  
-  .workCard {
-    max-width: 450px;
-  }
-  
-  .showcaseImageWork {
-    height: 320px;
-  }
-  
   .scrapbookSection {
     padding: 24px;
   }
@@ -962,30 +655,6 @@
 }
 
 @media (max-width: 968px) {
-  .slide {
-    flex-direction: column;
-    gap: 24px;
-    align-items: center;
-  }
-  
-  .workCard {
-    max-width: 400px;
-  }
-  
-  .showcaseImageWork {
-    height: 280px;
-  }
-  
-  .sliderControls {
-    gap: 24px;
-    margin-top: 32px;
-  }
-  
-  .sliderButton {
-    width: 40px;
-    height: 40px;
-  }
-  
   .categoriesContainer {
     flex-direction: column;
     gap: 60px;
@@ -1077,45 +746,9 @@
 }
 
 @media (max-width: 768px) {
-  .navigationContainer {
-    padding: 16px 20px;
-  }
-  
-  .navigationButtons {
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-  }
-  
-  .navButton {
-    width: 200px;
-    text-align: center;
-  }
-  
-  .workSection {
-    padding: 40px 20px 60px;
-  }
-  
   .workTitle,
   .scrapbookTitle {
     font-size: 32px;
-  }
-  
-  .slide {
-    padding: 0 10px;
-  }
-  
-  .workCard {
-    max-width: 100%;
-  }
-  
-  .showcaseImageWork {
-    height: 250px;
-  }
-  
-  .sliderControls {
-    gap: 16px;
-    margin-top: 24px;
   }
   
   .categoryTitle {
