@@ -744,14 +744,6 @@
 }
 
 .book:nth-child(9) {
-  width: 55px;
-  height: 290px;
-  margin-right: 6px;
-  transform: rotate(-1deg);
-  z-index: 9;
-}
-
-.book:nth-child(10) {
   width: 65px;
   height: 300px;
   margin-right: 0px;
@@ -759,7 +751,7 @@
   z-index: 10;
 }
 
-.book:nth-child(11) {
+.book:nth-child(10) {
   width: 24px;
   height: 290px;
   margin: 0 8px;
@@ -1064,12 +1056,6 @@
   }
 
   .book:nth-child(9) {
-    width: 42px;
-    height: 220px;
-    margin-right: 4px;
-  }
-
-  .book:nth-child(10) {
     width: 48px;
     height: 225px;
     margin-right: 0px;
@@ -1198,12 +1184,6 @@
   }
 
   .book:nth-child(9) {
-    width: 33px;
-    height: 170px;
-    margin-right: 3px;
-  }
-
-  .book:nth-child(10) {
     width: 37px;
     height: 175px;
     margin-right: 0px;

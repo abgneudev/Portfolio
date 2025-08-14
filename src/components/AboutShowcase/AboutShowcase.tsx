@@ -23,9 +23,8 @@ const personalPictures = {
     { id: 'b6', title: 'The Stranger', author: 'Albert Camus', image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088209/stragner_u1pawk.jpg' },
     { id: 'b7', title: 'Steve Jobs', author: 'Walter Isaacson', image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088213/steve_ooed42.jpg' },
     { id: 'b8', title: 'Don\'t Make Me Think', author: 'Steve Krug', image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088209/dont_mjvmsx.jpg' },
-    { id: 'b9', title: 'Women', author: 'Charles Bukowski', image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088212/women_aam3ko.jpg' },
-    { id: 'b10', title: 'Ham on Rye', author: 'Charles Bukowski', image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088210/ham_ulxmu8.jpg' },
-    { id: 'b11', title: 'Animal Farm', author: 'George Orwell', image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755090681/animal_farm_cover2014_vzow4i.jpg' },
+    { id: 'b9', title: 'Ham on Rye', author: 'Charles Bukowski', image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088210/ham_ulxmu8.jpg' },
+    { id: 'b10', title: 'Animal Farm', author: 'George Orwell', image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755090681/animal_farm_cover2014_vzow4i.jpg' },
   ]
 };
 
