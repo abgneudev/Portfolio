@@ -444,8 +444,8 @@
 }
 
 .polaroidPhoto {
-  width: 256px;
-  height: 288px;
+  width: 192px;
+  height: 216px;
   object-fit: cover;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
