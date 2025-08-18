@@ -233,38 +233,6 @@
   font-family: var(--font-primary);
 }
 
-/* Tooltip for name meaning */
-.meaningTooltip {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  left: 50%;
-  top: calc(100% + 8px);
-  transform: translateX(-50%) scale(0.98);
-  background: var(--color-background);
-  color: var(--color-gray-900);
-  border: 1px solid var(--color-gray-200);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 400;
-  z-index: 10;
-  min-width: 400px;
-  text-align: left;
-  transition: opacity 0.25s cubic-bezier(0.4,0,0.2,1), transform 0.25s cubic-bezier(0.4,0,0.2,1);
-  pointer-events: none;
-}
-
-.pronunciationButton:hover .meaningTooltip,
-.pronunciationButton:focus .meaningTooltip,
-.pronunciationButton:active .meaningTooltip {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
-  pointer-events: auto;
-}
-
 .pronunciationButton {
   position: relative;
   z-index: 2;
@@ -657,7 +625,7 @@
   color: var(--color-gray-500); /* light grey text */
   border: 1px solid var(--color-gray-200); /* light grey border */
   box-shadow: none;
-  padding: 14px 24px;
+  padding: 14px 8px;
   border-radius: 14px;
   font-size: 15px;
   font-weight: 400;

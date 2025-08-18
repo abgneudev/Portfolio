@@ -242,7 +242,7 @@ const About = () => {
                   >
                     <span aria-hidden="true">📖</span>
                     <span className={styles.bookTooltip} role="tooltip">
-                      Abhinav means 'new, original, and innovative' in Sanskrit
+                      Abhinav means new, original, and innovative in Sanskrit
                     </span>
                   </button>
                 </span>
