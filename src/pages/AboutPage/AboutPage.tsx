@@ -232,23 +232,37 @@ const About = () => {
             </div>
             <div className={styles.heroContent}>
               <h1 className={styles.heroTitle}>
-                Hey, I'm Abhinav!
+                <span className={styles.nameInline}>
+                  Hey, I'm Abhinav!
+                  <button
+                    className={styles.bookIcon}
+                    type="button"
+                    aria-label="Meaning of the name Abhinav"
+                    tabIndex={0}
+                  >
+                    <span aria-hidden="true">📖</span>
+                    <span className={styles.bookTooltip} role="tooltip">
+                      Abhinav means 'new, original, and innovative' in Sanskrit
+                    </span>
+                  </button>
+                </span>
                 <div className={styles.pronunciationWrapper}>
-                  <button 
+                  <button
                     className={`${styles.pronunciationButton} ${isPlaying ? styles.playing : ''}`}
                     onClick={playPronunciation}
                     aria-label="Listen to pronunciation: uh-bee-nahv"
                     type="button"
+                    tabIndex={0}
                   >
-                    <svg 
-                      className={styles.speakerIcon} 
-                      width="16" 
-                      height="16" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
+                    <svg
+                      className={styles.speakerIcon}
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
                       strokeLinejoin="round"
                     >
                       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -256,7 +270,6 @@ const About = () => {
                     </svg>
                     <span className={styles.pronunciationText}>/uh-bee-nahv/</span>
                   </button>
-                  <span className={styles.pronunciationMeaning}>signifies something new, original, or innovative</span>
                 </div>
               </h1>
                 <div className={styles.philosophyText}>

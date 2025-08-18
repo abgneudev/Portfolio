@@ -71,6 +71,24 @@
   flex-wrap: wrap;
 }
 
+/* Inline name wrapper to keep icon next to the H1 */
+.nameInline {
+  display: inline-flex;
+  align-items: flex-start; /* top align */
+  gap: 0.35rem;
+  line-height: 1; /* avoid extra vertical spacing */
+}
+
+/* Slight tweak on bookIcon to vertically nudge so it visually aligns with the top of the H1 */
+.bookIcon {
+  margin-top: 0.12rem;
+  font-size: 0.55em; /* reduced ~15% from 0.65em */
+  align-self: flex-start; /* ensure top alignment */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Pronunciation Wrapper */
 .pronunciationWrapper {
   display: inline-flex;
@@ -213,6 +231,48 @@
   letter-spacing: 0.02em;
   opacity: 0.8;
   font-family: var(--font-primary);
+}
+
+/* Tooltip for name meaning */
+.meaningTooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translateX(-50%) scale(0.98);
+  background: var(--color-background);
+  color: var(--color-gray-900);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  z-index: 10;
+  min-width: 400px;
+  text-align: left;
+  transition: opacity 0.25s cubic-bezier(0.4,0,0.2,1), transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+
+.pronunciationButton:hover .meaningTooltip,
+.pronunciationButton:focus .meaningTooltip,
+.pronunciationButton:active .meaningTooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  pointer-events: auto;
+}
+
+.pronunciationButton {
+  position: relative;
+  z-index: 2;
+}
+
+.pronunciationWrapper {
+  position: relative;
+  z-index: 2;
 }
 
 /* Timeline Section Container */
@@ -557,6 +617,98 @@
 
 .pronunciationButton:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Book icon tooltip */
+.bookIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 24px;
+  margin-left: 0.45rem;
+  font-size: 0.6em;
+  border-radius: 0; /* removed circular radius */
+  background: transparent; /* keep transparent */
+  border: none; /* remove border */
+  color: var(--color-gray-600);
+  cursor: help;
+  position: relative;
+  padding: 0; /* remove extra padding */
+  transition: transform 0.12s ease, color 0.12s ease;
+  align-self: flex-start; /* top-align beside the heading */
+}
+
+.bookIcon:hover,
+.bookIcon:focus {
+  transform: translateY(-2px);
+  color: var(--color-primary);
+}
+
+/* Book tooltip — no shadow, light grey border and text */
+.bookTooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--color-white);
+  color: var(--color-gray-500); /* light grey text */
+  border: 1px solid var(--color-gray-200); /* light grey border */
+  box-shadow: none;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 400;
+  z-index: 9999;
+  min-width: 220px;
+  max-width: 320px;
+  text-align: center;
+  transition: opacity 160ms cubic-bezier(0.2,0,0.1,1), transform 160ms cubic-bezier(0.2,0,0.1,1);
+  pointer-events: none;
+  line-height: 1.5;
+  backdrop-filter: blur(8px) saturate(120%);
+  word-break: break-word;
+  white-space: normal;
+}
+
+.bookTooltip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--color-gray-200);
+  border-bottom: none;
+  box-shadow: none;
+  z-index: 1;
+}
+
+.bookIcon:hover .bookTooltip,
+.bookIcon:focus .bookTooltip,
+.bookIcon:active .bookTooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.bookIcon {
+  margin-left: 0.28rem;
+}
+
+@media (max-width: 1024px) {
+  .bookTooltip {
+    min-width: 160px;
+    max-width: 220px;
+    font-size: 14px;
+    padding: 10px 12px;
+  }
 }
 
 /* Responsive design */
