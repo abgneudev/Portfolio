@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './Navigation.module.css';
 
 interface NavigationProps {
-  currentPage: 'home' | 'project' | 'about';
-  onNavigate: (page: 'home' | 'project' | 'about') => void;
+  currentPage: 'home' | 'project' | 'about' | 'experience';
+  onNavigate: (page: 'home' | 'project' | 'about' | 'experience') => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
@@ -77,6 +77,12 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
               onClick={() => onNavigate('home')}
             >
               Work
+            </button>
+            <button
+              className={`${styles.navLink} ${currentPage === 'experience' ? styles.active : ''}`}
+              onClick={() => onNavigate('experience')}
+            >
+              Experience
             </button>
             <button
               className={`${styles.navLink} ${currentPage === 'about' ? styles.active : ''}`}
@@ -169,6 +175,13 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
                   role="menuitem"
                 >
                   Work
+                </button>
+                <button
+                  className={`${styles.navLink} ${currentPage === 'experience' ? styles.active : ''}`}
+                  onClick={() => { setMobileMenuOpen(false); onNavigate('experience'); }}
+                  role="menuitem"
+                >
+                  Experience
                 </button>
                 <button
                   className={`${styles.navLink} ${currentPage === 'about' ? styles.active : ''}`}

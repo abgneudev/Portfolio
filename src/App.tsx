@@ -3,6 +3,7 @@ import Navigation from './components/Navigation/Navigation';
 import HomePage from './pages/HomePage/HomePage';
 import ProjectPage from './pages/ProjectPage/ProjectPage';
 import AboutPage from './pages/AboutPage/AboutPage';
+import ExperiencePage from './pages/ExperiencePage/ExperiencePage';
 import Footer from './components/Footer/Footer';
 import CaseStudy from './components/CaseStudy/CaseStudy';
 import type { Project } from './types/index';
@@ -39,7 +40,7 @@ const projects: Project[] = [
   }
 ];
 
-type AppRoute = 'home' | 'project' | 'about' | 'case-study';
+type AppRoute = 'home' | 'project' | 'about' | 'experience' | 'case-study';
 interface AppState {
   currentPage: AppRoute;
   selectedProject: string | null;
@@ -76,6 +77,8 @@ const App: React.FC = () => {
       }
       case 'case-study':
         return <CaseStudy />;
+      case 'experience':
+        return <ExperiencePage />;
       case 'about':
         return <AboutPage />;
       default:
@@ -98,8 +101,8 @@ const App: React.FC = () => {
       <a href="#main" className="skip-link">Skip to main content</a>
       
       <Navigation 
-        currentPage={['home', 'project', 'about'].includes(state.currentPage) ? state.currentPage as 'home' | 'project' | 'about' : 'home'}
-        onNavigate={navigateTo}
+        currentPage={['home', 'project', 'about', 'experience'].includes(state.currentPage) ? (state.currentPage as 'home' | 'project' | 'about' | 'experience') : 'home'}
+        onNavigate={(page) => navigateTo(page as AppRoute)}
       />
       
       <main id="main" className="main-content" role="main">
