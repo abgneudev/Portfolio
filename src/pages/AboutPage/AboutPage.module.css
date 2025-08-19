@@ -43,7 +43,6 @@
   height: auto;
   aspect-ratio: 4/5;
   object-fit: cover;
-  border-radius: 16px;
   filter: grayscale(20%);
   transition: filter 0.5s ease;
 }

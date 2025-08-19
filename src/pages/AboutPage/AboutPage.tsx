@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AboutShowcase from '../../components/AboutShowcase/AboutShowcase';
 import styles from './AboutPage.module.css';
+import WorkShowcase from '../../components/WorkShowcase/WorkShowcase';
 
 const About = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -100,6 +101,8 @@ const About = () => {
             </div>
           </div>
         </section>
+
+  <WorkShowcase />
 
   {/* Showcase Section */}
   <AboutShowcase />
