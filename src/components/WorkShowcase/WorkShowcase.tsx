@@ -96,19 +96,18 @@ const WorkShowcase: React.FC = () => {
     <section className={styles.showcase}>
       <div className={styles.container}>
         <h2 className={styles.mainTitle}>
-          What my typical work week looks like
-          <img
-            src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755600030/workweek_tkfgsu.svg"
+          What my typical work <img
+            src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755687712/workweek_tkfgsu.png"
             alt="A stick figure working at a desk"
             className={styles.mainTitleImage}
             style={{
-              marginLeft: 8,
-              width: 112,
+              width: 40,
+              margin: '0 8px 0 12px',
               height: 'auto',
               opacity: 0.92,
               maxWidth: '100%'
             }}
-          />
+          /> week looks like
         </h2>
 
         {workItems.map((item, idx) => (
