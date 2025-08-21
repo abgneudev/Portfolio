@@ -72,7 +72,7 @@ const WorkShowcase: React.FC = () => {
     },
     {
       id: 5,
-      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755074634/proto_h32v3g.png',
+      image: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755740321/online_d3fry4.png',
       title: 'Design Community Engagement',
       subtitle: 'at Bentley University',
       position: {
