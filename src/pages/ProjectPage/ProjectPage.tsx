@@ -52,13 +52,13 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project, projectId, onBack })
       <div className={styles.container}>
         {/* Back button */}
         <div style={{ marginBottom: '40px' }}>
-          <a 
-            href="#"
+          <button
             onClick={(e) => { e.preventDefault(); onBack(); }}
             className={styles.backButton}
+            aria-label={`Back to Home and Projects from ${project.title}`}
           >
             ← Home / Projects / {project.title}
-          </a>
+          </button>
         </div>
         {/* Main Content */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '32px' }}>
@@ -72,9 +72,13 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project, projectId, onBack })
                 <span className={styles.category}>
                   ET Transform your PM
                 </span>
-                <a href="#" className={styles.tag}>
+                <button
+                  className={styles.tag}
+                  onClick={(e) => { e.preventDefault(); /* TODO: handle contact action or navigation */ }}
+                  aria-label="Get in touch"
+                >
                   Get in touch →
-                </a>
+                </button>
               </div>
               <p className={styles.subtitle}>
                 Transform your work with the tools productivity apps, habits programs, and design that drives real results-overcome blocks transform your habits and tasks, and unlock productivity potential.

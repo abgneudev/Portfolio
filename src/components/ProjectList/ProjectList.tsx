@@ -347,16 +347,16 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onProjectClick, onN
                       View Case Study →
                     </button>
                     
-                    <a 
-                      href="#"
+                    <button
                       onClick={(e) => {
                         e.preventDefault();
                         console.log('Download deck for', project.title);
                       }}
                       className={styles.downloadLink}
+                      aria-label={`Download deck for ${project.title}`}
                     >
                       Download deck (PDF)
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

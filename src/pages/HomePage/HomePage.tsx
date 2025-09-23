@@ -184,18 +184,29 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
                           key={`${logo.id}-${index}`}
                           className={styles.logoItem}
                         >
-                          <a
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            tabIndex={0}
-                          >
-                            <img
-                              src={logo.src}
-                              alt={logo.alt}
-                              className={styles.logoImage}
-                            />
-                          </a>
+                          {href && href !== '#' ? (
+                            <a
+                              href={href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              tabIndex={0}
+                              aria-label={logo.alt}
+                            >
+                              <img
+                                src={logo.src}
+                                alt={logo.alt}
+                                className={styles.logoImage}
+                              />
+                            </a>
+                          ) : (
+                            <div role="img" aria-label={logo.alt} tabIndex={0}>
+                              <img
+                                src={logo.src}
+                                alt={logo.alt}
+                                className={styles.logoImage}
+                              />
+                            </div>
+                          )}
                         </div>
                       );
                     })}

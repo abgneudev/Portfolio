@@ -410,14 +410,24 @@ const ExpandableCards: React.FC = () => {
             className={styles.cardsSlider}
           >
             {cardsData.map((card) => (
-              <div
-                key={card.id}
-                className={styles.card}
-                onClick={() => handleCardClick(card.id)}
-                onMouseMove={(e) => handleMouseMove(e)}
-                onMouseEnter={() => setHoveredCard(card.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
+                <div
+                  key={card.id}
+                  className={styles.card}
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={expandedCard === card.id}
+                  aria-expanded={expandedCard === card.id}
+                  onClick={() => handleCardClick(card.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleCardClick(card.id);
+                    }
+                  }}
+                  onMouseMove={(e) => handleMouseMove(e)}
+                  onMouseEnter={() => setHoveredCard(card.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
                 {/* Corner icons */}
                 <Icon className={`${styles.cornerIcon} ${styles.topLeft}`} />
                 <Icon className={`${styles.cornerIcon} ${styles.topRight}`} />

@@ -350,7 +350,7 @@ const ExperiencePage = () => {
                       </section>
                       <div
                         className={styles.imageGrid}
-                        role="img"
+                        role="group"
                         aria-label={`Gallery for ${item.title}`}
                       >
                         {item.content.images.map((image, idx) => (
