@@ -99,13 +99,12 @@ const Footer: React.FC = () => {
           <div className={styles.linkColumn}>
             <h3 className={styles.columnTitle}>Currently</h3>
             <div className={styles.statusInfo}>
-              <div className={styles.availability}>
-                <span className={styles.statusDot}></span>
-                <span className={styles.statusText}>Available for projects</span>
-              </div>
               <div className={styles.timezone}>
-                <span className={styles.timezoneLabel}>Boston, MA</span>
+                <span className={styles.timezoneLabel}>Based in Boston, MA</span>
                 <span className={styles.timezoneTime}>EST</span>
+              </div>
+              <div className={styles.currentwork}>
+                <span className={styles.statusText}>Revolutionizing meditation by integrating AI-powered software with multi-sensory hardware for personalized, immersive wellness experiences at Harvard Innovation Labs</span>
               </div>
             </div>
           </div>
