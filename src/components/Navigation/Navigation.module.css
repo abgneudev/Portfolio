@@ -1,10 +1,7 @@
-/* Navigation.module.css - Modern luxury glass effect */
-
 :root {
   --font-primary: var(--font-sans);
   --grid-columns: 12;
   --grid-gap: 32px;
-  --container-max-width: 1760px;
   --container-padding: 80px;
   --nav-height: 100px;
   --nav-bg: rgba(250, 251, 252, 0);
@@ -55,8 +52,7 @@
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   gap: var(--grid-gap);
-  max-width: var(--container-max-width);
-  margin: 0 auto; /* 80px by default */
+  margin: 0 80px; /* 80px by default */
   width: 100%;
 }
 
@@ -331,18 +327,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive breakpoints */
-@media (max-width: 1400px) {
-  .grid {
-    padding: 0 40px;
-  }
-}
-
 @media (max-width: 900px) {
-  .grid {
-    padding: 0 24px;
-    gap: 16px;
-  }
   
   .nav {
     gap: 24px;
@@ -353,10 +338,14 @@
   :root {
     --nav-height: 56px;
   }
+
+  .grid{
+    margin: 0 40px; /* 40px on smaller screens */
+  }
   
   .logo {
-    width: 32px;
-    height: 32px;
+    width: 80px;
+    height: 80px;
   }
   
   .nav {
