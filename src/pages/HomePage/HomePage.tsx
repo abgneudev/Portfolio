@@ -96,7 +96,7 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
     { id: 'aiesec', src: 'https://res.cloudinary.com/dbvfgfqqh/image/upload/v1753612220/AIESEC-Logo_mevf7y.png', alt: 'AIESEC' },
   ];
 
-  // Duplicate logos array to create seamless loop
+  // Duplicate logos array to create seamless loop (7 × 2 = 14)
   const duplicatedLogos = [...logos, ...logos];
 
   return (
@@ -147,86 +147,91 @@ const HomePage: React.FC<HomePageProps> = ({ onProjectClick, onNavigate }) => {
       )}
       {/* Hero Section */}
       <section className={`${styles.section} ${styles.sectionHero}`} aria-label="Introductory summary">
-        <div className={styles.grid}>
-          <div className={styles.colCentered}>
-            <p className={styles.currentPosition}>
-              Abhinav is a Product Designer at <a href="https://iembraceland.com/" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> designing accessible digital experiences that scale.
-            </p>
-            {/* Logo Slider - Inside Hero Section */}
-            <div className={styles.logoSliderSection} aria-label="Partner organizations">
-              <span className={styles.logoSectionTitle}>Previously with:</span>
-              <div className={styles.sliderContainer}>
-                <div className={styles.sliderWrapper}>
-                  <div className={styles.sliderTrack}>
-                    {duplicatedLogos.map((logo, index) => {
-                      let href = '';
-                      switch (logo.id) {
-                        case 'iembrace':
-                          href = 'https://innovationlabs.harvard.edu/';
-                          break;
-                        case 'northeastern':
-                          href = 'https://www.northeastern.edu/';
-                          break;
-                        case 'wipro':
-                          href = 'https://www.wipro.com/';
-                          break;
-                        case 'unicef':
-                          href = 'https://www.unicef.org/sustainable-development-goals';
-                          break;
-                        case 'aiesec':
-                          href = 'https://aiesec.org/';
-                          break;
-                        default:
-                          href = '#';
-                      }
-                      return (
-                        <div
-                          key={`${logo.id}-${index}`}
-                          className={styles.logoItem}
-                        >
-                          {href && href !== '#' ? (
-                            <a
-                              href={href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              tabIndex={0}
-                              aria-label={logo.alt}
-                            >
-                              <img
-                                src={logo.src}
-                                alt={logo.alt}
-                                className={styles.logoImage}
-                              />
-                            </a>
-                          ) : (
-                            <div role="img" aria-label={logo.alt} tabIndex={0}>
-                              <img
-                                src={logo.src}
-                                alt={logo.alt}
-                                className={styles.logoImage}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
+        <div className={styles.colRight}>
+          <p className={styles.currentPosition}>
+            Currently a Product Designer and Frontend engineer at <a href="https://innovationlabs.harvard.edu/venture/embrace" target="_blank" rel="noopener noreferrer" className={styles.highlight}>iEmbrace, Harvard Innovation Labs</a> revolutionizing meditation by integrating AI and multi-sensory experiences
+          </p>
+          <a
+            className={styles.heroCtaButton}
+            href="https://drive.google.com/file/d/1lVBPVZxY09ObA0ZXOy8_Y1NeXszIqF1h/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+          >
+            <span className={styles.downloadText}>Download Resume</span>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M10 3v10m0 0l-4-4m4 4l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <rect x="4" y="15" width="12" height="2" rx="1" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+        <div className={styles.colCentered}>
+          <p className={styles.intro}>
+            I help engineering teams achieve pixel-perfect products without sacrificing speed or quality to handoff
+          </p>
+        </div>
+        {/* Logo Slider - Full Width */}
+        <div className={styles.colFull}>
+          <div className={styles.logoSliderSection} aria-label="Partner organizations">
+            <span className={styles.logoSectionTitle}>Previously with:</span>
+            <div className={styles.sliderContainer}>
+              <div className={styles.sliderWrapper}>
+                <div className={styles.sliderTrack}>
+                  {duplicatedLogos.map((logo, index) => {
+                    let href = '';
+                    switch (logo.id) {
+                      case 'iembrace':
+                        href = 'https://innovationlabs.harvard.edu/';
+                        break;
+                      case 'northeastern':
+                        href = 'https://www.northeastern.edu/';
+                        break;
+                      case 'wipro':
+                        href = 'https://www.wipro.com/';
+                        break;
+                      case 'unicef':
+                        href = 'https://www.unicef.org/sustainable-development-goals';
+                        break;
+                      case 'aiesec':
+                        href = 'https://aiesec.org/';
+                        break;
+                      default:
+                        href = '#';
+                    }
+                    return (
+                      <div
+                        key={`${logo.id}-${index}`}
+                        className={styles.logoItem}
+                      >
+                        {href && href !== '#' ? (
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabIndex={0}
+                            aria-label={logo.alt}
+                          >
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              className={styles.logoImage}
+                            />
+                          </a>
+                        ) : (
+                          <div role="img" aria-label={logo.alt} tabIndex={0}>
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              className={styles.logoImage}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
-            <a
-              className={styles.heroCtaButton}
-              href="https://drive.google.com/file/d/1lVBPVZxY09ObA0ZXOy8_Y1NeXszIqF1h/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
-            >
-              <span>Download Resume</span>
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M10 3v10m0 0l-4-4m4 4l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <rect x="4" y="15" width="12" height="2" rx="1" fill="currentColor"/>
-              </svg>
-            </a>
           </div>
         </div>
       </section>
