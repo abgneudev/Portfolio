@@ -57,10 +57,12 @@ export function Navigation({
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
+    if (typeof window !== 'undefined') {
+      if (mobileMenuOpen) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = ''
+      }
     }
   }, [mobileMenuOpen])
 
