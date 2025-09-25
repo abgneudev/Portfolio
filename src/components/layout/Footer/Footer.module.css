@@ -144,7 +144,7 @@
   font-family: var(--font-label);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--gray-400);
+  color: var(--gray-600);
   margin-bottom: var(--space-sm);
 }
 
@@ -161,7 +161,7 @@
   justify-content: space-between;
   padding: var(--space-sm) 0;
   text-decoration: none;
-  color: var(--gray-600);
+  color: var(--gray-400);
   font-size: var(--text-base);
   font-weight: var(--font-light);
   font-family: var(--font-label);
