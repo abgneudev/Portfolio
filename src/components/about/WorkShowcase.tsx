@@ -45,31 +45,29 @@ const WorkShowcase: React.FC = () => {
 
         <Grid className={styles.workGrid}>
           {workItems.map((item) => (
-            <React.Fragment key={item.id}>
-              <GridItem span={4} lgStart={1} lgSpan={4} className={styles.colTitle}>
-                <div className={styles.workCaption}>
+            <GridItem key={item.id} span={4} mdSpan={8} lgSpan={12} className={styles.bundle}>
+              <div className={styles.bundleInner}>
+                <div className={styles.colTitleInner}>
                   <h3 className={styles.workTitle}>{item.title}</h3>
                   <p className={styles.workSubtitle}>{item.subtitle}</p>
                 </div>
-              </GridItem>
 
-              <GridItem span={4} lgStart={5} lgSpan={4} className={styles.colImage}>
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  className={styles.workImage}
-                  width={800}
-                  height={600}
-                  style={{ width: '100%', height: 'auto' }}
-                />
-              </GridItem>
+                <div className={styles.colImageInner}>
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    className={styles.workImage}
+                    width={800}
+                    height={600}
+                    style={{ width: '100%', height: 'auto' }}
+                  />
+                </div>
 
-              <GridItem span={4} lgStart={9} lgSpan={4} className={styles.colDesc}>
-                <div className={styles.workCaption}>
+                <div className={styles.colDescInner}>
                   <Description />
                 </div>
-              </GridItem>
-            </React.Fragment>
+              </div>
+            </GridItem>
           ))}
         </Grid>
       </Container>
