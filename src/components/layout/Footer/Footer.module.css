@@ -362,7 +362,6 @@
 /* Large Desktop (1280px+) */
 @media (min-width: 1280px) {
   .footerContainer {
-    max-width: 1400px;
     padding: var(--space-4xl) var(--container-padding-xl) var(--space-2xl);
   }
 

@@ -16,6 +16,11 @@ interface GridItemProps {
   mdSpan?: number
   lgSpan?: number
   xlSpan?: number
+  start?: number
+  smStart?: number
+  mdStart?: number
+  lgStart?: number
+  xlStart?: number
 }
 
 export function Container({ children, className = '' }: GridProps) {
@@ -41,7 +46,12 @@ export function GridItem({
   smSpan,
   mdSpan,
   lgSpan,
-  xlSpan
+  xlSpan,
+  start,
+  smStart,
+  mdStart,
+  lgStart,
+  xlStart
 }: GridItemProps) {
   const classes = [
     styles[`span${span}`],
@@ -49,6 +59,11 @@ export function GridItem({
     mdSpan && styles[`md-span${mdSpan}`],
     lgSpan && styles[`lg-span${lgSpan}`],
     xlSpan && styles[`xl-span${xlSpan}`],
+    start && styles[`start${start}`],
+    smStart && styles[`sm-start${smStart}`],
+    mdStart && styles[`md-start${mdStart}`],
+    lgStart && styles[`lg-start${lgStart}`],
+    xlStart && styles[`xl-start${xlStart}`],
     className
   ].filter(Boolean).join(' ')
 

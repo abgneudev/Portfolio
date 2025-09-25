@@ -2,18 +2,14 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
+import { useRouter, usePathname } from 'next/navigation'
 import styles from './Navigation.module.css'
 import { Container, Grid, GridItem } from '@/components/layout/Grid'
 
-interface NavigationProps {
-  currentPage?: 'home' | 'work' | 'experience' | 'about'
-  onNavigate?: (page: string) => void
-}
-
-export function Navigation({ 
-  currentPage = 'home', 
-  onNavigate = () => {} 
-}: NavigationProps) {
+export function Navigation() {
+  const router = useRouter()
+  const pathname = usePathname()
+  const currentPage = pathname === '/' ? 'home' : (pathname.slice(1) as 'experience' | 'about')
   const [isVisible, setIsVisible] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -75,7 +71,7 @@ export function Navigation({
           <GridItem span={2} smSpan={2} lgSpan={3}>
             <button 
               className={styles.logoButton}
-              onClick={() => onNavigate('home')}
+              onClick={() => router.push('/')}
               aria-label="Go to homepage"
             >
               <Image
@@ -94,20 +90,20 @@ export function Navigation({
               {/* Desktop Navigation */}
               <nav className={styles.desktopNav}>
                 <button
-                  className={`${styles.navLink} ${currentPage === 'work' ? styles.active : ''}`}
-                  onClick={() => onNavigate('work')}
+                  className={`${styles.navLink} ${currentPage === 'home' ? styles.active : ''}`}
+                  onClick={() => router.push('/')}
                 >
-                  Work
+                  Home
                 </button>
                 <button
                   className={`${styles.navLink} ${currentPage === 'experience' ? styles.active : ''}`}
-                  onClick={() => onNavigate('experience')}
+                  onClick={() => router.push('/experience')}
                 >
                   Experience
                 </button>
                 <button
                   className={`${styles.navLink} ${currentPage === 'about' ? styles.active : ''}`}
-                  onClick={() => onNavigate('about')}
+                  onClick={() => router.push('/about')}
                 >
                   About
                 </button>
@@ -190,20 +186,20 @@ export function Navigation({
         {mobileMenuOpen && (
           <div className={styles.mobileNav}>
             <button
-              className={`${styles.mobileLink} ${currentPage === 'work' ? styles.active : ''}`}
-              onClick={() => { setMobileMenuOpen(false); onNavigate('work'); }}
+              className={`${styles.mobileLink} ${currentPage === 'home' ? styles.active : ''}`}
+              onClick={() => { setMobileMenuOpen(false); router.push('/'); }}
             >
-              Work
+              Home
             </button>
             <button
               className={`${styles.mobileLink} ${currentPage === 'experience' ? styles.active : ''}`}
-              onClick={() => { setMobileMenuOpen(false); onNavigate('experience'); }}
+              onClick={() => { setMobileMenuOpen(false); router.push('/experience'); }}
             >
               Experience
             </button>
             <button
               className={`${styles.mobileLink} ${currentPage === 'about' ? styles.active : ''}`}
-              onClick={() => { setMobileMenuOpen(false); onNavigate('about'); }}
+              onClick={() => { setMobileMenuOpen(false); router.push('/about'); }}
             >
               About
             </button>
