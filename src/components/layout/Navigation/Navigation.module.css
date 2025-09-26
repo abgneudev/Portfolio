@@ -6,7 +6,7 @@
   right: 0;
   z-index: 1000;
   height: 100px;
-  background: var(--bg-primary);
+  background: transparent;
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -24,7 +24,16 @@
   box-shadow: 0 1px 40px rgba(0, 0, 0, 0.02);
 }
 
-/* Logo */
+/* Main navigation grid */
+.navGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  height: 100%;
+  gap: 1rem;
+}
+
+/* Logo positioned at first column */
 .logoButton {
   background: none;
   border: none;
@@ -33,7 +42,10 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 120px;
+  height: 120px;
+  grid-column: 1;
 }
 
 .logoButton:hover {
@@ -47,19 +59,21 @@
   object-fit: contain;
 }
 
-/* Desktop Navigation - now flexbox within grid item */
-.desktopNav {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2xl);
-  height: 100%;
-}
-
-/* Navigation content wrapper - right aligned */
+/* Navigation content positioned at last columns */
 .navContent {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  grid-column: 2 / -1;
+}
+
+/* Desktop Navigation */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 100%;
   width: 100%;
 }
@@ -112,13 +126,14 @@
   align-items: center;
   height: 48px;
   padding: 0 var(--space-lg);
-  background: var(--bg-primary);
+  background: transparent;
   border: 1px solid var(--border-light);
   border-radius: 24px;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   min-width: fit-content;
+  margin-left: var(--space-lg);
 }
 
 .contactButton:hover {
@@ -149,6 +164,13 @@
 
 .contactButton:hover .contactLabel::after {
   transform: translateX(3px);
+}
+
+/* Contact button visible state when header is scrolled */
+.header.visible .contactButton {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
 }
 
 /* Social Icons */
@@ -249,20 +271,9 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile Menu Overlay */
-.mobileOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(20, 20, 20, 0.92);
-  z-index: 1200;
-  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+/* Mobile Menu */
 .mobileNav {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   background: var(--bg-primary);
@@ -274,6 +285,7 @@
   flex-direction: column;
   gap: var(--space-lg);
   box-shadow: -2px 0 24px rgba(0, 0, 0, 0.08);
+  z-index: 1200;
   animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -328,17 +340,42 @@
 }
 
 /* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 @keyframes slideIn {
   from { transform: translateX(40px); }
   to { transform: translateX(0); }
 }
 
 /* Responsive breakpoints using your tokens */
+@media (min-width: 640px) {
+  .navGrid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1rem;
+  }
+  
+  .logoButton {
+    grid-column: 1 / 2;
+  }
+  
+  .navContent {
+    grid-column: 4 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navGrid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .logoButton {
+    grid-column: 1 / 3;
+  }
+  
+  .navContent {
+    grid-column: 9 / -1;
+  }
+}
+
 @media (max-width: 900px) {
   .desktopNav {
     display: none;
@@ -351,29 +388,31 @@
 
 @media (max-width: 768px) {
   .header {
-    height: 56px;
-  }
-  
-  /* Container padding now handled by Grid.Container */
-  .logoButton {
-    width: 80px;
     height: 80px;
   }
   
+  .logoButton {
+    width: 50px;
+    height: 50px;
+  }
+  
   .navLink {
-    font-size: 13px;
+    font-size: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  /* Container padding now handled by Grid.Container */
+  .header {
+    height: 70px;
+  }
+  
   .logoButton {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
   }
   
   .navLink {
-    font-size: 12px;
-    letter-spacing: 0.01em;
+    font-size: 9px;
+    letter-spacing: 0.15em;
   }
 }

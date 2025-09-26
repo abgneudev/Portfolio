@@ -1,0 +1,215 @@
+/* /app/components/sections/HomeHero.module.css */
+
+.heroSection {
+  background-color: var(--bg-hero-blue);
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  height: calc(100vh - 120px);
+}
+
+.headingColumn {
+  display: grid;
+  align-content: end;
+  grid-column: span 4;
+}
+
+.heroHeading {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--font-light);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+.infoColumn {
+  display: grid;
+  align-content: start;
+  gap: var(--space-lg);
+  grid-column: span 4;
+  padding-top: var(--space-xl);
+}
+
+.currentRole {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.roleText {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-light);
+  color: var(--gray-700);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.company {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+.companyLink {
+  color: var(--blue-royal);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: var(--font-semibold);
+}
+
+.companyLink:hover {
+  color: var(--accent-orange);
+}
+
+.description {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-light);
+  color: var(--gray-700);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.resumeButton {
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  letter-spacing: var(--tracking-wider);
+  transition: all 0.3s ease;
+  justify-self: start;
+  position: relative;
+}
+
+.resumeButton::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(to right, var(--accent-orange) 0px, var(--accent-orange) 4px, transparent 4px, transparent 9px);
+}
+
+.resumeText {
+  display: inline-block;
+}
+
+.downloadIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.resumeButton:hover .downloadIcon {
+  transform: translateX(2px);
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .heroGrid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .headingColumn {
+    grid-column: span 8;
+  }
+
+  .infoColumn {
+    grid-column: span 8;
+  }
+
+  .heroHeading {
+    font-size: var(--text-2xl);
+  }
+
+  .company {
+    font-size: var(--text-xs);
+  }
+}
+
+@media (min-width: 768px) {
+  .heroHeading {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+  }
+
+  .infoColumn {
+    padding-top: var(--space-2xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroGrid {
+    grid-template-columns: repeat(12, 1fr);
+    height: calc(100vh - 140px);
+    gap: var(--space-lg);
+    align-items: stretch;
+  }
+
+  .headingColumn {
+    grid-column: span 6;
+    align-content: end;
+  }
+
+  .infoColumn {
+    grid-column: 9 / span 4;
+    width: 64%;
+    align-content: start;
+    padding-top: var(--space-4xl);
+  }
+
+  .heroHeading {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    max-width: 700px;
+  }
+
+  .company {
+    font-size: var(--text-xs);
+  }
+}
+
+@media (min-width: 1280px) {
+  .heroHeading {
+    font-size: var(--text-4xl);
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .heroHeading {
+    font-size: var(--text-4xl);
+    max-width: 900px;
+  }
+
+  .infoColumn {
+    padding-top: var(--space-4xl);
+  }
+
+  .company {
+    font-size: var(--text-xs);
+  }
+
+  .description {
+    font-size: var(--text-xs);
+    max-width: 450px;
+  }
+}

@@ -29,7 +29,7 @@ const WorkShowcase: React.FC = () => {
         <Grid>
           <GridItem span={4} mdSpan={8} lgSpan={12}>
             <h2 className={styles.mainTitle}>
-              <span className={styles.titleTextRight}>What my typical work</span>
+              <span className={styles.titleTextRight}>What my work</span>
               <Image
                 src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755687712/workweek_tkfgsu.png"
                 alt="A stick figure working at a desk"

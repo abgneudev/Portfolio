@@ -65,7 +65,7 @@
   
   .grid {
     grid-template-columns: repeat(12, 1fr);
-    gap: 1.5rem;
+    gap: var(--space-lg);
   }
   
   .lg-span1 { grid-column: span 1; }

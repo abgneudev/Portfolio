@@ -86,7 +86,7 @@ export function AboutHero() {
             <em>Four years across enterprise, startups, and nonprofits - from UNICEF campaigns reaching millions to financial systems managing billions to Harvard Innovation Labs building what&apos;s next - taught me that great design isn&apos;t universal. It&apos;s contextual. The key is listening and knowing which solution fits each moment.</em>
             <em>I like to think about design the way I think about wind - shaped by everything it touches, adapting to contexts, finding paths of least resistance.</em>
             <em>My approach is simple: Research deeply. Remove friction. Ship solutions. As both designer and developer, I see the entire landscape - from user needs to technical constraints. No handoffs, no translation gaps. Just ideas becoming real.</em>
-            <em>I&apos;m here to create mindful digital experiences that help us better understand ourselves <br /> and the world around us.</em>
+            <em>I&apos;m here to create mindful digital experiences that help us better understand ourselves and the world around us.</em>
           </div>
         </GridItem>
       </Grid>
