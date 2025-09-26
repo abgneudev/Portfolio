@@ -110,6 +110,7 @@
 
 .resumeText {
   display: inline-block;
+  letter-spacing: var(--space-xs);
 }
 
 .downloadIcon {
@@ -119,7 +120,7 @@
 }
 
 .resumeButton:hover .downloadIcon {
-  transform: translateX(2px);
+  transform: translateX(3px);
 }
 
 /* Responsive Design */
