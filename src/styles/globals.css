@@ -1,0 +1,238 @@
+/*
+ * Global Design Tokens & Base Styles
+ *
+ * Base unit: 8px
+ * Type scale: 1.25 (Major Third)
+ * Containers: 1280px default, 720px narrow
+ *
+ * These tokens are consumed by CSS Modules throughout the app.
+ */
+
+/* ===== BASE RESETS ===== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* ===== SPACING SCALE ===== */
+
+:root {
+  /* Base unit: 8px */
+  --space-1: 4px;   /* 0.5x - half step for fine adjustments */
+  --space-2: 8px;   /* 1x - base */
+  --space-3: 12px;  /* 1.5x - small gaps */
+  --space-4: 16px;  /* 2x */
+  --space-5: 20px;  /* 2.5x */
+  --space-6: 24px;  /* 3x */
+  --space-8: 32px;  /* 4x */
+  --space-10: 40px; /* 5x */
+  --space-12: 48px; /* 6x */
+  --space-16: 64px; /* 8x */
+  --space-20: 80px; /* 10x */
+  --space-24: 96px; /* 12x */
+  --space-32: 128px; /* 16x */
+
+  /* Semantic aliases */
+  --space-section: var(--space-24); /* 96px - vertical space between page sections */
+  --space-element: var(--space-6);  /* 24px - space between elements within a section */
+  --space-inline: var(--space-2);   /* 8px - small inline spacing */
+}
+
+/* ===== TYPOGRAPHY SCALE ===== */
+
+:root {
+  /* --- MODULAR SCALE (1.25 ratio, base 16px) --- */
+  --text-xs: 0.64rem;    /* 10.24px — step -2 */
+  --text-sm: 0.8rem;     /* 12.8px — step -1 */
+  --text-base: 1rem;     /* 16px — step 0 */
+  --text-lg: 1.25rem;    /* 20px — step 1 */
+  --text-xl: 1.563rem;   /* 25px — step 2 */
+  --text-2xl: 1.953rem;  /* 31.25px — step 3 */
+  --text-3xl: 2.441rem;  /* 39px — step 4 */
+  --text-4xl: 3.052rem;  /* 48.8px — step 5 */
+  --text-5xl: 3.815rem;  /* 61px — step 6 */
+
+  /* --- CONTEXTUAL SIZES (practical additions) --- */
+  --text-caption: 0.75rem;   /* 12px — image captions, metadata */
+  --text-label: 0.875rem;    /* 14px — form labels, UI labels */
+  --text-body: 1rem;         /* 16px — default body text, maps to base */
+  --text-body-lg: 1.125rem;  /* 18px — larger body text, articles */
+  --text-lead: 1.25rem;      /* 20px — lead paragraphs, intros */
+
+  /* --- FLUID HEADINGS (responsive with clamp) --- */
+  --text-h1: clamp(2.441rem, 2rem + 2vw, 3.815rem);      /* 39px → 61px */
+  --text-h2: clamp(1.953rem, 1.5rem + 1.5vw, 3.052rem);  /* 31px → 49px */
+  --text-h3: clamp(1.563rem, 1.25rem + 1vw, 2.441rem);   /* 25px → 39px */
+  --text-h4: clamp(1.25rem, 1rem + 0.5vw, 1.563rem);     /* 20px → 25px */
+  --text-h5: clamp(1rem, 0.9rem + 0.25vw, 1.25rem);      /* 16px → 20px */
+  --text-h6: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);      /* 14px → 16px */
+
+  /* --- LINE HEIGHTS --- */
+  --leading-none: 1;
+  --leading-tight: 1.2;      /* headings */
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;     /* body text default */
+  --leading-relaxed: 1.625;  /* large body text */
+  --leading-loose: 1.75;     /* small text for readability */
+
+  /* --- FONT WEIGHTS (full range) --- */
+  --font-thin: 100;
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+
+  /* --- LETTER SPACING --- */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+}
+
+/* ===== COLOR SYSTEM ===== */
+
+:root {
+  /* --- NEUTRALS (warm) --- */
+  --color-white: #ffffff;          /* pure white, overlays */
+  --color-bg: #fafaf9;             /* warm off-white, main background */
+  --color-bg-subtle: #f5f5f4;      /* slightly darker, cards/sections */
+  --color-border: #e7e5e4;         /* borders, dividers */
+  --color-border-strong: #d6d3d1;  /* emphasized borders */
+
+  --color-text: #1c1917;           /* primary text, near-black warm */
+  --color-text-secondary: #57534e; /* secondary text, descriptions */
+  --color-text-muted: #a8a29e;     /* muted text, captions, placeholders */
+
+  /* --- ACCENT (blue) --- */
+  --color-accent: #2563eb;         /* primary blue, links, buttons */
+  --color-accent-hover: #1d4ed8;   /* darker on hover */
+  --color-accent-light: #dbeafe;   /* light blue for backgrounds */
+  --color-accent-subtle: #eff6ff;  /* very light blue tint */
+
+  /* --- SEMANTIC --- */
+  --color-success: #16a34a;        /* success states, confirmations */
+  --color-warning: #ca8a04;        /* warnings, caution states */
+  --color-error: #dc2626;          /* errors, destructive actions */
+
+  /* --- SHADOWS --- */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);           /* subtle lift */
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);         /* cards, dropdowns */
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);       /* modals, popovers */
+}
+
+/* ===== CONTAINER SYSTEM ===== */
+
+:root {
+  --container-max: 1280px;              /* default max-width */
+  --container-narrow: 720px;            /* for readable text content */
+  --container-wide: 1440px;             /* for full-width visual sections */
+  --container-padding: var(--space-6);  /* horizontal padding on mobile, 24px */
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* ===== BREAKPOINTS ===== */
+
+/*
+  Breakpoint Reference (mobile-first, use min-width):
+
+  --bp-sm: 480px   → Large phones (iPhone Pro, Android)
+  --bp-md: 768px   → Tablets (iPad Mini, iPad)
+  --bp-lg: 1024px  → Laptops, iPad Pro landscape
+  --bp-xl: 1280px  → Desktop, external monitors
+  --bp-2xl: 1536px → Large desktop
+
+  Usage in CSS Modules:
+
+  .element {
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .element {
+      flex-direction: row;
+    }
+  }
+
+  Note: CSS custom properties cannot be used in media query conditions,
+  so breakpoints are documented as a reference. The actual pixel values
+  must be used in @media rules.
+*/
+
+:root {
+  /* Viewport values for calc() usage (not for @media conditions) */
+  --viewport-sm: 480px;
+  --viewport-md: 768px;
+  --viewport-lg: 1024px;
+  --viewport-xl: 1280px;
+}
