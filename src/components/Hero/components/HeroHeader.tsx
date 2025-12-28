@@ -4,6 +4,14 @@ import { memo } from 'react';
 import { COLORS, type Skill } from '../constants';
 import styles from '../Hero.module.css';
 
+interface SceneColors {
+  bg: string;
+  fg: string;
+  accent: string;
+  text: string;
+  textMuted: string;
+}
+
 interface HeroHeaderProps {
   /** Currently active skill (for theming) */
   activeSkill?: Skill | null;
@@ -13,13 +21,15 @@ interface HeroHeaderProps {
   onSkillsClick?: () => void;
   /** Whether skills panel is open */
   skillsPanelOpen?: boolean;
+  /** Scene-based colors from the shader */
+  sceneColors: SceneColors;
 }
 
 /**
  * HeroHeader Component
  *
  * Displays the hero section header with name, title, and call-to-action buttons.
- * Adapts colors based on active skill theme.
+ * Colors are driven by the current shader scene for a cohesive experience.
  *
  * @accessibility
  * - Semantic heading hierarchy (h1 for name)
@@ -30,12 +40,14 @@ export const HeroHeader = memo(function HeroHeader({
   activeSkill,
   isMobile,
   onSkillsClick,
-  skillsPanelOpen
+  skillsPanelOpen,
+  sceneColors
 }: HeroHeaderProps) {
-  const textColor = activeSkill ? COLORS.dark.text : COLORS.light.text;
-  const mutedColor = activeSkill ? COLORS.dark.textMuted : COLORS.light.textMuted;
-  const buttonBg = activeSkill ? activeSkill.theme.accent : COLORS.light.cardBg;
-  const borderColor = activeSkill ? COLORS.dark.border : COLORS.dark.textMuted;
+  // Use scene colors, but allow activeSkill to override when present
+  const textColor = activeSkill ? COLORS.dark.text : sceneColors.text;
+  const mutedColor = activeSkill ? COLORS.dark.textMuted : sceneColors.textMuted;
+  const buttonBg = activeSkill ? activeSkill.theme.accent : sceneColors.accent;
+  const borderColor = activeSkill ? COLORS.dark.border : sceneColors.textMuted;
 
   return (
     <header className={styles.heroHeader}>
@@ -96,7 +108,7 @@ export const HeroHeader = memo(function HeroHeader({
               className={styles.ctaPrimary}
               style={{
                 backgroundColor: buttonBg,
-                color: COLORS.dark.text
+                color: '#FFFFFF'
               }}
             >
               {isMobile ? 'Work' : 'View Work'}
@@ -115,6 +127,7 @@ export const HeroHeader = memo(function HeroHeader({
                 color: mutedColor,
                 borderColor: borderColor
               }}
+              onClick={() => window.open('https://drive.google.com/file/d/18ga1iRzZ8qmfpBasr6hgX651MTAB-fBa/view?usp=sharing', '_blank')}
             >
               {isMobile ? 'CV' : <>Resume <span aria-hidden="true">↓</span></>}
             </button>

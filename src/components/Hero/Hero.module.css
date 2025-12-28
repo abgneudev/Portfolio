@@ -19,7 +19,7 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.8s ease;
 }
 
 /* ===== 2. WEBGL CANVAS ===== */
@@ -123,14 +123,14 @@
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   margin: 0;
-  transition: color 0.5s ease;
+  transition: color 0.8s ease;
 }
 
 .heroTitle {
   font-family: monospace;
   margin-top: var(--space-1);
   margin-bottom: 0;
-  transition: color 0.5s ease;
+  transition: color 0.8s ease;
 }
 
 .heroDescription {
@@ -139,7 +139,7 @@
   margin-bottom: 0;
   line-height: 1.5;
   max-width: 280px;
-  transition: color 0.5s ease;
+  transition: color 0.8s ease;
 }
 
 /* Skills Trigger Button */
@@ -159,7 +159,7 @@
   gap: var(--space-2);
   padding: var(--space-2) 0;
   margin-bottom: var(--space-3);
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.8s ease;
 }
 
 .skillsTrigger span {
@@ -524,7 +524,7 @@
   border: none;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .ctaPrimary:hover {
@@ -545,7 +545,7 @@
   border: 1px solid;
   background-color: transparent;
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: color 0.8s ease, border-color 0.8s ease, background-color 0.2s ease;
 }
 
 .ctaSecondary span {
@@ -755,14 +755,14 @@
   font-family: monospace;
   font-size: 32px;
   font-weight: var(--font-bold);
-  color: rgba(64, 60, 58, 0.75);
   line-height: 1;
+  transition: color 0.8s ease;
 }
 
 .metricLabel {
   font-family: monospace;
   font-size: var(--text-sm);
-  color: rgba(64, 60, 58, 0.6);
+  transition: color 0.8s ease;
 }
 
 .fpsCounter {
@@ -772,7 +772,7 @@
   font-size: var(--text-xs);
   font-family: monospace;
   z-index: 10;
-  transition: color 0.5s ease;
+  transition: color 0.8s ease;
 }
 
 .binaryText {

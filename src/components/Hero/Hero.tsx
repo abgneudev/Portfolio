@@ -1,19 +1,30 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { COLORS } from './constants';
+import { useRef, useState, useMemo } from 'react';
+import { SCENE_COLORS, type SceneName } from './constants';
 import { useResponsive, useCanvasSize, useHeroWebGL } from './hooks';
 import { HeroHeader, SkillsPanel } from './components';
 import styles from './Hero.module.css';
 
 /**
+ * Get scene-specific colors for UI elements
+ */
+function getSceneColors(scene: SceneName) {
+  return SCENE_COLORS[scene];
+}
+
+/**
  * Hero Component
  *
  * Full-screen hero section featuring:
- * - WebGL shader background with parallax binary landscape
+ * - WebGL shader background with 5 nature-inspired animated scenes
+ * - Dynamic color theming that syncs with current shader scene
  * - Animated skill cards that scroll horizontally
  * - Interactive skill selection with image carousel
  * - Responsive layout for mobile, tablet, and desktop
+ *
+ * Scenes cycle through: Water, Hive, Cell, Shell, Wood
+ * Each scene has its own color palette that affects all text elements
  *
  * @accessibility
  * - Landmark region with aria-label for screen readers
@@ -25,15 +36,16 @@ export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const responsive = useResponsive();
   const canvasSize = useCanvasSize();
-  const { fps } = useHeroWebGL(canvasRef, responsive.pixelSize, 1.0, canvasSize);
+  const { fps, currentScene } = useHeroWebGL(canvasRef, responsive.pixelSize, 1.0, canvasSize);
   const [skillsPanelOpen, setSkillsPanelOpen] = useState(false);
 
-  const bgColor = COLORS.light.bg;
+  // Get current scene colors
+  const sceneColors = useMemo(() => getSceneColors(currentScene), [currentScene]);
 
   return (
     <section
       className={styles.hero}
-      style={{ backgroundColor: bgColor }}
+      style={{ backgroundColor: sceneColors.bg }}
       aria-label="Hero section"
       id="hero"
     >
@@ -50,7 +62,10 @@ export default function Hero() {
       {responsive.isMobile && (
         <div className={styles.mobileLayout}>
           <div className={styles.mobileHeader}>
-            <HeroHeader isMobile={true} />
+            <HeroHeader
+              isMobile={true}
+              sceneColors={sceneColors}
+            />
           </div>
           <div className={styles.mobileSpacer} />
         </div>
@@ -60,7 +75,12 @@ export default function Hero() {
       {!responsive.isMobile && (
         <div className={styles.desktopLayout}>
           <div className={styles.desktopHeader}>
-            <HeroHeader isMobile={false} onSkillsClick={() => setSkillsPanelOpen(true)} skillsPanelOpen={skillsPanelOpen} />
+            <HeroHeader
+              isMobile={false}
+              onSkillsClick={() => setSkillsPanelOpen(true)}
+              skillsPanelOpen={skillsPanelOpen}
+              sceneColors={sceneColors}
+            />
           </div>
         </div>
       )}
@@ -69,16 +89,16 @@ export default function Hero() {
       {!responsive.isMobile && (
         <div className={styles.metrics} aria-label="Key metrics">
           <div className={styles.metricItem}>
-            <span className={styles.metricValue}>60%</span>
-            <span className={styles.metricLabel}>Faster Delivery</span>
+            <span className={styles.metricValue} style={{ color: sceneColors.text }}>60%</span>
+            <span className={styles.metricLabel} style={{ color: sceneColors.textMuted }}>Faster Delivery</span>
           </div>
           <div className={styles.metricItem}>
-            <span className={styles.metricValue}>4.5%</span>
-            <span className={styles.metricLabel}>Click Through Rate</span>
+            <span className={styles.metricValue} style={{ color: sceneColors.text }}>4.5%</span>
+            <span className={styles.metricLabel} style={{ color: sceneColors.textMuted }}>Click Through Rate</span>
           </div>
           <div className={styles.metricItem}>
-            <span className={styles.metricValue}>90+</span>
-            <span className={styles.metricLabel}>Lighthouse Scores</span>
+            <span className={styles.metricValue} style={{ color: sceneColors.text }}>90+</span>
+            <span className={styles.metricLabel} style={{ color: sceneColors.textMuted }}>Lighthouse Scores</span>
           </div>
         </div>
       )}
@@ -92,7 +112,7 @@ export default function Hero() {
       {/* FPS Counter (development aid) */}
       <div
         className={styles.fpsCounter}
-        style={{ color: 'rgba(64,60,58,0.4)' }}
+        style={{ color: sceneColors.textMuted }}
         aria-hidden="true"
       >
         {fps} FPS
