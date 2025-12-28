@@ -3,7 +3,7 @@
 import { useRef, useState, useMemo } from 'react';
 import { SCENE_COLORS, type SceneName } from './constants';
 import { useResponsive, useCanvasSize, useHeroWebGL } from './hooks';
-import { HeroHeader, SkillsPanel } from './components';
+import { HeroHeader, SkillsPanel, MobileSkillsDropdown } from './components';
 import styles from './Hero.module.css';
 
 /**
@@ -49,6 +49,11 @@ export default function Hero() {
       aria-label="Hero section"
       id="hero"
     >
+      {/* Skip Link for keyboard navigation */}
+      <a href="#main-content" className={styles.skipLink}>
+        Skip to main content
+      </a>
+
       {/* WebGL Canvas Layer */}
       <canvas
         ref={canvasRef}
@@ -66,6 +71,7 @@ export default function Hero() {
               isMobile={true}
               sceneColors={sceneColors}
             />
+            <MobileSkillsDropdown sceneColors={sceneColors} />
           </div>
           <div className={styles.mobileSpacer} />
         </div>

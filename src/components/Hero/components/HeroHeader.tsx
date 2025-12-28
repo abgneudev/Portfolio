@@ -1,7 +1,6 @@
 'use client';
 
 import { memo } from 'react';
-import { COLORS, type Skill } from '../constants';
 import styles from '../Hero.module.css';
 
 interface SceneColors {
@@ -13,8 +12,6 @@ interface SceneColors {
 }
 
 interface HeroHeaderProps {
-  /** Currently active skill (for theming) */
-  activeSkill?: Skill | null;
   /** Whether to use mobile layout */
   isMobile: boolean;
   /** Callback to open skills panel */
@@ -37,17 +34,16 @@ interface HeroHeaderProps {
  * - Expandable details section is keyboard accessible
  */
 export const HeroHeader = memo(function HeroHeader({
-  activeSkill,
   isMobile,
   onSkillsClick,
   skillsPanelOpen,
   sceneColors
 }: HeroHeaderProps) {
-  // Use scene colors, but allow activeSkill to override when present
-  const textColor = activeSkill ? COLORS.dark.text : sceneColors.text;
-  const mutedColor = activeSkill ? COLORS.dark.textMuted : sceneColors.textMuted;
-  const buttonBg = activeSkill ? activeSkill.theme.accent : sceneColors.accent;
-  const borderColor = activeSkill ? COLORS.dark.border : sceneColors.textMuted;
+  // Use scene colors for theming
+  const textColor = sceneColors.text;
+  const mutedColor = sceneColors.textMuted;
+  const buttonBg = sceneColors.accent;
+  const borderColor = sceneColors.textMuted;
 
   return (
     <header className={styles.heroHeader}>

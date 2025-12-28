@@ -2,8 +2,6 @@
  * Hero Sub-components Barrel Export
  */
 
-export { BinaryReveal } from './BinaryReveal';
-export { ImageSlider } from './ImageSlider';
-export { SkillBoard } from './SkillBoard';
 export { HeroHeader } from './HeroHeader';
-export { SkillsPanel } from './SkillsPanel';
+export { SkillsPanel, SKILLS, type SkillInfo, type ImageInfo } from './SkillsPanel';
+export { MobileSkillsDropdown } from './MobileSkillsDropdown';

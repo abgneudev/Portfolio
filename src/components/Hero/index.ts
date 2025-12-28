@@ -6,4 +6,3 @@
  */
 
 export { default as Hero } from './Hero';
-export type { Skill, SkillTheme } from './constants';

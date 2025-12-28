@@ -4,63 +4,60 @@ import { useState, memo } from 'react';
 import { CloudinaryMedia } from '@/components/ui';
 import styles from '../Hero.module.css';
 
-interface ImageInfo {
+export interface ImageInfo {
   publicId: string;
   alt: string;
   title: string;
   caption: string;
 }
 
-interface SkillInfo {
+export interface SkillInfo {
   name: string;
   title: string;
   description: string;
-  tools: string[];
+  skills: string[];
   images: ImageInfo[];
 }
 
-const SKILLS: SkillInfo[] = [
+export const SKILLS: SkillInfo[] = [
   {
-    name: 'UI/UX Design',
-    title: 'Designing intuitive experiences',
-    description: 'Creating interfaces that balance aesthetics with usability. I focus on user flows, information architecture, and visual hierarchy.',
-    tools: ['Figma', 'Framer', 'Principle'],
+    name: 'Frontend Engineering',
+    title: 'Production-ready execution',
+    description: 'I eliminate the design-to-code gap by engineering pixel-perfect interfaces directly in React and Flutter. I focus on component reusability and performance, shipping high-fidelity UI that functions as well as it looks.',
+    skills: ['TypeScript', 'React', 'Next.js', 'Flutter', 'Tailwind CSS'],
     images: [
-      { publicId: 'v1753782203/handsketch_hq7ogw.jpg', alt: 'Wireframe sketch', title: 'User Interviews', caption: 'Early wireframe explorations' },
-      { publicId: 'v1753782203/handsketch_hq7ogw.jpg', alt: 'High fidelity mockup', title: 'Product Design', caption: 'Final design iteration' },
-      { publicId: 'v1753782203/handsketch_hq7ogw.jpg', alt: 'Journey map', title: 'Journey Mapping', caption: 'User journey visualization' }
+      { publicId: 'v1755074582/hack_dtm0q6.png', alt: 'Hackathon coding session with developers working in a room with large screens displaying code while a team member presents', title: 'Engineering', caption: 'Collaborting with Product Managers, Developers, Founders at Harvard Innovation Labs' }
     ]
   },
   {
-    name: 'Frontend Development',
-    title: 'Building performant interfaces',
-    description: 'Modern React patterns with server components, optimistic updates, and seamless data fetching.',
-    tools: ['TypeScript', 'Next.js', 'Tailwind'],
+    name: 'Product Design',
+    title: 'Systems that scale',
+    description: 'I create scalable design systems using tokens and atomic components that translate cleanly into code. My work prioritizes logical structure and maintainability, ensuring the final product matches the design intent without friction.',
+    skills: ['Figma', 'Design Systems', 'Information Architecture', 'Interaction Design'],
     images: [
-      { publicId: 'v1755074594/hackwin_q1xfde.png', alt: 'Hackathon winning project', title: 'Hackathon Win', caption: 'Award-winning project showcase' }
+      { publicId: 'v1766960197/bpl_sovi44.png', alt: 'Team collaboration session with three people discussing design work around a table with laptops in a modern office space', title: 'Product Design', caption: 'Designing website for Bentley x IxDF Designathon' }
     ]
   },
   {
     name: 'Accessibility',
     title: 'Inclusive by default',
-    description: 'WCAG compliance, semantic HTML, keyboard navigation, and screen reader support.',
-    tools: ['axe', 'NVDA', 'VoiceOver'],
+    description: 'I engineer for inclusivity by treating WCAG guidelines as a core architectural requirement. My approach uses semantic HTML and rigorous testing to ensure seamless navigation and usability for assistive technology users.',
+    skills: ['WCAG 2.2 AA', 'Semantic HTML', 'axe DevTools', 'Assistive Tech'],
     images: [
-      { publicId: 'v1753782203/handsketch_hq7ogw.jpg', alt: 'Accessibility audit', title: 'Auditing', caption: 'axe DevTools audit results' },
-      { publicId: 'v1753782203/handsketch_hq7ogw.jpg', alt: 'Screen reader testing', title: 'Screen Readers', caption: 'VoiceOver navigation flow' }
+      { publicId: 'v1766964645/accessibility_pj5yw0.png', alt: 'Accessibility audit dashboard showing WCAG compliance scores and testing results', title: 'Auditing', caption: '' }
     ]
   },
   {
     name: 'Side Hacks',
-    title: 'Experiments & explorations',
-    description: 'Building tools, games, and utilities that scratch my own itch.',
-    tools: ['React', 'Node.js', 'WebGL'],
+    title: 'Full-stack intelligence',
+    description: 'I extend my capabilities to the backend by architecting RAG-powered tools and integrating LLMs. Using Python and modern data stacks, I rapidly turn complex concepts into functional, intelligent applications.',
+    skills: ['Python', 'FastAPI', 'RAG Architecture', 'Vector DBs', 'LLM Integration'],
     images: [
-      { publicId: 'v1753782203/handsketch_hq7ogw.jpg', alt: 'Side project', title: 'WebGL Shaders', caption: 'Shader experiment' },
-      { publicId: 'v1753782203/handsketch_hq7ogw.jpg', alt: 'Game prototype', title: 'Game Dev', caption: 'Canvas game prototype' }
+      { publicId: 'v1755074594/hackwin_q1xfde.png', alt: 'Hackathon winning team of four people on stage receiving an award at a Women in AI hackathon event', title: 'AI Integration', caption: 'Impact Award Winner at Women in AI Hackathon, AWS. Developed an AI-powered Influencer Management System.' }
     ]
   }
 ];
+
 
 interface SkillsPanelProps {
   isOpen: boolean;
@@ -129,10 +126,10 @@ export const SkillsPanel = memo(function SkillsPanel({ isOpen, onClose }: Skills
               <p className={styles.skillsPanelDescription}>{activeSkill.description}</p>
 
               <div className={styles.skillsPanelTools}>
-                <span className={styles.skillsPanelToolsLabel}>Tools:</span>
+                <span className={styles.skillsPanelToolsLabel}>Skills:</span>
                 <ul className={styles.skillsPanelToolsList}>
-                  {activeSkill.tools.map((tool) => (
-                    <li key={tool} className={styles.skillsPanelTool}>{tool}</li>
+                  {activeSkill.skills.map((skill) => (
+                    <li key={skill} className={styles.skillsPanelTool}>{skill}</li>
                   ))}
                 </ul>
               </div>
