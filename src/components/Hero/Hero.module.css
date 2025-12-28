@@ -1,0 +1,803 @@
+/**
+ * Hero Component Styles
+ *
+ * Organized by:
+ * 1. Main container
+ * 2. WebGL canvas
+ * 3. Layout variants (mobile/desktop)
+ * 4. Header styles
+ * 5. Skill cards
+ * 6. Image slider
+ * 7. Binary reveal animation
+ * 8. Utility elements
+ */
+
+/* ===== 1. MAIN CONTAINER ===== */
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.5s ease;
+}
+
+/* ===== 2. WEBGL CANVAS ===== */
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+}
+
+/* ===== 3. LAYOUT VARIANTS ===== */
+
+/* Mobile Layout */
+.mobileLayout {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.mobileHeader {
+  flex-shrink: 0;
+  margin-bottom: var(--space-4);
+  pointer-events: auto;
+}
+
+.mobileContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-2);
+  pointer-events: auto;
+}
+
+.mobileSlider {
+  width: 100%;
+  max-width: 384px;
+}
+
+.mobileSpacer {
+  flex-shrink: 0;
+  height: 128px;
+}
+
+/* Desktop Layout */
+.desktopLayout {
+  position: relative;
+  z-index: 10;
+}
+
+.desktopHeader {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  max-width: 320px;
+}
+
+.desktopSlider {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  width: 288px;
+  font-family: monospace;
+}
+
+/* ===== 4. HEADER STYLES ===== */
+
+.heroHeader {
+  margin-bottom: var(--space-3);
+}
+
+.headerMobile {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.headerDesktop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.identity {
+  flex-shrink: 0;
+}
+
+.heroName {
+  font-family: monospace;
+  font-weight: var(--font-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+  transition: color 0.5s ease;
+}
+
+.heroTitle {
+  font-family: monospace;
+  margin-top: var(--space-1);
+  margin-bottom: 0;
+  transition: color 0.5s ease;
+}
+
+.heroDescription {
+  font-family: monospace;
+  margin-top: var(--space-2);
+  margin-bottom: 0;
+  line-height: 1.5;
+  max-width: 280px;
+  transition: color 0.5s ease;
+}
+
+/* Skills Trigger Button */
+.skillsTriggerWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.skillsTrigger {
+  font-family: monospace;
+  font-size: var(--text-sm);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  margin-bottom: var(--space-3);
+  transition: opacity 0.2s ease;
+}
+
+.skillsTrigger span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.skillsTriggerWrapper:hover .skillsTrigger {
+  opacity: 0.8;
+}
+
+.skillsTriggerWrapper:hover .skillsTrigger span {
+  transform: translateX(4px);
+}
+
+.skillsTrigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* Skills Tooltip */
+.skillsTooltip {
+  position: absolute;
+  top: 42%;
+  left: 56%;
+  transform: translateY(-50%);
+  padding: 2px 14px;
+  background: rgba(30, 30, 30, 0.95);
+  border-radius: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.13);
+  display: flex;
+  align-items: center;
+}
+
+.skillsTooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: rgba(30, 30, 30, 0.95);
+}
+
+.skillsTooltip span {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: #fff;
+}
+
+.skillsTriggerWrapper:hover .skillsTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== SKILLS PANEL ===== */
+
+.skillsPanel {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  pointer-events: none;
+}
+
+.skillsPanelBackdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 320px;
+  background: rgba(27, 26, 26, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: auto;
+  animation: fadeIn 0.3s ease;
+}
+
+.skillsPanelContent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 320px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  pointer-events: auto;
+  animation: slideIn 0.3s ease;
+}
+
+.skillsPanelNav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-6);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skillsPanelHeading {
+  font-family: monospace;
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: #F2ECE9;
+  margin: 0 0 var(--space-2) 0;
+}
+
+.skillsPanelList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.skillsPanelItem {
+  font-family: monospace;
+  font-size: var(--text-sm);
+  color: rgba(242, 236, 233, 0.6);
+  background: transparent;
+  border: none;
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.skillsPanelItem:hover {
+  color: #F2ECE9;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.skillsPanelItemActive {
+  color: #F2ECE9;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.skillsPanelClose {
+  font-family: monospace;
+  font-size: var(--text-sm);
+  color: rgba(242, 236, 233, 0.5);
+  background: transparent;
+  border: 1px solid rgba(242, 236, 233, 0.2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.skillsPanelClose:hover {
+  color: #F2ECE9;
+  border-color: rgba(242, 236, 233, 0.4);
+}
+
+.skillsPanelSlider {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.skillsPanelSlide {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-6);
+  animation: slideUp 0.3s ease;
+}
+
+.skillsPanelMeta {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.skillsPanelDescription {
+  font-family: monospace;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: rgba(242, 236, 233, 0.8);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.skillsPanelTools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.skillsPanelToolsLabel {
+  font-family: monospace;
+  font-size: var(--text-xs);
+  color: rgba(242, 236, 233, 0.5);
+}
+
+.skillsPanelToolsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.skillsPanelTool {
+  font-family: monospace;
+  font-size: var(--text-xs);
+  color: rgba(242, 236, 233, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+  padding: var(--space-1) var(--space-2);
+  border-radius: 4px;
+}
+
+.skillsPanelImageSlider {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.skillsPanelImageNav {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.skillsPanelImageNavItem {
+  font-family: monospace;
+  font-size: var(--text-xs);
+  color: rgba(242, 236, 233, 0.4);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.skillsPanelImageNavItem:hover {
+  color: rgba(242, 236, 233, 0.7);
+}
+
+.skillsPanelImageNavItemActive {
+  color: #F2ECE9;
+}
+
+.skillsPanelImageWrapper {
+  flex: 1;
+  min-height: 0;
+  animation: imageFade 0.3s ease;
+}
+
+.skillsPanelImage {
+  width: 72%;
+  height: 92%;
+  border-radius: 8px;
+}
+
+.skillsPanelCaption {
+  font-family: monospace;
+  font-size: var(--text-xs);
+  color: rgba(242, 236, 233, 0.5);
+  margin: var(--space-3) 0 0 0;
+}
+
+@keyframes imageFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* CTA Buttons */
+.ctaButtons {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.ctaWrapper {
+  position: relative;
+  flex: 1;
+}
+
+.ctaTooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 14px;
+  background: rgba(30, 30, 30, 0.95);
+  border-radius: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.13);
+  display: flex;
+  align-items: center;
+}
+
+.ctaTooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: rgba(30, 30, 30, 0.95);
+}
+
+.ctaTooltip span {
+  font-family: monospace;
+  font-size: var(--text-xs);
+  color: #fff;
+}
+
+.ctaWrapper:hover .ctaTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ctaPrimary {
+  width: 100%;
+  font-size: var(--text-sm);
+  font-family: monospace;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.5s ease;
+}
+
+.ctaPrimary:hover {
+  opacity: 0.9;
+}
+
+.ctaPrimary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.ctaSecondary {
+  width: 100%;
+  font-size: var(--text-sm);
+  font-family: monospace;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 4px;
+  border: 1px solid;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.ctaSecondary span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.ctaSecondary:hover {
+  background-color: #F2ECE9;
+  color: #8C8987;
+  border-color: #F2ECE9;
+}
+
+.ctaSecondary:hover span {
+  transform: translateY(2px);
+}
+
+.ctaSecondary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ===== 5. SKILL CARDS ===== */
+
+.cardsLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.skillBoard {
+  position: absolute;
+  font-family: monospace;
+  cursor: pointer;
+  pointer-events: auto;
+  transition:
+    background-color 0.2s ease,
+    border 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.skillBoard:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.skillTooltip {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: var(--space-1) 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: var(--font-medium);
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+}
+
+.tooltipArrow {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+}
+
+.skillName {
+  color: #F2ECE9;
+  font-weight: var(--font-medium);
+  margin-bottom: var(--space-1);
+}
+
+.skillDesc {
+  color: #D9D2CC;
+  margin-bottom: var(--space-2);
+}
+
+.skillProgress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.skillProgressTrack {
+  flex: 1;
+  background-color: rgba(242, 236, 232, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skillProgressFill {
+  height: 100%;
+  background-color: #8C8987;
+  border-radius: 2px;
+}
+
+.skillScore {
+  color: #8C8987;
+  min-width: 28px;
+  text-align: right;
+}
+
+/* ===== 6. IMAGE SLIDER ===== */
+
+.imageSlider {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  min-height: 192px;
+}
+
+.sliderImage {
+  width: 100%;
+  height: 192px;
+  object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .sliderImage {
+    height: 160px;
+  }
+}
+
+.sliderGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-3);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  transition: opacity 0.2s ease;
+}
+
+.sliderDots {
+  display: flex;
+  gap: var(--space-1);
+  justify-content: center;
+}
+
+.sliderDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sliderDot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ===== 7. BINARY REVEAL ANIMATION ===== */
+
+.binaryReveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: grid;
+  font-size: 10px;
+  font-family: monospace;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.binaryCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-bold);
+}
+
+/* ===== 8. UTILITY ELEMENTS ===== */
+
+.metrics {
+  position: absolute;
+  bottom: var(--space-6);
+  left: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  z-index: 10;
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.metricValue {
+  font-family: monospace;
+  font-size: 32px;
+  font-weight: var(--font-bold);
+  color: rgba(64, 60, 58, 0.75);
+  line-height: 1;
+}
+
+.metricLabel {
+  font-family: monospace;
+  font-size: var(--text-sm);
+  color: rgba(64, 60, 58, 0.6);
+}
+
+.fpsCounter {
+  position: absolute;
+  bottom: var(--space-2);
+  right: var(--space-2);
+  font-size: var(--text-xs);
+  font-family: monospace;
+  z-index: 10;
+  transition: color 0.5s ease;
+}
+
+.binaryText {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  font-size: var(--text-xs);
+  font-family: monospace;
+  z-index: 10;
+  transition: color 0.5s ease;
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .canvas,
+  .skillBoard,
+  .ctaPrimary,
+  .ctaSecondary,
+  .sliderImage,
+  .sliderGradient,
+  .sliderDot,
+  .fpsCounter,
+  .binaryText {
+    transition: none;
+  }
+}

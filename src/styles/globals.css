@@ -76,7 +76,7 @@ ol[role="list"] {
 :root {
   /* --- MODULAR SCALE (1.25 ratio, base 16px) --- */
   --text-xs: 0.64rem;    /* 10.24px — step -2 */
-  --text-sm: 0.8rem;     /* 12.8px — step -1 */
+  --text-sm: 0.875rem;     /* 14px — step -1 */
   --text-base: 1rem;     /* 16px — step 0 */
   --text-lg: 1.25rem;    /* 20px — step 1 */
   --text-xl: 1.563rem;   /* 25px — step 2 */
@@ -235,4 +235,29 @@ ol[role="list"] {
   --viewport-md: 768px;
   --viewport-lg: 1024px;
   --viewport-xl: 1280px;
+}
+
+/* ===== HERO-SPECIFIC TOKENS ===== */
+
+:root {
+  /* Hero color palette (warm neutrals matching shader output) */
+  --hero-bg: #F2ECE9;
+  --hero-text: #403C3A;
+  --hero-text-muted: #8C8987;
+  --hero-card-bg: #403C3A;
+
+  /* Dark mode colors (when skill is active) */
+  --hero-dark-text: #F2ECE9;
+  --hero-dark-text-muted: #D9D2CC;
+  --hero-dark-border: #595552;
+
+  /* Hero transitions */
+  --hero-transition-fast: 0.2s ease;
+  --hero-transition-medium: 0.5s ease;
+}
+
+/* ===== MONOSPACE FONT STACK ===== */
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
