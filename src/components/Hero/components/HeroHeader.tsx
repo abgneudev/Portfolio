@@ -170,36 +170,21 @@ export const HeroHeader = memo(function HeroHeader({
             </div>
           </nav>
         </div>
+
+        {/* Description - Desktop only */}
+        {!isMobile && (
           <p
             className={styles.heroDescription}
             style={{
               color: mutedColor,
-              fontSize: isMobile ? '11px' : '12px'
+              fontSize: '12px'
             }}
           >
-            I bridge the gap between design and development to ship production-grade UI with high velocity and design fidelity.
+            Power user of design, code, math & AI. 2x Hackathon winner. Last developed a wellness app at Harvard Innovation Labs.
           </p>
-
-
-        {/* How can I help? (Desktop only, hidden when panel is open) */}
-        {!isMobile && onSkillsClick && !skillsPanelOpen && (
-          <div className={styles.skillsTriggerWrapper}>
-            <button
-              type="button"
-              className={styles.skillsTrigger}
-              onClick={() => {
-                analytics.trackHowCanIHelp();
-                onSkillsClick();
-              }}
-              style={{ color: mutedColor }}
-            >
-              How can I help? <span aria-hidden="true">→</span>
-            </button>
-            <div className={styles.skillsTooltip}>
-              <span>Preview</span>
-            </div>
-          </div>
         )}
+
+
 
         {/* CTA Buttons */}
         <div className={styles.ctaButtons}>
@@ -246,6 +231,26 @@ export const HeroHeader = memo(function HeroHeader({
           </div>
         </div>
       </div>
+
+      {/* How can I help? - Fixed right edge (Desktop only, hidden when panel is open) */}
+      {!isMobile && onSkillsClick && !skillsPanelOpen && (
+        <div className={styles.skillsTriggerWrapper}>
+          <button
+            type="button"
+            className={styles.skillsTrigger}
+            onClick={() => {
+              analytics.trackHowCanIHelp();
+              onSkillsClick();
+            }}
+            style={{ color: mutedColor }}
+          >
+            <span aria-hidden="true">←</span> How can I help?
+          </button>
+          <div className={styles.skillsTooltip}>
+            <span>Preview</span>
+          </div>
+        </div>
+      )}
     </header>
   );
 });

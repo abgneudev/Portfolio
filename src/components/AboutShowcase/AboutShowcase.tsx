@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./AboutShowcase.module.css";
+import { analytics } from "@/lib/analytics";
 
 const personalPictures = {
   food: [
@@ -52,6 +53,19 @@ type Book = {
 const AboutShowcase: React.FC = () => {
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
   const [hoveredBook, setHoveredBook] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleVideoPlay = () => {
+    analytics.trackVideoPlay("Adventure Video");
+  };
+
+  const handleVideoPause = () => {
+    analytics.trackVideoPause("Adventure Video");
+  };
+
+  const handleVideoEnded = () => {
+    analytics.trackVideoEnded("Adventure Video");
+  };
 
   const renderTape = (tapeClass?: string) => {
     if (!tapeClass) return null;
@@ -146,11 +160,15 @@ const AboutShowcase: React.FC = () => {
 
           <div className={styles.videoWrapper}>
             <video
+              ref={videoRef}
               className={styles.adventureVideo}
               autoPlay
               muted
               playsInline
               controls
+              onPlay={handleVideoPlay}
+              onPause={handleVideoPause}
+              onEnded={handleVideoEnded}
             >
               <source src="https://res.cloudinary.com/dbvfgfqqh/video/upload/v1766977089/adv_video_veirsx.mp4" type="video/mp4" />
             </video>

@@ -3,7 +3,7 @@ import Script from "next/script";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Portfolio Home",
+  title: "Abhinav's Portfolio",
   description: "Portfolio of Abhinav Gupta - Frontend Engineer and Product Designer",
 };
 

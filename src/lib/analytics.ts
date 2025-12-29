@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-type EventCategory = 'cta' | 'social' | 'navigation' | 'skills';
+type EventCategory = 'cta' | 'social' | 'navigation' | 'skills' | 'video';
 
 interface TrackEventParams {
   category: EventCategory;
@@ -47,4 +47,9 @@ export const analytics = {
   // Skills panel
   trackSkillTab: (skillName: string) => trackEvent({ category: 'skills', action: 'click_skill_tab', label: skillName }),
   trackMobileSkillSelect: (skillName: string) => trackEvent({ category: 'skills', action: 'select_mobile_skill', label: skillName }),
+
+  // Video player
+  trackVideoPlay: (videoName: string) => trackEvent({ category: 'video', action: 'video_play', label: videoName }),
+  trackVideoPause: (videoName: string) => trackEvent({ category: 'video', action: 'video_pause', label: videoName }),
+  trackVideoEnded: (videoName: string) => trackEvent({ category: 'video', action: 'video_ended', label: videoName }),
 };

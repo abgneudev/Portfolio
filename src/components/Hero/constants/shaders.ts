@@ -43,8 +43,8 @@ const vec3 WATER_ACCENT = vec3(0.0, 0.588, 0.533);      // #00968F
 
 // Scene 1: Hive - Warm amber (softened)
 const vec3 HIVE_BG_FULL = vec3(1.0, 0.973, 0.882);      // #FFF8E1
-const vec3 HIVE_FG = vec3(1.0, 0.878, 0.510);           // #FFE082
-const vec3 HIVE_ACCENT = vec3(1.0, 0.757, 0.027);       // #FFC107
+const vec3 HIVE_FG = vec3(0.840, 0.738, 0.428);         // #d6bc6d (16% darker)
+const vec3 HIVE_ACCENT = vec3(0.840, 0.636, 0.023);     // #d6a206 (16% darker)
 
 // Scene 2: Cell - Fresh green (softened)
 const vec3 CELL_BG_FULL = vec3(0.945, 0.973, 0.914);    // #F1F8E9

@@ -2,10 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  experimental: {
-    optimizeCss: true,
-  },
+  output: 'export',
+  basePath: '/Portfolio',
+  assetPrefix: '/Portfolio',
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

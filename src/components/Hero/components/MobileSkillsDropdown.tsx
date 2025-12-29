@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, memo } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import { CloudinaryMedia } from '@/components/ui';
 import { analytics } from '@/lib/analytics';
 import { SKILLS, type SkillInfo } from './SkillsPanel';
@@ -21,45 +21,102 @@ interface MobileSkillsDropdownProps {
 export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
   sceneColors
 }: MobileSkillsDropdownProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<SkillInfo | null>(null);
   const [imageIndex, setImageIndex] = useState(0);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleSkillChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const skillName = e.target.value;
-    if (skillName === '') {
-      setSelectedSkill(null);
-      setImageIndex(0);
-    } else {
-      const skill = SKILLS.find(s => s.name === skillName);
-      if (skill) {
-        analytics.trackMobileSkillSelect(skill.name);
-        setSelectedSkill(skill);
-        setImageIndex(0);
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
       }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
     }
+  }, [isOpen]);
+
+  // Close dropdown on escape key
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isOpen]);
+
+  const handleSkillSelect = (skill: SkillInfo) => {
+    analytics.trackMobileSkillSelect(skill.name);
+    setSelectedSkill(skill);
+    setImageIndex(0);
+    setIsOpen(false);
   };
 
   const currentImage = selectedSkill?.images[imageIndex];
 
   return (
     <div className={styles.mobileSkillsDropdown}>
-      <select
-        className={styles.mobileSkillsSelect}
-        value={selectedSkill?.name || ''}
-        onChange={handleSkillChange}
-        style={{
-          color: selectedSkill ? sceneColors.text : sceneColors.textMuted,
-          borderColor: sceneColors.textMuted
-        }}
-        aria-label="Select a skill to learn more"
-      >
-        <option value="">How can I help?</option>
-        {SKILLS.map((skill) => (
-          <option key={skill.name} value={skill.name}>
-            {skill.name}
-          </option>
-        ))}
-      </select>
+      {/* Dropdown trigger wrapper - constrains only the button */}
+      <div className={styles.mobileSkillsDropdownTrigger} ref={dropdownRef}>
+        {/* Custom Dropdown Trigger */}
+        <button
+          type="button"
+          className={styles.mobileSkillsSelect}
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            color: selectedSkill ? sceneColors.text : sceneColors.textMuted,
+            borderColor: sceneColors.textMuted
+          }}
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+          aria-label="Select a skill to learn more"
+        >
+          <span>{selectedSkill?.name || 'How can I help?'}</span>
+          <span
+            className={styles.dropdownArrow}
+            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+            aria-hidden="true"
+          >
+            ▼
+          </span>
+        </button>
+
+        {/* Dropdown Menu */}
+        {isOpen && (
+          <ul
+            className={styles.mobileSkillsMenu}
+            role="listbox"
+            style={{
+              backgroundColor: sceneColors.bg,
+              borderColor: sceneColors.textMuted
+            }}
+          >
+            {SKILLS.map((skill) => (
+              <li key={skill.name} role="option" aria-selected={selectedSkill?.name === skill.name}>
+                <button
+                  type="button"
+                  className={`${styles.mobileSkillsMenuItem} ${selectedSkill?.name === skill.name ? styles.mobileSkillsMenuItemActive : ''}`}
+                  onClick={() => handleSkillSelect(skill)}
+                  style={{
+                    color: selectedSkill?.name === skill.name ? sceneColors.text : sceneColors.textMuted
+                  }}
+                >
+                  {skill.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       {selectedSkill && (
         <div className={styles.mobileSkillDetails}>
@@ -114,7 +171,7 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
                 <CloudinaryMedia
                   publicId={currentImage.publicId}
                   alt={currentImage.alt}
-                  aspectRatio="16:9"
+                  aspectRatio="3:2"
                   width={400}
                   sizes="100vw"
                   className={styles.mobileSkillImage}

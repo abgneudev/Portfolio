@@ -131,40 +131,60 @@ export default function About() {
           </div>
           <p className={styles.title}>Product Design Engineer</p>
           <nav className={styles.socialLinks} aria-label="Social links">
-            <a
-              href="https://www.linkedin.com/in/abhinavgupta0210/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="LinkedIn"
-            >
-              <LinkedInIcon />
-            </a>
-            <a
-              href="https://github.com/abgneudev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="GitHub"
-            >
-              <GitHubIcon />
-            </a>
-            <a
-              href="https://www.instagram.com/abdesiigns"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="Instagram"
-            >
-              <InstagramIcon />
-            </a>
-            <a
-              href="mailto:gupta.abhinav0210@gmail.com"
-              className={styles.socialIcon}
-              aria-label="Email"
-            >
-              <EmailIcon />
-            </a>
+            <div className={styles.socialIconWrapper}>
+              <a
+                href="https://www.linkedin.com/in/abhinavgupta0210/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="LinkedIn"
+              >
+                <LinkedInIcon />
+              </a>
+              <div className={styles.socialTooltip}>
+                <span>LinkedIn</span>
+              </div>
+            </div>
+            <div className={styles.socialIconWrapper}>
+              <a
+                href="https://github.com/abgneudev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="GitHub"
+              >
+                <GitHubIcon />
+              </a>
+              <div className={styles.socialTooltip}>
+                <span>GitHub</span>
+              </div>
+            </div>
+            <div className={styles.socialIconWrapper}>
+              <a
+                href="https://www.instagram.com/abdesiigns"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="Instagram"
+              >
+                <InstagramIcon />
+              </a>
+              <div className={styles.socialTooltip}>
+                <span>Instagram</span>
+              </div>
+            </div>
+            <div className={styles.socialIconWrapper}>
+              <a
+                href="mailto:gupta.abhinav0210@gmail.com"
+                className={styles.socialIcon}
+                aria-label="Email"
+              >
+                <EmailIcon />
+              </a>
+              <div className={styles.socialTooltip}>
+                <span>Email</span>
+              </div>
+            </div>
           </nav>
         </div>
 
@@ -185,7 +205,7 @@ export default function About() {
             <h2 className={styles.sectionTitle}>About</h2>
             <div className={styles.sectionContent}>
               <p>
-                I bridge the gap between design and engineering.
+                I&apos;m a solutions architect at heart, blending design thinking with frontend engineering to create products that are not only visually engaging but also functionally robust.
               </p>
               <p>
                 Three years across enterprise financial systems, startups at Harvard Innovation Labs, and global nonprofit campaigns taught me that context is everything. Great design isn&apos;t just about aesthetics but also solving business problems with technical precision.
