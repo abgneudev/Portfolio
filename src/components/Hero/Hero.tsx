@@ -91,24 +91,6 @@ export default function Hero() {
         </div>
       )}
 
-      {/* Metrics (Desktop only, bottom left) */}
-      {!responsive.isMobile && (
-        <div className={styles.metrics} aria-label="Key metrics">
-          <div className={styles.metricItem}>
-            <span className={styles.metricValue} style={{ color: sceneColors.text }}>60%</span>
-            <span className={styles.metricLabel} style={{ color: sceneColors.textMuted }}>Faster Delivery</span>
-          </div>
-          <div className={styles.metricItem}>
-            <span className={styles.metricValue} style={{ color: sceneColors.text }}>4.5%</span>
-            <span className={styles.metricLabel} style={{ color: sceneColors.textMuted }}>Click Through Rate</span>
-          </div>
-          <div className={styles.metricItem}>
-            <span className={styles.metricValue} style={{ color: sceneColors.text }}>90+</span>
-            <span className={styles.metricLabel} style={{ color: sceneColors.textMuted }}>Lighthouse Scores</span>
-          </div>
-        </div>
-      )}
-
       {/* Skills Panel (slides in from right) */}
       <SkillsPanel
         isOpen={skillsPanelOpen}
