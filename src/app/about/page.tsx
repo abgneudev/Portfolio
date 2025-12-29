@@ -205,7 +205,7 @@ export default function About() {
             <h2 className={styles.sectionTitle}>About</h2>
             <div className={styles.sectionContent}>
               <p>
-                I&apos;m a solutions architect at heart, blending design thinking with frontend engineering to create products that are not only visually engaging but also functionally robust.
+                I excel at blending design thinking with engineering to create products that are not only visually engaging but also functionally robust.
               </p>
               <p>
                 Three years across enterprise financial systems, startups at Harvard Innovation Labs, and global nonprofit campaigns taught me that context is everything. Great design isn&apos;t just about aesthetics but also solving business problems with technical precision.
