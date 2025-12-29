@@ -20,7 +20,7 @@ const RATIO = 1.25;
 export const BREAKPOINTS: Record<string, BreakpointConfig> = {
   mobile: {
     max: 640,
-    pixelSize: 83,                          // 130 / 1.25²
+    pixelSize: 110,                         // Increased for better density/readability
     cardSpacing: Math.round(200 / (RATIO * RATIO)),  // 128
     maxVisible: 2,
     bottomPos: Math.round(180 / (RATIO * RATIO)),    // 115
