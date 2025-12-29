@@ -171,7 +171,7 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
                 <CloudinaryMedia
                   publicId={currentImage.publicId}
                   alt={currentImage.alt}
-                  aspectRatio="3:2"
+                  aspectRatio="4:3"
                   width={400}
                   sizes="100vw"
                   className={styles.mobileSkillImage}
