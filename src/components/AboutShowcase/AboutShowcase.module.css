@@ -1,0 +1,756 @@
+/* AboutShowcase.module.css */
+
+/* Import handwriting fonts for polaroid captions */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+
+/* Main container */
+.showcase {
+  width: 100%;
+  position: relative;
+  background: var(--color-bg);
+}
+
+/* Scrapbook Section */
+.scrapbookSection {
+  background: var(--color-bg);
+}
+
+.scrapbookContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.scrapbookTitle {
+  font-family: monospace;
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-6) 0;
+}
+
+/* Adventure Video */
+.videoWrapper {
+  width: 100%;
+  margin-bottom: var(--space-6);
+  overflow: hidden;
+}
+
+.adventureVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Three Column Layout Container */
+.categoriesContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  width: 100%;
+  padding: var(--space-10) 0;
+}
+
+/* Category Sections */
+.categorySection {
+  position: relative;
+}
+
+.categoryTitle {
+  font-family: monospace;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.scrapbookBoard {
+  position: relative;
+  min-height: 400px;
+  width: 100%;
+}
+
+/* Polaroid Cards */
+.polaroidCard {
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.polaroidContent {
+  position: relative;
+  background: white;
+  padding: 6px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.polaroidHovered {
+  z-index: 999 !important;
+  transform: scale(1.8) translateY(-10px) rotate(0deg) !important;
+}
+
+.polaroidHovered .polaroidContent {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.polaroidNormal {
+  z-index: 10;
+}
+
+/* Position Classes - Food Column */
+.foodPos1 {
+  top: 0;
+  left: 5%;
+  z-index: 12;
+}
+.foodPos2 {
+  top: 30px;
+  right: 16%;
+  z-index: 11;
+}
+.foodPos3 {
+  top: 200px;
+  left: 20%;
+  z-index: 13;
+}
+
+/* Position Classes - Activity Column */
+.activityPos1 {
+  top: 0;
+  left: 1%;
+  z-index: 14;
+}
+.activityPos2 {
+  top: 20px;
+  right: 20%;
+  z-index: 12;
+}
+.activityPos3 {
+  top: 200px;
+  left: 40%;
+  z-index: 13;
+}
+.activityPos4 {
+  top: 220px;
+  left: 0%;
+  z-index: 11;
+}
+
+/* Rotation classes */
+.rotateNeg6 { transform: rotate(-6deg); }
+.rotateNeg5 { transform: rotate(-5deg); }
+.rotateNeg4 { transform: rotate(-4deg); }
+.rotateNeg3 { transform: rotate(-3deg); }
+.rotatePos3 { transform: rotate(3deg); }
+.rotatePos4 { transform: rotate(4deg); }
+.rotatePos7 { transform: rotate(7deg); }
+
+/* Photo styles - SMALLER */
+.polaroidPhotoWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.polaroidPhoto {
+  width: 120px;
+  height: 135px;
+  object-fit: cover;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photoNormal {
+  filter: sepia(0.1) brightness(0.95);
+}
+
+.photoHovered {
+  filter: none;
+  transform: scale(1.05);
+}
+
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Caption styles - SMALLER */
+.polaroidCaption {
+  position: relative;
+  padding: 4px 6px 0;
+  margin-top: 4px;
+}
+
+.polaroidTitle {
+  display: block;
+  text-align: center;
+  color: var(--color-text);
+  font-size: 12px;
+  font-family: "Patrick Hand SC", cursive;
+  font-weight: 400;
+  font-style: normal;
+  transform: rotate(-1deg);
+  margin-bottom: 2px;
+}
+
+.polaroidDate {
+  display: block;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 10px;
+  font-family: "Patrick Hand SC", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Tape styles - SMALLER */
+.tape {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 20px;
+  z-index: 10;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+  clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+}
+
+.tapePattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.1) 2px, rgba(255, 255, 255, 0.1) 4px);
+}
+
+.tapeYellow {
+  background: linear-gradient(to right, rgba(254, 240, 138, 0.8), rgba(253, 224, 71, 0.8));
+}
+
+.tapePink {
+  background: linear-gradient(to right, rgba(251, 207, 232, 0.8), rgba(244, 114, 182, 0.8));
+}
+
+.tapeBlue {
+  background: linear-gradient(to right, rgba(191, 219, 254, 0.8), rgba(147, 197, 253, 0.8));
+}
+
+.tapeGreen {
+  background: linear-gradient(to right, rgba(187, 247, 208, 0.8), rgba(134, 239, 172, 0.8));
+}
+
+.tapePurple {
+  background: linear-gradient(to right, rgba(221, 214, 254, 0.8), rgba(196, 181, 253, 0.8));
+}
+
+/* Push pin styles - SMALLER */
+.pushPin {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  z-index: 20;
+}
+
+.pushPinOuter {
+  position: absolute;
+  inset: 0;
+  background: #EF4444;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+}
+
+.pushPinMiddle {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: #DC2626;
+  border-radius: 50%;
+}
+
+.pushPinInner {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background: #F87171;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* Stickers - SMALLER */
+.sticker {
+  position: absolute;
+  z-index: 5;
+}
+
+.stickerPizza {
+  bottom: -5px;
+  right: -5px;
+  font-size: 18px;
+  transform: rotate(12deg);
+}
+
+.stickerStar {
+  bottom: -5px;
+  right: -5px;
+  font-size: 18px;
+  transform: rotate(12deg);
+}
+
+.stickerHeart {
+  bottom: -5px;
+  right: -5px;
+  font-size: 16px;
+  transform: rotate(-12deg);
+}
+
+.stickerWave {
+  bottom: -8px;
+  left: -8px;
+  font-size: 16px;
+}
+
+/* Bookshelf - Compact vertical layout */
+.bookshelf {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  padding: var(--space-4) var(--space-2) var(--space-4);
+  min-height: 308px;
+  background: none;
+  gap: 5px;
+}
+
+.bookshelf::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+  box-shadow:
+    0 -2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+.book {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform-origin: bottom center;
+  filter: none;
+  z-index: 2;
+}
+
+
+/* Book sizes - ~10% larger */
+.book:nth-child(1) {
+  width: 20px;
+  height: 154px;
+  transform: rotate(-2deg);
+}
+
+.book:nth-child(2) {
+  width: 31px;
+  height: 176px;
+  transform: rotate(1deg);
+}
+
+.book:nth-child(3) {
+  width: 24px;
+  height: 165px;
+  transform: rotate(-1deg);
+}
+
+.book:nth-child(4) {
+  width: 33px;
+  height: 171px;
+  transform: rotate(2deg);
+}
+
+.book:nth-child(5) {
+  width: 22px;
+  height: 160px;
+  transform: rotate(-1.5deg);
+}
+
+.book:nth-child(6) {
+  width: 18px;
+  height: 182px;
+  transform: rotate(1.5deg);
+}
+
+.book:nth-child(7) {
+  width: 26px;
+  height: 163px;
+  transform: rotate(-0.5deg);
+}
+
+.book:nth-child(8) {
+  width: 24px;
+  height: 167px;
+  transform: rotate(1deg);
+}
+
+.book:nth-child(9) {
+  width: 29px;
+  height: 165px;
+  transform: rotate(0.5deg);
+}
+
+.book:nth-child(10) {
+  width: 20px;
+  height: 160px;
+  transform: rotate(-1deg);
+}
+
+.book:hover {
+  transform: translateY(-8px) rotate(0deg) !important;
+  filter: none;
+  z-index: 100 !important;
+}
+
+.bookSpine {
+  width: 100%;
+  height: 100%;
+  background: var(--book-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: var(--space-2) 2px;
+  color: white;
+  font-size: 10px;
+  font-weight: var(--font-bold);
+  text-shadow: none;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  font-family: monospace;
+  box-shadow:
+    1px 0 2px rgba(0, 0, 0, 0.1),
+    -1px 0 2px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.bookTitle {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-align: center;
+  line-height: var(--leading-tight);
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bookCover {
+  position: absolute;
+  width: 160px;
+  height: 240px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  bottom: 20px;
+  border-radius: 0;
+  box-shadow: var(--shadow-lg);
+  overflow: visible;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  z-index: 200;
+}
+
+.bookCoverVisible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-100px);
+}
+
+.bookCoverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: none;
+}
+
+/* Responsive Design */
+
+/* Large tablets / small laptops */
+@media (max-width: 1200px) {
+  .scrapbookSection {
+    padding: var(--space-4);
+  }
+
+  .polaroidPhoto {
+    width: 100px;
+    height: 112px;
+  }
+
+  .polaroidTitle {
+    font-size: 10px;
+  }
+
+  .polaroidDate {
+    font-size: 8px;
+  }
+
+  .tape {
+    width: 50px;
+    height: 16px;
+  }
+
+  .pushPin {
+    width: 16px;
+    height: 16px;
+  }
+
+  .pushPinMiddle {
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .pushPinInner {
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+  }
+
+  .sticker {
+    font-size: 14px;
+  }
+
+  .book:nth-child(1) { width: 15px; height: 132px; }
+  .book:nth-child(2) { width: 24px; height: 154px; }
+  .book:nth-child(3) { width: 20px; height: 143px; }
+  .book:nth-child(4) { width: 26px; height: 149px; }
+  .book:nth-child(5) { width: 18px; height: 138px; }
+  .book:nth-child(6) { width: 15px; height: 160px; }
+  .book:nth-child(7) { width: 22px; height: 141px; }
+  .book:nth-child(8) { width: 20px; height: 145px; }
+  .book:nth-child(9) { width: 24px; height: 143px; }
+  .book:nth-child(10) { width: 15px; height: 138px; }
+
+  .bookSpine {
+    font-size: 8px;
+    padding: var(--space-1) 1px;
+  }
+
+  .bookshelf {
+    min-height: 242px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .categoriesContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .categorySection:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .bookshelf {
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .scrapbookBoard {
+    min-height: 350px;
+  }
+
+  .foodPos1 { top: 0; left: 5%; }
+  .foodPos2 { top: 20px; right: 5%; }
+  .foodPos3 { top: 170px; left: 15%; }
+
+  .activityPos1 { top: 0; left: 5%; }
+  .activityPos2 { top: 20px; right: 5%; }
+  .activityPos3 { top: 170px; left: 10%; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .scrapbookSection {
+    padding: var(--space-3);
+  }
+
+  .scrapbookTitle {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-4);
+  }
+
+  .categoryTitle {
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-3);
+  }
+
+  .categoriesContainer {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .categorySection:nth-child(3) {
+    grid-column: span 1;
+  }
+
+  .scrapbookBoard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+    gap: var(--space-3);
+  }
+
+  /* Stack cards vertically on mobile */
+  .polaroidCard {
+    position: relative !important;
+    margin: 0;
+    transform: none !important;
+  }
+
+  .foodPos1,
+  .foodPos2,
+  .foodPos3,
+  .activityPos1,
+  .activityPos2,
+  .activityPos3 {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  .rotateNeg6,
+  .rotateNeg5,
+  .rotateNeg4,
+  .rotateNeg3,
+  .rotatePos3,
+  .rotatePos4,
+  .rotatePos7 {
+    transform: rotate(0deg);
+  }
+
+  .polaroidHovered {
+    transform: scale(1.5) rotate(0deg) !important;
+  }
+
+  .polaroidPhoto {
+    width: 140px;
+    height: 157px;
+  }
+
+  .polaroidTitle {
+    font-size: 12px;
+  }
+
+  .polaroidDate {
+    font-size: 10px;
+  }
+
+  .bookshelf {
+    min-height: 198px;
+    justify-content: center;
+    max-width: 100%;
+    gap: 4px;
+  }
+
+  .book:nth-child(1) { width: 13px; height: 110px; }
+  .book:nth-child(2) { width: 20px; height: 127px; }
+  .book:nth-child(3) { width: 15px; height: 119px; }
+  .book:nth-child(4) { width: 22px; height: 123px; }
+  .book:nth-child(5) { width: 14px; height: 116px; }
+  .book:nth-child(6) { width: 12px; height: 132px; }
+  .book:nth-child(7) { width: 18px; height: 117px; }
+  .book:nth-child(8) { width: 15px; height: 121px; }
+  .book:nth-child(9) { width: 20px; height: 119px; }
+  .book:nth-child(10) { width: 13px; height: 114px; }
+
+  .bookSpine {
+    font-size: 7px;
+    padding: 2px 1px;
+  }
+
+  .bookshelf::after {
+    height: 8px;
+  }
+
+  .bookCover {
+    width: 120px;
+    height: 180px;
+  }
+
+  .bookCoverVisible {
+    transform: translateX(-50%) translateY(-80px);
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .scrapbookSection {
+    padding: var(--space-2);
+  }
+
+  .polaroidPhoto {
+    width: 120px;
+    height: 135px;
+  }
+
+  .bookshelf {
+    min-height: 165px;
+    gap: 3px;
+  }
+
+  .book:nth-child(1) { width: 11px; height: 94px; }
+  .book:nth-child(2) { width: 17px; height: 108px; }
+  .book:nth-child(3) { width: 13px; height: 101px; }
+  .book:nth-child(4) { width: 19px; height: 105px; }
+  .book:nth-child(5) { width: 12px; height: 97px; }
+  .book:nth-child(6) { width: 10px; height: 112px; }
+  .book:nth-child(7) { width: 15px; height: 99px; }
+  .book:nth-child(8) { width: 13px; height: 103px; }
+  .book:nth-child(9) { width: 17px; height: 101px; }
+  .book:nth-child(10) { width: 11px; height: 97px; }
+
+  .bookSpine {
+    font-size: 6px;
+  }
+
+  .bookCover {
+    width: 100px;
+    height: 150px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .polaroidCard,
+  .polaroidContent,
+  .polaroidPhoto,
+  .book,
+  .bookCover {
+    transition: none;
+  }
+}
