@@ -115,14 +115,16 @@ export default function Hero() {
         onClose={() => setSkillsPanelOpen(false)}
       />
 
-      {/* FPS Counter (development aid) */}
-      <div
-        className={styles.fpsCounter}
-        style={{ color: sceneColors.textMuted }}
-        aria-hidden="true"
-      >
-        {fps} FPS
-      </div>
+      {/* FPS Counter (development only) */}
+      {process.env.NODE_ENV === 'development' && (
+        <div
+          className={styles.fpsCounter}
+          style={{ color: sceneColors.textMuted }}
+          aria-hidden="true"
+        >
+          {fps} FPS
+        </div>
+      )}
 
     </section>
   );
