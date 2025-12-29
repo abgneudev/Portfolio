@@ -75,7 +75,7 @@ export const HeroHeader = memo(function HeroHeader({
   return (
     <header className={styles.heroHeader}>
       <div className={isMobile ? styles.headerMobile : styles.headerDesktop}>
-        {/* Identity Section */}
+        {/* Name & Title */}
         <div className={styles.identity}>
           <h1
             className={styles.heroName}
@@ -95,83 +95,82 @@ export const HeroHeader = memo(function HeroHeader({
           >
             Product Design Engineer
           </p>
-          {/* Social Links */}
-          <nav className={styles.socialLinks} aria-label="Social links">
-            <Link
-              href="/about"
-              className={styles.socialLinkText}
-              style={{ color: mutedColor }}
-              onClick={analytics.trackAboutMe}
-            >
-              About Me
-            </Link>
-            <span className={styles.socialDivider} style={{ color: mutedColor }}>|</span>
-            <div className={styles.socialIconWrapper}>
-              <a
-                href="https://www.linkedin.com/in/abhinavgupta0210/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialIcon}
-                style={{ color: mutedColor }}
-                aria-label="LinkedIn"
-                onClick={analytics.trackLinkedIn}
-              >
-                <LinkedInIcon />
-              </a>
-              <div className={styles.socialTooltip}>
-                <span>LinkedIn</span>
-              </div>
-            </div>
-            <div className={styles.socialIconWrapper}>
-              <a
-                href="https://github.com/abgneudev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialIcon}
-                style={{ color: mutedColor }}
-                aria-label="GitHub"
-                onClick={analytics.trackGitHub}
-              >
-                <GitHubIcon />
-              </a>
-              <div className={styles.socialTooltip}>
-                <span>GitHub</span>
-              </div>
-            </div>
-            <div className={styles.socialIconWrapper}>
-              <a
-                href="https://www.instagram.com/abdesiigns"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialIcon}
-                style={{ color: mutedColor }}
-                aria-label="Instagram"
-                onClick={analytics.trackInstagram}
-              >
-                <InstagramIcon />
-              </a>
-              <div className={styles.socialTooltip}>
-                <span>Instagram</span>
-              </div>
-            </div>
-            <div className={styles.socialIconWrapper}>
-              <a
-                href="mailto:gupta.abhinav0210@gmail.com"
-                className={styles.socialIcon}
-                style={{ color: mutedColor }}
-                aria-label="Email"
-                onClick={analytics.trackEmail}
-              >
-                <EmailIcon />
-              </a>
-              <div className={styles.socialTooltip}>
-                <span>Email</span>
-              </div>
-            </div>
-          </nav>
         </div>
 
-        {/* Description - Desktop only */}
+        {/* About Me, Social Links & Description */}
+        <nav className={styles.socialLinks} aria-label="Social links">
+          <Link
+            href="/about"
+            className={styles.socialLinkText}
+            style={{ color: mutedColor }}
+            onClick={analytics.trackAboutMe}
+          >
+            About Me<span className={styles.aboutArrow} aria-hidden="true">→</span>
+          </Link>
+          <span className={styles.socialDivider} style={{ color: mutedColor }}>|</span>
+          <div className={styles.socialIconWrapper}>
+            <a
+              href="https://www.linkedin.com/in/abhinavgupta0210/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              style={{ color: mutedColor }}
+              aria-label="LinkedIn"
+              onClick={analytics.trackLinkedIn}
+            >
+              <LinkedInIcon />
+            </a>
+            <div className={styles.socialTooltip}>
+              <span>LinkedIn</span>
+            </div>
+          </div>
+          <div className={styles.socialIconWrapper}>
+            <a
+              href="https://github.com/abgneudev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              style={{ color: mutedColor }}
+              aria-label="GitHub"
+              onClick={analytics.trackGitHub}
+            >
+              <GitHubIcon />
+            </a>
+            <div className={styles.socialTooltip}>
+              <span>GitHub</span>
+            </div>
+          </div>
+          <div className={styles.socialIconWrapper}>
+            <a
+              href="https://www.instagram.com/abdesiigns"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              style={{ color: mutedColor }}
+              aria-label="Instagram"
+              onClick={analytics.trackInstagram}
+            >
+              <InstagramIcon />
+            </a>
+            <div className={styles.socialTooltip}>
+              <span>Instagram</span>
+            </div>
+          </div>
+          <div className={styles.socialIconWrapper}>
+            <a
+              href="mailto:gupta.abhinav0210@gmail.com"
+              className={styles.socialIcon}
+              style={{ color: mutedColor }}
+              aria-label="Email"
+              onClick={analytics.trackEmail}
+            >
+              <EmailIcon />
+            </a>
+            <div className={styles.socialTooltip}>
+              <span>Email</span>
+            </div>
+          </div>
+        </nav>
         {!isMobile && (
           <p
             className={styles.heroDescription}
@@ -183,8 +182,6 @@ export const HeroHeader = memo(function HeroHeader({
             Power user of design, code, math & AI. 2x Hackathon winner. Last developed a wellness app at Harvard Innovation Labs.
           </p>
         )}
-
-
 
         {/* CTA Buttons */}
         <div className={styles.ctaButtons}>

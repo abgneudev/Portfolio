@@ -128,7 +128,6 @@ export const SkillsPanel = memo(function SkillsPanel({ isOpen, onClose }: Skills
               <p className={styles.skillsPanelDescription}>{activeSkill.description}</p>
 
               <div className={styles.skillsPanelTools}>
-                <span className={styles.skillsPanelToolsLabel}>Skills:</span>
                 <ul className={styles.skillsPanelToolsList}>
                   {activeSkill.skills.map((skill) => (
                     <li key={skill} className={styles.skillsPanelTool}>{skill}</li>
