@@ -2,6 +2,7 @@
 
 import { memo } from 'react';
 import Link from 'next/link';
+import { analytics } from '@/lib/analytics';
 import styles from '../Hero.module.css';
 
 // Social media icons as inline SVGs
@@ -100,6 +101,7 @@ export const HeroHeader = memo(function HeroHeader({
               href="/about"
               className={styles.socialLinkText}
               style={{ color: mutedColor }}
+              onClick={analytics.trackAboutMe}
             >
               About Me
             </Link>
@@ -112,6 +114,7 @@ export const HeroHeader = memo(function HeroHeader({
                 className={styles.socialIcon}
                 style={{ color: mutedColor }}
                 aria-label="LinkedIn"
+                onClick={analytics.trackLinkedIn}
               >
                 <LinkedInIcon />
               </a>
@@ -127,6 +130,7 @@ export const HeroHeader = memo(function HeroHeader({
                 className={styles.socialIcon}
                 style={{ color: mutedColor }}
                 aria-label="GitHub"
+                onClick={analytics.trackGitHub}
               >
                 <GitHubIcon />
               </a>
@@ -142,6 +146,7 @@ export const HeroHeader = memo(function HeroHeader({
                 className={styles.socialIcon}
                 style={{ color: mutedColor }}
                 aria-label="Instagram"
+                onClick={analytics.trackInstagram}
               >
                 <InstagramIcon />
               </a>
@@ -155,6 +160,7 @@ export const HeroHeader = memo(function HeroHeader({
                 className={styles.socialIcon}
                 style={{ color: mutedColor }}
                 aria-label="Email"
+                onClick={analytics.trackEmail}
               >
                 <EmailIcon />
               </a>
@@ -181,7 +187,10 @@ export const HeroHeader = memo(function HeroHeader({
             <button
               type="button"
               className={styles.skillsTrigger}
-              onClick={onSkillsClick}
+              onClick={() => {
+                analytics.trackHowCanIHelp();
+                onSkillsClick();
+              }}
               style={{ color: mutedColor }}
             >
               How can I help? <span aria-hidden="true">→</span>
@@ -202,6 +211,7 @@ export const HeroHeader = memo(function HeroHeader({
                 backgroundColor: buttonBg,
                 color: '#FFFFFF'
               }}
+              onClick={analytics.trackViewWork}
             >
               {isMobile ? 'Work' : 'View Work'}
             </button>
@@ -221,7 +231,10 @@ export const HeroHeader = memo(function HeroHeader({
                 '--hover-bg': sceneColors.text === '#FFFFFF' ? sceneColors.fg : sceneColors.text,
                 '--hover-border': sceneColors.text === '#FFFFFF' ? sceneColors.fg : sceneColors.text
               } as React.CSSProperties}
-              onClick={() => window.open('https://drive.google.com/file/d/18ga1iRzZ8qmfpBasr6hgX651MTAB-fBa/view?usp=sharing', '_blank')}
+              onClick={() => {
+                analytics.trackResume();
+                window.open('https://drive.google.com/file/d/18ga1iRzZ8qmfpBasr6hgX651MTAB-fBa/view?usp=sharing', '_blank');
+              }}
             >
               {isMobile ? 'CV' : <>Resume <span aria-hidden="true">↓</span></>}
             </button>

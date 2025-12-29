@@ -2,6 +2,7 @@
 
 import { useState, memo } from 'react';
 import { CloudinaryMedia } from '@/components/ui';
+import { analytics } from '@/lib/analytics';
 import { SKILLS, type SkillInfo } from './SkillsPanel';
 import styles from '../Hero.module.css';
 
@@ -31,6 +32,7 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
     } else {
       const skill = SKILLS.find(s => s.name === skillName);
       if (skill) {
+        analytics.trackMobileSkillSelect(skill.name);
         setSelectedSkill(skill);
         setImageIndex(0);
       }
