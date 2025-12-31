@@ -7,3 +7,4 @@
 export { useResponsive, type ResponsiveConfig } from './useResponsive';
 export { useCanvasSize, type CanvasSize } from './useCanvasSize';
 export { useHeroWebGL } from './useHeroWebGL';
+export { useASCIIHero, type ASCIIHeroState } from './useASCIIHero';

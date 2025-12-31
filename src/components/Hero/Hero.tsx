@@ -1,30 +1,27 @@
 'use client';
 
-import { useRef, useState, useMemo } from 'react';
-import { SCENE_COLORS, type SceneName } from './constants';
-import { useResponsive, useCanvasSize, useHeroWebGL } from './hooks';
-import { HeroHeader, SkillsPanel, MobileSkillsDropdown } from './components';
+import { useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useResponsive, useASCIIHero } from './hooks';
+import { HeroHeader, MobileSkillsDropdown } from './components';
 import styles from './Hero.module.css';
 
-/**
- * Get scene-specific colors for UI elements
- */
-function getSceneColors(scene: SceneName) {
-  return SCENE_COLORS[scene];
-}
+// Lazy load SkillsPanel - only loads when user clicks "How can I help?"
+const SkillsPanel = dynamic(
+  () => import('./components/SkillsPanel').then(mod => ({ default: mod.SkillsPanel })),
+  { ssr: false }
+);
+
+// Video URL for ASCII background
+const ASCII_VIDEO_URL = 'https://res.cloudinary.com/dbvfgfqqh/video/upload/v1767211706/recording_rope3y.mp4';
 
 /**
  * Hero Component
  *
  * Full-screen hero section featuring:
- * - WebGL shader background with 5 nature-inspired animated scenes
- * - Dynamic color theming that syncs with current shader scene
- * - Animated skill cards that scroll horizontally
+ * - ASCII art video background animation
  * - Interactive skill selection with image carousel
  * - Responsive layout for mobile, tablet, and desktop
- *
- * Scenes cycle through: Water, Hive, Cell, Shell, Wood
- * Each scene has its own color palette that affects all text elements
  *
  * @accessibility
  * - Landmark region with aria-label for screen readers
@@ -35,17 +32,18 @@ function getSceneColors(scene: SceneName) {
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const responsive = useResponsive();
-  const canvasSize = useCanvasSize();
-  const { fps, currentScene } = useHeroWebGL(canvasRef, responsive.pixelSize, 1.0, canvasSize);
+  // Use a fixed fontSize to prevent WebGL reinitialization on resize
+  // The ASCII effect will adapt via the grid size calculation
+  const { fps } = useASCIIHero(canvasRef, {
+    videoUrl: ASCII_VIDEO_URL,
+    fontSize: 6,
+    targetFps: 15,
+  });
   const [skillsPanelOpen, setSkillsPanelOpen] = useState(false);
-
-  // Get current scene colors
-  const sceneColors = useMemo(() => getSceneColors(currentScene), [currentScene]);
 
   return (
     <section
       className={styles.hero}
-      style={{ backgroundColor: sceneColors.bg }}
       aria-label="Hero section"
       id="hero"
     >
@@ -54,12 +52,10 @@ export default function Hero() {
         Skip to main content
       </a>
 
-      {/* WebGL Canvas Layer */}
+      {/* ASCII Art Background Layer */}
       <canvas
         ref={canvasRef}
-        width={canvasSize.width}
-        height={canvasSize.height}
-        className={styles.canvas}
+        className={`${styles.asciiBackground} ${skillsPanelOpen ? styles.asciiBackgroundBlurred : ''}`}
         aria-hidden="true"
       />
 
@@ -67,11 +63,8 @@ export default function Hero() {
       {responsive.isMobile && (
         <div className={styles.mobileLayout}>
           <div className={styles.mobileHeader}>
-            <HeroHeader
-              isMobile={true}
-              sceneColors={sceneColors}
-            />
-            <MobileSkillsDropdown sceneColors={sceneColors} />
+            <HeroHeader isMobile={true} />
+            <MobileSkillsDropdown />
           </div>
           <div className={styles.mobileSpacer} />
         </div>
@@ -85,7 +78,6 @@ export default function Hero() {
               isMobile={false}
               onSkillsClick={() => setSkillsPanelOpen(true)}
               skillsPanelOpen={skillsPanelOpen}
-              sceneColors={sceneColors}
             />
           </div>
         </div>
@@ -99,11 +91,7 @@ export default function Hero() {
 
       {/* FPS Counter (development only) */}
       {process.env.NODE_ENV === 'development' && (
-        <div
-          className={styles.fpsCounter}
-          style={{ color: sceneColors.textMuted }}
-          aria-hidden="true"
-        >
+        <div className={styles.fpsCounter} aria-hidden="true">
           {fps} FPS
         </div>
       )}

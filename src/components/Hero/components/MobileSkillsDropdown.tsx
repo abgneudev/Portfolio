@@ -6,21 +6,7 @@ import { analytics } from '@/lib/analytics';
 import { SKILLS, type SkillInfo } from './SkillsPanel';
 import styles from '../Hero.module.css';
 
-interface SceneColors {
-  bg: string;
-  fg: string;
-  accent: string;
-  text: string;
-  textMuted: string;
-}
-
-interface MobileSkillsDropdownProps {
-  sceneColors: SceneColors;
-}
-
-export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
-  sceneColors
-}: MobileSkillsDropdownProps) {
+export const MobileSkillsDropdown = memo(function MobileSkillsDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<SkillInfo | null>(null);
   const [imageIndex, setImageIndex] = useState(0);
@@ -70,20 +56,15 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
         {/* Custom Dropdown Trigger */}
         <button
           type="button"
-          className={styles.mobileSkillsSelect}
+          className={`${styles.mobileSkillsSelect} ${selectedSkill ? styles.mobileSkillsSelectActive : ''}`}
           onClick={() => setIsOpen(!isOpen)}
-          style={{
-            color: selectedSkill ? sceneColors.text : sceneColors.textMuted,
-            borderColor: sceneColors.textMuted
-          }}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           aria-label="Select a skill to learn more"
         >
           <span>{selectedSkill?.name || 'How can I help?'}</span>
           <span
-            className={styles.dropdownArrow}
-            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+            className={`${styles.dropdownArrow} ${isOpen ? styles.dropdownArrowOpen : ''}`}
             aria-hidden="true"
           >
             ▼
@@ -95,10 +76,6 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
           <ul
             className={styles.mobileSkillsMenu}
             role="listbox"
-            style={{
-              backgroundColor: sceneColors.bg,
-              borderColor: sceneColors.textMuted
-            }}
           >
             {SKILLS.map((skill) => (
               <li key={skill.name} role="option" aria-selected={selectedSkill?.name === skill.name}>
@@ -106,9 +83,6 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
                   type="button"
                   className={`${styles.mobileSkillsMenuItem} ${selectedSkill?.name === skill.name ? styles.mobileSkillsMenuItemActive : ''}`}
                   onClick={() => handleSkillSelect(skill)}
-                  style={{
-                    color: selectedSkill?.name === skill.name ? sceneColors.text : sceneColors.textMuted
-                  }}
                 >
                   {skill.name}
                 </button>
@@ -120,16 +94,10 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
 
       {selectedSkill && (
         <div className={styles.mobileSkillDetails}>
-          <h3
-            className={styles.mobileSkillTitle}
-            style={{ color: sceneColors.text }}
-          >
+          <h3 className={styles.mobileSkillTitle}>
             {selectedSkill.title}
           </h3>
-          <p
-            className={styles.mobileSkillDescription}
-            style={{ color: sceneColors.textMuted }}
-          >
+          <p className={styles.mobileSkillDescription}>
             {selectedSkill.description}
           </p>
 
@@ -138,10 +106,6 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
               <span
                 key={skill}
                 className={styles.mobileSkillTag}
-                style={{
-                  backgroundColor: `${sceneColors.accent}20`,
-                  color: sceneColors.text
-                }}
               >
                 {skill}
               </span>
@@ -158,9 +122,6 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
                       type="button"
                       className={`${styles.mobileSkillImageNavItem} ${idx === imageIndex ? styles.mobileSkillImageNavItemActive : ''}`}
                       onClick={() => setImageIndex(idx)}
-                      style={{
-                        color: idx === imageIndex ? sceneColors.text : sceneColors.textMuted
-                      }}
                     >
                       {img.title}
                     </button>
@@ -178,10 +139,7 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({
                   placeholder="blur"
                 />
               </div>
-              <p
-                className={styles.mobileSkillCaption}
-                style={{ color: sceneColors.textMuted }}
-              >
+              <p className={styles.mobileSkillCaption}>
                 {currentImage.caption}
               </p>
             </div>

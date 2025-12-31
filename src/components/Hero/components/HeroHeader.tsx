@@ -30,13 +30,11 @@ const EmailIcon = () => (
   </svg>
 );
 
-interface SceneColors {
-  bg: string;
-  fg: string;
-  accent: string;
-  text: string;
-  textMuted: string;
-}
+const DownloadIcon = () => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+  </svg>
+);
 
 interface HeroHeaderProps {
   /** Whether to use mobile layout */
@@ -45,15 +43,12 @@ interface HeroHeaderProps {
   onSkillsClick?: () => void;
   /** Whether skills panel is open */
   skillsPanelOpen?: boolean;
-  /** Scene-based colors from the shader */
-  sceneColors: SceneColors;
 }
 
 /**
  * HeroHeader Component
  *
  * Displays the hero section header with name, title, and call-to-action buttons.
- * Colors are driven by the current shader scene for a cohesive experience.
  *
  * @accessibility
  * - Semantic heading hierarchy (h1 for name)
@@ -63,36 +58,17 @@ interface HeroHeaderProps {
 export const HeroHeader = memo(function HeroHeader({
   isMobile,
   onSkillsClick,
-  skillsPanelOpen,
-  sceneColors
+  skillsPanelOpen
 }: HeroHeaderProps) {
-  // Use scene colors for theming
-  const textColor = sceneColors.text;
-  const mutedColor = sceneColors.textMuted;
-  const buttonBg = sceneColors.accent;
-  const borderColor = sceneColors.textMuted;
-
   return (
     <header className={styles.heroHeader}>
       <div className={isMobile ? styles.headerMobile : styles.headerDesktop}>
         {/* Name & Title */}
         <div className={styles.identity}>
-          <h1
-            className={styles.heroName}
-            style={{
-              color: textColor,
-              fontSize: isMobile ? '16px' : '18px'
-            }}
-          >
+          <h1 className={styles.heroName}>
             Abhinav Gupta
           </h1>
-          <p
-            className={styles.heroTitle}
-            style={{
-              color: mutedColor,
-              fontSize: isMobile ? '12px' : '14px'
-            }}
-          >
+          <p className={styles.heroTitle}>
             Product Design Engineer
           </p>
         </div>
@@ -102,19 +78,17 @@ export const HeroHeader = memo(function HeroHeader({
           <Link
             href="/about"
             className={styles.socialLinkText}
-            style={{ color: mutedColor }}
             onClick={analytics.trackAboutMe}
           >
             About Me<span className={styles.aboutArrow} aria-hidden="true">→</span>
           </Link>
-          <span className={styles.socialDivider} style={{ color: mutedColor }}>|</span>
+          <span className={styles.socialDivider}>|</span>
           <div className={styles.socialIconWrapper}>
             <a
               href="https://www.linkedin.com/in/abhinavgupta0210/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialIcon}
-              style={{ color: mutedColor }}
               aria-label="LinkedIn"
               onClick={analytics.trackLinkedIn}
             >
@@ -130,7 +104,6 @@ export const HeroHeader = memo(function HeroHeader({
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialIcon}
-              style={{ color: mutedColor }}
               aria-label="GitHub"
               onClick={analytics.trackGitHub}
             >
@@ -146,7 +119,6 @@ export const HeroHeader = memo(function HeroHeader({
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialIcon}
-              style={{ color: mutedColor }}
               aria-label="Instagram"
               onClick={analytics.trackInstagram}
             >
@@ -160,7 +132,6 @@ export const HeroHeader = memo(function HeroHeader({
             <a
               href="mailto:gupta.abhinav0210@gmail.com"
               className={styles.socialIcon}
-              style={{ color: mutedColor }}
               aria-label="Email"
               onClick={analytics.trackEmail}
             >
@@ -172,14 +143,9 @@ export const HeroHeader = memo(function HeroHeader({
           </div>
         </nav>
         {!isMobile && (
-          <p
-            className={styles.heroDescription}
-            style={{
-              color: mutedColor,
-              fontSize: '12px'
-            }}
-          >
-            Power user of design, code, math & AI. 2x Hackathon winner. Last developed a wellness app at Harvard Innovation Labs.
+          <p className={styles.heroDescription}>
+            Power user of design, code, math & AI. <br />
+             2x Hackathon winner. Last developed a wellness app at Harvard Innovation Labs.
           </p>
         )}
 
@@ -189,17 +155,13 @@ export const HeroHeader = memo(function HeroHeader({
             <button
               type="button"
               className={styles.ctaPrimary}
-              style={{
-                backgroundColor: buttonBg,
-                color: '#FFFFFF'
-              }}
               onClick={analytics.trackViewWork}
             >
               {isMobile ? 'Work' : 'View Work'}
             </button>
             {!isMobile && (
               <div className={styles.ctaTooltip}>
-                <span style={{ color: '#FFFFFF' }}>Case Studies</span>
+                <span>Case Studies</span>
               </div>
             )}
           </div>
@@ -207,22 +169,16 @@ export const HeroHeader = memo(function HeroHeader({
             <button
               type="button"
               className={styles.ctaSecondary}
-              style={{
-                color: mutedColor,
-                borderColor: borderColor,
-                '--hover-bg': sceneColors.text === '#FFFFFF' ? sceneColors.fg : sceneColors.text,
-                '--hover-border': sceneColors.text === '#FFFFFF' ? sceneColors.fg : sceneColors.text
-              } as React.CSSProperties}
               onClick={() => {
                 analytics.trackResume();
                 window.open('https://drive.google.com/file/d/18ga1iRzZ8qmfpBasr6hgX651MTAB-fBa/view?usp=sharing', '_blank');
               }}
             >
-              {isMobile ? 'CV' : <>Resume <span aria-hidden="true">↓</span></>}
+              {isMobile ? 'CV' : <span className={styles.ctaWithIcon}>Resume <DownloadIcon /></span>}
             </button>
             {!isMobile && (
               <div className={styles.ctaTooltip}>
-                <span style={{ color: '#FFFFFF' }}>Download Resume PDF</span>
+                <span>Download Resume PDF</span>
               </div>
             )}
           </div>
@@ -239,9 +195,8 @@ export const HeroHeader = memo(function HeroHeader({
               analytics.trackHowCanIHelp();
               onSkillsClick();
             }}
-            style={{ color: mutedColor }}
           >
-            <span aria-hidden="true">←</span> How can I help?
+            How can I help? <span aria-hidden="true">→</span>
           </button>
           <div className={styles.skillsTooltip}>
             <span>Preview</span>

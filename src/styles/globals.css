@@ -240,20 +240,19 @@ ol[role="list"] {
 /* ===== HERO-SPECIFIC TOKENS ===== */
 
 :root {
-  /* Hero color palette (warm neutrals matching shader output) */
-  --hero-bg: #F2ECE9;
-  --hero-text: #403C3A;
-  --hero-text-muted: #8C8987;
-  --hero-card-bg: #403C3A;
-
-  /* Dark mode colors (when skill is active) */
-  --hero-dark-text: #F2ECE9;
-  --hero-dark-text-muted: #D9D2CC;
-  --hero-dark-border: #595552;
+  /* Hero dark theme colors (ASCII background) */
+  --hero-bg: #0a0a0a;
+  --hero-text: rgba(255, 255, 255, 0.9);
+  --hero-text-muted: rgba(255, 255, 255, 0.6);
+  --hero-text-subtle: rgba(255, 255, 255, 0.4);
+  --hero-border: rgba(255, 255, 255, 0.6);
+  --hero-border-hover: rgba(255, 255, 255, 0.8);
+  --hero-accent: #ffffff;
+  --hero-accent-bg: rgba(255, 255, 255, 0.1);
 
   /* Hero transitions */
   --hero-transition-fast: 0.2s ease;
-  --hero-transition-medium: 0.5s ease;
+  --hero-transition-medium: 0.3s ease;
 }
 
 /* ===== MONOSPACE FONT STACK ===== */
