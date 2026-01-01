@@ -29,7 +29,7 @@ export default function RootLayout({
         {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Handjet:wght,ELSH@100..900,2&family=Open+Sans:wght@300;400;500;600;700&family=Patrick+Hand+SC&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=VT323&family=Patrick+Hand+SC&display=swap" rel="stylesheet" />
       </head>
       <body className="antialiased">
         {children}

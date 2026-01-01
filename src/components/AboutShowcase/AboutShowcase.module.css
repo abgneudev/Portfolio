@@ -7,12 +7,12 @@
 .showcase {
   width: 100%;
   position: relative;
-  background: var(--color-bg);
+  background: transparent;
 }
 
 /* Scrapbook Section */
 .scrapbookSection {
-  background: var(--color-bg);
+  background: transparent;
 }
 
 .scrapbookContainer {
@@ -21,11 +21,12 @@
 }
 
 .scrapbookTitle {
-  font-family: monospace;
-  font-size: var(--text-lg);
+  font-family: 'Doto', monospace;
+  font-size: var(--text-med);
   font-weight: var(--font-medium);
-  color: var(--color-text);
+  color: #8C8987;
   margin: 0 0 var(--space-6) 0;
+  text-transform: uppercase;
 }
 
 /* Adventure Video */
@@ -33,6 +34,7 @@
   width: 100%;
   margin-bottom: var(--space-6);
   overflow: hidden;
+  background: transparent;
 }
 
 .adventureVideo {
@@ -40,6 +42,7 @@
   height: auto;
   display: block;
   object-fit: cover;
+  background: transparent;
 }
 
 /* Three Column Layout Container */
@@ -54,22 +57,31 @@
 /* Category Sections */
 .categorySection {
   position: relative;
+  isolation: isolate;
+}
+
+/* Ensure polaroid containers are tall enough and clip horizontal overflow */
+.categorySection:nth-child(1) .scrapbookBoard,
+.categorySection:nth-child(2) .scrapbookBoard {
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .categoryTitle {
-  font-family: monospace;
+  font-family: 'Doto', monospace;
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
   margin: 0 0 var(--space-4) 0;
+  color: #8C8987;
 }
 
 .scrapbookBoard {
   position: relative;
-  min-height: 400px;
+  min-height: 420px;
   width: 100%;
+  padding-bottom: var(--space-4);
 }
 
 /* Polaroid Cards */
@@ -81,7 +93,7 @@
 
 .polaroidContent {
   position: relative;
-  background: white;
+  background: #faf8f5;
   padding: 6px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -440,7 +452,7 @@
   border-radius: 0;
   position: relative;
   overflow: hidden;
-  font-family: monospace;
+  font-family: 'Doto', monospace;
   box-shadow:
     1px 0 2px rgba(0, 0, 0, 0.1),
     -1px 0 2px rgba(0, 0, 0, 0.1);
@@ -558,6 +570,15 @@
   .bookshelf {
     min-height: 242px;
   }
+
+  .scrapbookBoard {
+    min-height: 380px;
+    padding-bottom: var(--space-4);
+  }
+
+  /* Adjust activity positions for smaller photos */
+  .activityPos3 { top: 180px; }
+  .activityPos4 { top: 200px; }
 }
 
 /* Tablets */
@@ -578,7 +599,8 @@
   }
 
   .scrapbookBoard {
-    min-height: 350px;
+    min-height: 380px;
+    padding-bottom: var(--space-6);
   }
 
   .foodPos1 { top: 0; left: 5%; }
@@ -588,6 +610,7 @@
   .activityPos1 { top: 0; left: 5%; }
   .activityPos2 { top: 20px; right: 5%; }
   .activityPos3 { top: 170px; left: 10%; }
+  .activityPos4 { top: 180px; left: 50%; }
 }
 
 /* Mobile */

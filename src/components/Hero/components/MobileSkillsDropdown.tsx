@@ -6,7 +6,11 @@ import { analytics } from '@/lib/analytics';
 import { SKILLS, type SkillInfo } from './SkillsPanel';
 import styles from '../Hero.module.css';
 
-export const MobileSkillsDropdown = memo(function MobileSkillsDropdown() {
+interface MobileSkillsDropdownProps {
+  onSkillSelect?: (hasSelection: boolean) => void;
+}
+
+export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({ onSkillSelect }: MobileSkillsDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<SkillInfo | null>(null);
   const [imageIndex, setImageIndex] = useState(0);
@@ -45,6 +49,14 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown() {
     setSelectedSkill(skill);
     setImageIndex(0);
     setIsOpen(false);
+    onSkillSelect?.(true);
+  };
+
+  const handleClearSelection = () => {
+    setSelectedSkill(null);
+    setImageIndex(0);
+    setIsOpen(false);
+    onSkillSelect?.(false);
   };
 
   const currentImage = selectedSkill?.images[imageIndex];
@@ -94,6 +106,14 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown() {
 
       {selectedSkill && (
         <div className={styles.mobileSkillDetails}>
+          <button
+            type="button"
+            className={styles.mobileSkillClose}
+            onClick={handleClearSelection}
+            aria-label="Close skill details"
+          >
+            ✕
+          </button>
           <h3 className={styles.mobileSkillTitle}>
             {selectedSkill.title}
           </h3>

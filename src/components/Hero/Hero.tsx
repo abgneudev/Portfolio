@@ -40,6 +40,10 @@ export default function Hero() {
     targetFps: 15,
   });
   const [skillsPanelOpen, setSkillsPanelOpen] = useState(false);
+  const [mobileSkillSelected, setMobileSkillSelected] = useState(false);
+
+  // Blur background when either desktop panel is open or mobile skill is selected
+  const shouldBlurBackground = skillsPanelOpen || mobileSkillSelected;
 
   return (
     <section
@@ -55,7 +59,7 @@ export default function Hero() {
       {/* ASCII Art Background Layer */}
       <canvas
         ref={canvasRef}
-        className={`${styles.asciiBackground} ${skillsPanelOpen ? styles.asciiBackgroundBlurred : ''}`}
+        className={`${styles.asciiBackground} ${shouldBlurBackground ? styles.asciiBackgroundBlurred : ''}`}
         aria-hidden="true"
       />
 
@@ -64,7 +68,7 @@ export default function Hero() {
         <div className={styles.mobileLayout}>
           <div className={styles.mobileHeader}>
             <HeroHeader isMobile={true} />
-            <MobileSkillsDropdown />
+            <MobileSkillsDropdown onSkillSelect={setMobileSkillSelected} />
           </div>
           <div className={styles.mobileSpacer} />
         </div>

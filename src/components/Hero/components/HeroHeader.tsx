@@ -144,8 +144,7 @@ export const HeroHeader = memo(function HeroHeader({
         </nav>
         {!isMobile && (
           <p className={styles.heroDescription}>
-            Power user of design, code, math & AI. <br />
-             2x Hackathon winner. Last developed a wellness app at Harvard Innovation Labs.
+            Power user of design, code, math & AI. 2x Hackathon winner. Last developed a wellness app at Harvard Innovation Labs.
           </p>
         )}
 

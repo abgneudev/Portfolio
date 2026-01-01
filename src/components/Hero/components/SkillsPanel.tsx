@@ -36,7 +36,7 @@ export const SKILLS: SkillInfo[] = [
     description: 'I create scalable design systems using tokens and atomic components that translate cleanly into code. My work prioritizes logical structure and maintainability, ensuring the final product matches the design intent without friction.',
     skills: ['Figma', 'Design Systems', 'Information Architecture', 'Interaction Design'],
     images: [
-      { publicId: 'v1766960197/bpl_sovi44.png', alt: 'Team collaboration session with three people discussing design work around a table with laptops in a modern office space', title: 'Product Design', caption: 'Designing website for Bentley x IxDF Designathon' }
+      { publicId: 'v1766960197/bpl_sovi44.png', alt: 'Team collaboration session with three people discussing design work around a table with laptops in a modern office space', title: 'Product Design', caption: 'Designing website for Bentley University x IxDF Designathon focused on Sustainability' }
     ]
   },
   {
