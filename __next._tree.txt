@@ -1,4 +1,4 @@
 :HL["/Portfolio/_next/static/chunks/bec518a2911b2ae9.css","style"]
-:HL["/Portfolio/_next/static/chunks/0f923ff9e54512a5.css","style"]
+:HL["/Portfolio/_next/static/chunks/ffefcb39b7569ba4.css","style"]
 :HL["https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=VT323&family=Patrick+Hand+SC&display=swap","style"]
-0:{"buildId":"SCP03a5QMJjnnEeNF71eW","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"jb22blWxJ89ZC4nyt_k2M","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
