@@ -325,7 +325,7 @@
   font-size: 16px;
 }
 
-/* Bookshelf - Compact vertical layout */
+/* Bookshelf - Messy organic layout */
 .bookshelf {
   display: flex;
   align-items: flex-end;
@@ -335,7 +335,7 @@
   padding: var(--space-4) var(--space-2) var(--space-4);
   min-height: 308px;
   background: none;
-  gap: 5px;
+  gap: 6px;
 }
 
 .bookshelf::after {
@@ -352,6 +352,13 @@
   z-index: 1;
 }
 
+.bookLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-self: flex-end;
+}
+
 .book {
   position: relative;
   cursor: pointer;
@@ -362,65 +369,66 @@
 }
 
 
-/* Book sizes - ~10% larger */
-.book:nth-child(1) {
+/* Book sizes - slightly messy arrangement */
+.bookLink:nth-child(1) .book {
   width: 20px;
   height: 154px;
   transform: rotate(-2deg);
 }
 
-.book:nth-child(2) {
+.bookLink:nth-child(2) .book {
   width: 31px;
   height: 176px;
   transform: rotate(1deg);
 }
 
-.book:nth-child(3) {
+.bookLink:nth-child(3) .book {
   width: 24px;
   height: 165px;
   transform: rotate(-1deg);
 }
 
-.book:nth-child(4) {
+.bookLink:nth-child(4) .book {
   width: 33px;
   height: 171px;
   transform: rotate(2deg);
 }
 
-.book:nth-child(5) {
+.bookLink:nth-child(5) .book {
   width: 22px;
   height: 160px;
   transform: rotate(-1.5deg);
 }
 
-.book:nth-child(6) {
+/* Books 6-10 - vertical like others */
+.bookLink:nth-child(6) .book {
   width: 18px;
-  height: 182px;
+  height: 165px;
   transform: rotate(1.5deg);
 }
 
-.book:nth-child(7) {
-  width: 26px;
-  height: 163px;
+.bookLink:nth-child(7) .book {
+  width: 22px;
+  height: 150px;
   transform: rotate(-0.5deg);
 }
 
-.book:nth-child(8) {
-  width: 24px;
-  height: 167px;
+.bookLink:nth-child(8) .book {
+  width: 20px;
+  height: 158px;
   transform: rotate(1deg);
 }
 
-.book:nth-child(9) {
-  width: 29px;
-  height: 165px;
-  transform: rotate(0.5deg);
+.bookLink:nth-child(9) .book {
+  width: 24px;
+  height: 168px;
+  transform: rotate(-1deg);
 }
 
-.book:nth-child(10) {
-  width: 20px;
-  height: 160px;
-  transform: rotate(-1deg);
+.bookLink:nth-child(10) .book {
+  width: 18px;
+  height: 155px;
+  transform: rotate(2deg);
 }
 
 .book:hover {
@@ -545,16 +553,16 @@
     font-size: 14px;
   }
 
-  .book:nth-child(1) { width: 15px; height: 132px; }
-  .book:nth-child(2) { width: 24px; height: 154px; }
-  .book:nth-child(3) { width: 20px; height: 143px; }
-  .book:nth-child(4) { width: 26px; height: 149px; }
-  .book:nth-child(5) { width: 18px; height: 138px; }
-  .book:nth-child(6) { width: 15px; height: 160px; }
-  .book:nth-child(7) { width: 22px; height: 141px; }
-  .book:nth-child(8) { width: 20px; height: 145px; }
-  .book:nth-child(9) { width: 24px; height: 143px; }
-  .book:nth-child(10) { width: 15px; height: 138px; }
+  .bookLink:nth-child(1) .book { width: 15px; height: 132px; transform: rotate(-2deg); }
+  .bookLink:nth-child(2) .book { width: 24px; height: 154px; transform: rotate(1deg); }
+  .bookLink:nth-child(3) .book { width: 20px; height: 143px; transform: rotate(-1deg); }
+  .bookLink:nth-child(4) .book { width: 26px; height: 149px; transform: rotate(2deg); }
+  .bookLink:nth-child(5) .book { width: 18px; height: 138px; transform: rotate(-1.5deg); }
+  .bookLink:nth-child(6) .book { width: 15px; height: 143px; transform: rotate(1.5deg); }
+  .bookLink:nth-child(7) .book { width: 18px; height: 130px; transform: rotate(-0.5deg); }
+  .bookLink:nth-child(8) .book { width: 16px; height: 137px; transform: rotate(1deg); }
+  .bookLink:nth-child(9) .book { width: 20px; height: 145px; transform: rotate(-1deg); }
+  .bookLink:nth-child(10) .book { width: 15px; height: 134px; transform: rotate(2deg); }
 
   .bookSpine {
     font-size: 8px;
@@ -692,19 +700,26 @@
     min-height: 198px;
     justify-content: center;
     max-width: 100%;
-    gap: 4px;
+    gap: 6px;
   }
 
-  .book:nth-child(1) { width: 13px; height: 110px; }
-  .book:nth-child(2) { width: 20px; height: 127px; }
-  .book:nth-child(3) { width: 15px; height: 119px; }
-  .book:nth-child(4) { width: 22px; height: 123px; }
-  .book:nth-child(5) { width: 14px; height: 116px; }
-  .book:nth-child(6) { width: 12px; height: 132px; }
-  .book:nth-child(7) { width: 18px; height: 117px; }
-  .book:nth-child(8) { width: 15px; height: 121px; }
-  .book:nth-child(9) { width: 20px; height: 119px; }
-  .book:nth-child(10) { width: 13px; height: 114px; }
+  /* Reset horizontal books to vertical on mobile */
+  .bookLink:nth-child(n+6) {
+    position: relative;
+    right: auto;
+    bottom: auto;
+  }
+
+  .bookLink:nth-child(1) .book { width: 13px; height: 110px; transform: rotate(-2deg); }
+  .bookLink:nth-child(2) .book { width: 20px; height: 127px; transform: rotate(1deg); }
+  .bookLink:nth-child(3) .book { width: 15px; height: 119px; transform: rotate(-1deg); }
+  .bookLink:nth-child(4) .book { width: 22px; height: 123px; transform: rotate(2deg); }
+  .bookLink:nth-child(5) .book { width: 14px; height: 116px; transform: rotate(-1.5deg); }
+  .bookLink:nth-child(6) .book { width: 12px; height: 132px; transform: rotate(1.5deg); }
+  .bookLink:nth-child(7) .book { width: 18px; height: 117px; transform: rotate(-0.5deg); }
+  .bookLink:nth-child(8) .book { width: 15px; height: 121px; transform: rotate(1deg); }
+  .bookLink:nth-child(9) .book { width: 20px; height: 119px; transform: rotate(-1deg); }
+  .bookLink:nth-child(10) .book { width: 13px; height: 114px; transform: rotate(2deg); }
 
   .bookSpine {
     font-size: 7px;
@@ -738,19 +753,19 @@
 
   .bookshelf {
     min-height: 165px;
-    gap: 3px;
+    gap: 5px;
   }
 
-  .book:nth-child(1) { width: 11px; height: 94px; }
-  .book:nth-child(2) { width: 17px; height: 108px; }
-  .book:nth-child(3) { width: 13px; height: 101px; }
-  .book:nth-child(4) { width: 19px; height: 105px; }
-  .book:nth-child(5) { width: 12px; height: 97px; }
-  .book:nth-child(6) { width: 10px; height: 112px; }
-  .book:nth-child(7) { width: 15px; height: 99px; }
-  .book:nth-child(8) { width: 13px; height: 103px; }
-  .book:nth-child(9) { width: 17px; height: 101px; }
-  .book:nth-child(10) { width: 11px; height: 97px; }
+  .bookLink:nth-child(1) .book { width: 11px; height: 94px; transform: rotate(-2deg); }
+  .bookLink:nth-child(2) .book { width: 17px; height: 108px; transform: rotate(1deg); }
+  .bookLink:nth-child(3) .book { width: 13px; height: 101px; transform: rotate(-1deg); }
+  .bookLink:nth-child(4) .book { width: 19px; height: 105px; transform: rotate(2deg); }
+  .bookLink:nth-child(5) .book { width: 12px; height: 97px; transform: rotate(-1.5deg); }
+  .bookLink:nth-child(6) .book { width: 10px; height: 112px; transform: rotate(1.5deg); }
+  .bookLink:nth-child(7) .book { width: 15px; height: 99px; transform: rotate(-0.5deg); }
+  .bookLink:nth-child(8) .book { width: 13px; height: 103px; transform: rotate(1deg); }
+  .bookLink:nth-child(9) .book { width: 17px; height: 101px; transform: rotate(-1deg); }
+  .bookLink:nth-child(10) .book { width: 11px; height: 97px; transform: rotate(2deg); }
 
   .bookSpine {
     font-size: 6px;

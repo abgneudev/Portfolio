@@ -498,6 +498,60 @@
   text-decoration: underline;
 }
 
+/* Experience Links with Hover Preview */
+.experienceLink {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+@media (min-width: 480px) {
+  .experienceLink {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+  }
+}
+
+.experienceLink:hover .experienceText {
+  color: var(--color-accent);
+}
+
+.experienceText {
+  transition: color 0.2s ease;
+}
+
+.experiencePreview {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.experienceLink:hover .experiencePreview {
+  opacity: 1;
+  visibility: visible;
+}
+
+.previewImage {
+  display: block;
+  width: 320px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+}
+
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 1024px) {
@@ -615,7 +669,10 @@
   .pronunciationTooltip,
   .speakerIcon,
   .meaningBtn,
-  .meaningTooltip {
+  .meaningTooltip,
+  .experienceLink,
+  .experienceText,
+  .experiencePreview {
     transition: none;
     animation: none;
   }

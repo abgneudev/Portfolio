@@ -17,16 +17,16 @@ const personalPictures = {
     { id: "a4", title: "Jet Ski Adventures", img: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755074749/jetski_pobjpt.png", date: "Beach Day", position: "activityPos4", rotation: "rotatePos4", tape: "tapeBlue" },
   ],
   books: [
-    { id: "b1", title: "Crime and Punishment", author: "Fyodor Dostoevsky", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088217/Crimeandpunishmentcover_hhiiti.png", color: "#1a1a1a" },
-    { id: "b2", title: "The Brothers Karamazov", author: "Fyodor Dostoevsky", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088216/tbk_jhxvjz.jpg", color: "#f59e0b" },
-    { id: "b3", title: "Kafka on the Shore", author: "Haruki Murakami", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088214/kafkaonshore_zoqrwd.jpg", color: "#2563eb" },
-    { id: "b4", title: "The Wind-Up Bird Chronicle", author: "Haruki Murakami", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088217/windup_ggshgx.jpg", color: "#06b6d4" },
-    { id: "b5", title: "The Trial", author: "Franz Kafka", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088213/trial_o4weno.jpg", color: "#1a1a1a" },
-    { id: "b6", title: "The Stranger", author: "Albert Camus", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088209/stragner_u1pawk.jpg", color: "#8b5cf6" },
-    { id: "b7", title: "Steve Jobs", author: "Walter Isaacson", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088213/steve_ooed42.jpg", color: "#10b981" },
-    { id: "b8", title: "Don't Make Me Think", author: "Steve Krug", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088209/dont_mjvmsx.jpg", color: "#ef4444" },
-    { id: "b9", title: "Ham on Rye", author: "Charles Bukowski", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088210/ham_ulxmu8.jpg", color: "#ec4899" },
-    { id: "b10", title: "Animal Farm", author: "George Orwell", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755090681/animal_farm_cover2014_vzow4i.jpg", color: "#06b6d4" },
+    { id: "b1", title: "Crime and Punishment", author: "Fyodor Dostoevsky", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088217/Crimeandpunishmentcover_hhiiti.png", color: "#1a1a1a", url: "https://www.goodreads.com/book/show/7144.Crime_and_Punishment" },
+    { id: "b2", title: "The Brothers Karamazov", author: "Fyodor Dostoevsky", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088216/tbk_jhxvjz.jpg", color: "#f59e0b", url: "https://www.goodreads.com/book/show/4934.The_Brothers_Karamazov" },
+    { id: "b3", title: "Kafka on the Shore", author: "Haruki Murakami", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088214/kafkaonshore_zoqrwd.jpg", color: "#2563eb", url: "https://www.goodreads.com/book/show/4929.Kafka_on_the_Shore" },
+    { id: "b4", title: "The Wind-Up Bird Chronicle", author: "Haruki Murakami", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088217/windup_ggshgx.jpg", color: "#06b6d4", url: "https://www.goodreads.com/book/show/11275.The_Wind_Up_Bird_Chronicle" },
+    { id: "b5", title: "The Trial", author: "Franz Kafka", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088213/trial_o4weno.jpg", color: "#1a1a1a", url: "https://www.goodreads.com/book/show/17690.The_Trial" },
+    { id: "b6", title: "The Stranger", author: "Albert Camus", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088209/stragner_u1pawk.jpg", color: "#8b5cf6", url: "https://www.goodreads.com/book/show/49552.The_Stranger" },
+    { id: "b7", title: "Steve Jobs", author: "Walter Isaacson", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088213/steve_ooed42.jpg", color: "#10b981", url: "https://www.goodreads.com/book/show/11084145-steve-jobs" },
+    { id: "b8", title: "Don't Make Me Think", author: "Steve Krug", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088209/dont_mjvmsx.jpg", color: "#ef4444", url: "https://www.goodreads.com/book/show/18197267-don-t-make-me-think-revisited" },
+    { id: "b9", title: "Ham on Rye", author: "Charles Bukowski", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755088210/ham_ulxmu8.jpg", color: "#ec4899", url: "https://www.goodreads.com/book/show/38501.Ham_on_Rye" },
+    { id: "b10", title: "Animal Farm", author: "George Orwell", image: "https://res.cloudinary.com/dbvfgfqqh/image/upload/v1755090681/animal_farm_cover2014_vzow4i.jpg", color: "#06b6d4", url: "https://www.goodreads.com/book/show/170448.Animal_Farm" },
   ],
 };
 
@@ -48,6 +48,7 @@ type Book = {
   author: string;
   image: string;
   color: string;
+  url: string;
 };
 
 const AboutShowcase: React.FC = () => {
@@ -135,20 +136,27 @@ const AboutShowcase: React.FC = () => {
     const isHovered = hoveredBook === book.id;
 
     return (
-      <div
+      <a
         key={book.id}
-        className={styles.book}
-        style={{ "--book-color": book.color } as React.CSSProperties}
+        href={book.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.bookLink}
         onMouseEnter={() => setHoveredBook(book.id)}
         onMouseLeave={() => setHoveredBook(null)}
       >
-        <div className={styles.bookSpine}>
-          <span className={styles.bookTitle}>{book.title}</span>
+        <div
+          className={styles.book}
+          style={{ "--book-color": book.color } as React.CSSProperties}
+        >
+          <div className={styles.bookSpine}>
+            <span className={styles.bookTitle}>{book.title}</span>
+          </div>
+          <div className={`${styles.bookCover} ${isHovered ? styles.bookCoverVisible : ""}`}>
+            <img src={book.image} alt={book.title} className={styles.bookCoverImage} />
+          </div>
         </div>
-        <div className={`${styles.bookCover} ${isHovered ? styles.bookCoverVisible : ""}`}>
-          <img src={book.image} alt={book.title} className={styles.bookCoverImage} />
-        </div>
-      </div>
+      </a>
     );
   };
 

@@ -227,19 +227,67 @@ export default function About() {
             <h2 className={styles.sectionTitle}>Experience</h2>
             <ul className={styles.list}>
               <li className={styles.listItem}>
-                <span>iEmbrace LLC, Harvard Innovation Labs <span className={styles.role}>— Frontend Engineer Intern</span></span>
-                <span className={styles.duration}>4 months</span>
+                <a
+                  href="https://innovationlabs.harvard.edu/venture/embrace"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.experienceLink}
+                >
+                  <span className={styles.experienceText}>iEmbrace LLC, Harvard Innovation Labs <span className={styles.role}>— Frontend Engineer Intern</span></span>
+                  <span className={styles.experiencePreview}>
+                    <Image
+                      src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1767240365/iembrace_lmb7nn.png"
+                      alt="iEmbrace website preview"
+                      width={200}
+                      height={120}
+                      className={styles.previewImage}
+                    />
+                  </span>
+                  <span className={styles.duration}>4 months</span>
+                </a>
               </li>
               <li className={styles.listItem}>
-                <span>Northeastern University <span className={styles.role}>— Graduate Assistant, Web Design & UX</span></span>
-                <span className={styles.duration}>6 months</span>
+                <a
+                  href="https://www.northeastern.edu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.experienceLink}
+                >
+                  <span className={styles.experienceText}>Northeastern University <span className={styles.role}>— Graduate Assistant, Web Design & UX</span></span>
+                  <span className={styles.experiencePreview}>
+                    <Image
+                      src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1767240365/northeastern_kqv8uc.png"
+                      alt="Northeastern University website preview"
+                      width={200}
+                      height={120}
+                      className={styles.previewImage}
+                    />
+                  </span>
+                  <span className={styles.duration}>6 months</span>
+                </a>
               </li>
               <li className={styles.listItem}>
-                <span>Wipro Ltd. <span className={styles.role}>— User Experience Engineer</span></span>
-                <span className={styles.duration}>2 years</span>
+                <a
+                  href="https://www.wipro.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.experienceLink}
+                >
+                  <span className={styles.experienceText}>Wipro Ltd. <span className={styles.role}>— User Experience Engineer</span></span>
+                  <span className={styles.experiencePreview}>
+                    <Image
+                      src="https://res.cloudinary.com/dbvfgfqqh/image/upload/v1767240365/wipro_u5ufq8.png"
+                      alt="Wipro website preview"
+                      width={200}
+                      height={120}
+                      className={styles.previewImage}
+                    />
+                  </span>
+                  <span className={styles.duration}>2 years</span>
+                </a>
               </li>
               <li className={styles.listItem}>
-                <span>Freelance <span className={styles.role}>— UX/UI Designer</span></span>
+                <span className={styles.experienceText}>Freelance <span className={styles.role}>— UX/UI Designer</span></span>
                 <span className={styles.duration}>~3 years</span>
               </li>
             </ul>
