@@ -151,13 +151,13 @@ export const HeroHeader = memo(function HeroHeader({
         {/* CTA Buttons */}
         <div className={styles.ctaButtons}>
           <div className={styles.ctaWrapper}>
-            <button
-              type="button"
+            <Link
+              href="/work"
               className={styles.ctaPrimary}
               onClick={analytics.trackViewWork}
             >
               {isMobile ? 'Work' : 'View Work'}
-            </button>
+            </Link>
             {!isMobile && (
               <div className={styles.ctaTooltip}>
                 <span>Case Studies</span>
