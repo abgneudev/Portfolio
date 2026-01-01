@@ -558,7 +558,7 @@
 
 .skillsTooltip span {
   font-family: 'VT323', monospace;
-  font-size: var(--text-xs);
+  font-size: var(--text-med);
   color: #fff;
 }
 
