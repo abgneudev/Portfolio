@@ -1,4 +1,4 @@
 :HL["/Portfolio/_next/static/chunks/bec518a2911b2ae9.css","style"]
 :HL["/Portfolio/_next/static/chunks/ad2c854efb27c298.css","style"]
 :HL["https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=VT323&family=Patrick+Hand+SC&display=swap","style"]
-0:{"buildId":"RM1ucLVNA_IkhfxV1Xesb","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"design","paramType":null,"paramKey":"design","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"1H4opaLyy1kDYrExChFnk","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"design","paramType":null,"paramKey":"design","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
