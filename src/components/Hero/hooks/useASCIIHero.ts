@@ -55,8 +55,10 @@ void main() {
   float glyphU = (idx + inCell.x) / u_glyphCount;
   float alpha = texture2D(u_glyphs, vec2(glyphU, inCell.y)).a;
 
-  vec3 qCol = floor(col * 16.0) / 16.0;
-  vec3 bg = vec3(0.039);
+  // Boost brightness by 1.5x and increase saturation
+  vec3 boosted = pow(col, vec3(0.7)) * 1.5;
+  vec3 qCol = floor(clamp(boosted, 0.0, 1.0) * 16.0) / 16.0;
+  vec3 bg = vec3(0.01);
 
   gl_FragColor = vec4(mix(bg, qCol, alpha), 1.0);
 }`;
