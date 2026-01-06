@@ -2,7 +2,6 @@
 
 import { useState, memo } from 'react';
 import { CloudinaryMedia } from '@/components/ui';
-import { analytics } from '@/lib/analytics';
 import styles from '../Hero.module.css';
 
 export interface ImageInfo {
@@ -70,7 +69,6 @@ export const SkillsPanel = memo(function SkillsPanel({ isOpen, onClose }: Skills
   const [imageIndex, setImageIndex] = useState(0);
 
   const handleSkillChange = (skill: SkillInfo) => {
-    analytics.trackSkillTab(skill.name);
     setActiveSkill(skill);
     setImageIndex(0);
   };

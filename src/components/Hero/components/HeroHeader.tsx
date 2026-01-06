@@ -2,7 +2,6 @@
 
 import { memo } from 'react';
 import Link from 'next/link';
-import { analytics } from '@/lib/analytics';
 import styles from '../Hero.module.css';
 
 // Social media icons as inline SVGs
@@ -78,7 +77,6 @@ export const HeroHeader = memo(function HeroHeader({
           <Link
             href="/about"
             className={styles.socialLinkText}
-            onClick={analytics.trackAboutMe}
           >
             About Me<span className={styles.aboutArrow} aria-hidden="true">→</span>
           </Link>
@@ -90,7 +88,6 @@ export const HeroHeader = memo(function HeroHeader({
               rel="noopener noreferrer"
               className={styles.socialIcon}
               aria-label="LinkedIn"
-              onClick={analytics.trackLinkedIn}
             >
               <LinkedInIcon />
             </a>
@@ -105,7 +102,6 @@ export const HeroHeader = memo(function HeroHeader({
               rel="noopener noreferrer"
               className={styles.socialIcon}
               aria-label="GitHub"
-              onClick={analytics.trackGitHub}
             >
               <GitHubIcon />
             </a>
@@ -120,7 +116,6 @@ export const HeroHeader = memo(function HeroHeader({
               rel="noopener noreferrer"
               className={styles.socialIcon}
               aria-label="Instagram"
-              onClick={analytics.trackInstagram}
             >
               <InstagramIcon />
             </a>
@@ -133,7 +128,6 @@ export const HeroHeader = memo(function HeroHeader({
               href="mailto:gupta.abhinav0210@gmail.com"
               className={styles.socialIcon}
               aria-label="Email"
-              onClick={analytics.trackEmail}
             >
               <EmailIcon />
             </a>
@@ -154,7 +148,6 @@ export const HeroHeader = memo(function HeroHeader({
             <Link
               href="/work"
               className={styles.ctaPrimary}
-              onClick={analytics.trackViewWork}
             >
               {isMobile ? 'Work' : 'View Work'}
             </Link>
@@ -169,7 +162,6 @@ export const HeroHeader = memo(function HeroHeader({
               type="button"
               className={styles.ctaSecondary}
               onClick={() => {
-                analytics.trackResume();
                 window.open('https://drive.google.com/file/d/18ga1iRzZ8qmfpBasr6hgX651MTAB-fBa/view?usp=sharing', '_blank');
               }}
             >
@@ -190,10 +182,7 @@ export const HeroHeader = memo(function HeroHeader({
           <button
             type="button"
             className={styles.skillsTrigger}
-            onClick={() => {
-              analytics.trackHowCanIHelp();
-              onSkillsClick();
-            }}
+            onClick={onSkillsClick}
           >
             How can I help? <span aria-hidden="true">→</span>
           </button>

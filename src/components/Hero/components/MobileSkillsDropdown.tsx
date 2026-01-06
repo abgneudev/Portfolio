@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, memo } from 'react';
 import { CloudinaryMedia } from '@/components/ui';
-import { analytics } from '@/lib/analytics';
 import { SKILLS, type SkillInfo } from './SkillsPanel';
 import styles from '../Hero.module.css';
 
@@ -45,7 +44,6 @@ export const MobileSkillsDropdown = memo(function MobileSkillsDropdown({ onSkill
   }, [isOpen]);
 
   const handleSkillSelect = (skill: SkillInfo) => {
-    analytics.trackMobileSkillSelect(skill.name);
     setSelectedSkill(skill);
     setImageIndex(0);
     setIsOpen(false);
