@@ -39,6 +39,7 @@ export const analytics = {
   trackLinkedIn: () => trackEvent('click', { category: 'social', label: 'linkedin' }),
   trackGitHub: () => trackEvent('click', { category: 'social', label: 'github' }),
   trackInstagram: () => trackEvent('click', { category: 'social', label: 'instagram' }),
+  trackTwitter: () => trackEvent('click', { category: 'social', label: 'twitter' }),
   trackEmail: () => trackEvent('click', { category: 'social', label: 'email' }),
 
   // CTA
