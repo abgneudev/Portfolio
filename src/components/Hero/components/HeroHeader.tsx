@@ -170,7 +170,7 @@ export const HeroHeader = memo(function HeroHeader({
               className={styles.ctaSecondary}
               onClick={() => {
                 analytics.trackResume();
-                window.open('https://drive.google.com/file/d/18ga1iRzZ8qmfpBasr6hgX651MTAB-fBa/view?usp=sharing', '_blank');
+                window.open('https://drive.google.com/file/d/1eFT70UT4UDwIG7v7-W6sS2Ywy2ZX-Q33/view?usp=sharing', '_blank');
               }}
             >
               {isMobile ? 'CV' : <span className={styles.ctaWithIcon}>Resume <DownloadIcon /></span>}
