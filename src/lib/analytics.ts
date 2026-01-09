@@ -34,6 +34,7 @@ export const analytics = {
   // Navigation
   trackAboutMe: () => trackEvent('click', { category: 'navigation', label: 'about_me' }),
   trackViewWork: () => trackEvent('click', { category: 'navigation', label: 'view_work' }),
+  trackProcess: () => trackEvent('click', { category: 'navigation', label: 'learn_process' }),
 
   // Social Links
   trackLinkedIn: () => trackEvent('click', { category: 'social', label: 'linkedin' }),
@@ -59,4 +60,7 @@ export const analytics = {
   trackVideoPlay: () => trackEvent('video_play', { category: 'video', label: 'adventure_video' }),
   trackVideoPause: () => trackEvent('video_pause', { category: 'video', label: 'adventure_video' }),
   trackVideoEnded: () => trackEvent('video_ended', { category: 'video', label: 'adventure_video' }),
+
+  // Process Page
+  trackProcessStage: (stageName: string) => trackEvent('process_stage', { category: 'process', label: stageName }),
 };

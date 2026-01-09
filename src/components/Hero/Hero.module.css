@@ -462,6 +462,23 @@
   }
 }
 
+.processLink {
+  color: var(--hero-text-muted);
+  font-size: var(--text-base);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity var(--hero-transition-fast);
+}
+
+.processLink:hover {
+  opacity: 0.8;
+}
+
+.processLink:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 /* Skills Trigger Button - Bottom Left */
 .skillsTriggerWrapper {
   position: fixed;
