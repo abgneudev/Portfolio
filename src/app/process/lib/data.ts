@@ -94,7 +94,6 @@ export const stages: Stage[] = [
       "Optimize high-frequency user flows",
       "Design notification and re-engagement triggers",
       "Reduce friction on repeat actions",
-      "Build streaks, progress, or investment mechanics",
     ],
     outcomes: [
       "D1 / D7 / D30 retention",

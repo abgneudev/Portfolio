@@ -155,14 +155,9 @@ export default function ProcessPage() {
               <Link href="/" className={styles.backLink}>← Home</Link>
             </nav>
 
-            <div className={styles.designFor}>
-              <span className={styles.label}>I Design For</span>
-              <h2 className={styles.designGoal}>{stage.designFor}</h2>
-              <ul className={styles.taskList}>
-                {stage.tasks.map((task, i) => (
-                  <li key={i}>{task}</li>
-                ))}
-              </ul>
+            <div className={styles.stageInfo}>
+              <h1 className={styles.stageName}>{stage.name}</h1>
+              <p className={styles.subtitle}>{stage.subtitle}</p>
             </div>
 
             <div className={styles.outcomes}>
@@ -180,9 +175,14 @@ export default function ProcessPage() {
           </div>
 
           <div className={styles.columnRight}>
-            <div className={styles.stageInfo}>
-              <h1 className={styles.stageName}>{stage.name}</h1>
-              <p className={styles.subtitle}>{stage.subtitle}</p>
+            <div className={styles.designFor}>
+              <span className={styles.label}>I Design For</span>
+              <h2 className={styles.designGoal}>{stage.designFor}</h2>
+              <ul className={styles.taskList}>
+                {stage.tasks.map((task, i) => (
+                  <li key={i}>{task}</li>
+                ))}
+              </ul>
             </div>
 
             <div className={styles.progress}>

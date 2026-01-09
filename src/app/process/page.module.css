@@ -181,7 +181,7 @@
   pointer-events: auto;
 }
 
-/* Left Column - Stage info at top, Design goals at bottom */
+/* Left Column - Title at top, Outcomes at bottom */
 .columnLeft {
   display: flex;
   flex-direction: column;
@@ -198,14 +198,14 @@
   padding-bottom: var(--space-8);
 }
 
-/* Right Column - Outcomes at top, Progress at bottom */
+/* Right Column - Design For at top, Progress at bottom */
 .columnRight {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
   height: 100%;
-  text-align: left;
+  text-align: right;
 }
 
 /* Navigation */
@@ -257,7 +257,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  margin-top: var(--space-5);
 }
 
 /* Labels */
@@ -267,7 +266,7 @@
   font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--hero-text-subtle);
+  color: var(--hero-text-muted);
 }
 
 /* Stage Name */
@@ -292,22 +291,25 @@
 /* Design For Section */
 .designFor {
   max-width: 560px;
+  text-align: left;
+  margin-top: 0;
 }
 
 .designGoal {
   font-family: 'Doto', monospace;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--hero-accent);
-  margin: var(--space-3) 0 var(--space-4);
+  margin: var(--space-2) 0 var(--space-3);
   line-height: 1.4;
+  text-align: left;
 }
 
 .taskList {
   font-family: 'VT323', monospace;
-  font-size: 16px;
+  font-size: var(--text-sm);
   color: var(--hero-text-subtle);
-  line-height: 2;
+  line-height: 1.6;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -316,12 +318,12 @@
 .taskList li {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .taskList li::before {
   content: '';
-  width: 12px;
+  width: 8px;
   height: 1px;
   background: var(--hero-text-subtle);
   flex-shrink: 0;
@@ -358,9 +360,9 @@
 
 .outcomeList {
   font-family: 'VT323', monospace;
-  font-size: 16px;
+  font-size: var(--text-base);
   color: var(--hero-text-muted);
-  line-height: 1.8;
+  line-height: 1.2;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -545,7 +547,7 @@
   }
 
   .taskList {
-    font-size: 18px;
+    font-size: var(--text-base);
   }
 
   .question {
@@ -623,7 +625,7 @@
   }
 
   .taskList {
-    font-size: 15px;
+    font-size: var(--text-base);
     line-height: 1.8;
   }
 
@@ -744,11 +746,11 @@
   }
 
   .taskList {
-    font-size: 14px;
+    font-size: var(--text-base);
     line-height: 1.7;
   }
 
-  .taskList li::before {
+  .taskList li::after {
     width: var(--space-2);
   }
 
@@ -889,7 +891,7 @@
   }
 
   .taskList {
-    font-size: 13px;
+    font-size: var(--text-base);
     line-height: 1.6;
   }
 
@@ -897,7 +899,7 @@
     gap: var(--space-2);
   }
 
-  .taskList li::before {
+  .taskList li::after {
     width: var(--space-1);
   }
 
@@ -1015,7 +1017,7 @@
   }
 
   .taskList {
-    font-size: 12px;
+    font-size: var(--text-base);
   }
 
   .outcomeList {
